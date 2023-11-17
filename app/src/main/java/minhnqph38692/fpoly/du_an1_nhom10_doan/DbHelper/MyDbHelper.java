@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "duan_datdoan";
-    static final int DB_VERSION=1;
+    static final int DB_VERSION=3;
 
     public MyDbHelper(Context context){
         super(context,DB_NAME,null,DB_VERSION);
@@ -20,9 +20,15 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 "    HoTen   TEXT NOT NULL,\n" +
                 "    MatKhau TEXT NOT NULL,\n" +
                 "    Email   TEXT NOT NULL,\n" +
-                "    NamSinh TEXT NOT NULL\n" +
+                "    NamSinh TEXT ,\n" +
+                "    SDT     TEXT\n" +
                 ");\n";
         sqLiteDatabase.execSQL(sql_nguoidung);
+        String mauUSer ="INSERT INTO dt_nguoidung " +
+                "VALUES ('admin','Quản lý','admin','helo@gmail.com','2004','012345678')," +
+                "('nguoidung01','Người dùng','nguoidung01','nguoidung@gmail.com','2005','123456789')";
+        sqLiteDatabase.execSQL(mauUSer);
+
 
 
     }
