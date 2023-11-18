@@ -93,4 +93,30 @@ public class User_DAO {
             return false;
         }
     }
+
+    public int Update_DangNhap(String Email, String pass){
+        ContentValues values = new ContentValues();
+        values.put("MatKhau",pass);
+        String[] dk ={Email};
+
+        return db.update("dt_nguoidung",values,"Email=?",dk);
+    }
+    public User_DTO getAccountEmail(String Email){
+        User_DTO user_dto= new User_DTO();
+        String[] colum={"MaND","HoTen","MatKhau","Email","NamSinh","SDT"};
+        String vitri = "Email =?";
+        String[] dk = {Email};
+        Cursor c = db.query("dt_nguoidung",colum,vitri,dk,null,null,null);
+
+        if(c!=null && c.moveToFirst()){
+            user_dto.setMaND(c.getString(0));
+            user_dto.setHoTen(c.getString(1));
+            user_dto.setMatKhau(c.getString(2));
+            user_dto.setEmail(c.getString(3));
+            user_dto.setNamSinh(c.getString(4));
+            user_dto.setSDT(c.getString(5));
+
+        }
+        return  user_dto;
+    }
 }

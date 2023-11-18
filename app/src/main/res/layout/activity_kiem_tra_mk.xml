@@ -28,13 +28,15 @@
         app:boxCornerRadiusBottomStart="20dp"
         android:background="#FDF7F7">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/xntk_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập lại mật khẩu"
+            android:hint="Nhập Email"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/xntk_kt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Kiểm tra"

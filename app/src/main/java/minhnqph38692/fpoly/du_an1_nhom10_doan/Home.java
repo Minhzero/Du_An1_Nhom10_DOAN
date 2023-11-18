@@ -129,6 +129,8 @@ public class Home extends AppCompatActivity {
                     fm.beginTransaction().replace(R.id.home_fragment,fragment_user_hoaDon).commit();
                 }else if(item.getItemId() == R.id.home_user_loaiSP){
                     fm.beginTransaction().replace(R.id.home_fragment,fragment_user_loaiSP).commit();
+                } else if(item.getItemId() == R.id.home_taikhoan){
+                    fm.beginTransaction().replace(R.id.home_fragment,fragment_taiKhoanND).commit();
                 }else if(item.getItemId() == R.id.home_doimatkhau){
                     fm.beginTransaction().replace(R.id.home_fragment,fragment_doiMatKhau).commit();
                 }else if(item.getItemId() == R.id.home_Dangxuat){
