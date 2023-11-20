@@ -48,7 +48,7 @@ public class Fragment_User_DanhSachSP extends Fragment {
 
 
         DoAn_DAO doAnDAO;
-        doAnDAO = new DoAn_DAO(new MyDbHelper(getContext()), new MyDbHelper(getContext()).getWritableDatabase());
+        doAnDAO = new DoAn_DAO(getContext());
 
 
         User_DanhSachSP_Adapter adapter = new User_DanhSachSP_Adapter((ArrayList<DoAn_DTO>) doAnDAO.getAll(), getContext());

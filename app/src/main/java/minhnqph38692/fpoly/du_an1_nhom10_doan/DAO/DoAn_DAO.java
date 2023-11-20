@@ -1,6 +1,7 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.DAO;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -14,13 +15,12 @@ public class DoAn_DAO {
     MyDbHelper myDbHelper ;
     SQLiteDatabase db;
 
-    public DoAn_DAO(MyDbHelper myDbHelper, SQLiteDatabase db) {
-        this.myDbHelper = myDbHelper;
-        this.db = db;
+    public DoAn_DAO(Context context) {
+        myDbHelper = new MyDbHelper(context);
+        db = myDbHelper.getWritableDatabase();
     }
     public long insertDoAn(DoAn_DTO doAn_dto){
         ContentValues values= new ContentValues();
-        values.put("madoan",doAn_dto.getMadoan());
         values.put("tendoan",doAn_dto.getTendoan());
         values.put("giadoan",doAn_dto.getGiadoan());
         values.put("maloai",doAn_dto.getMaloai());
@@ -28,12 +28,40 @@ public class DoAn_DAO {
         values.put("thongtin",doAn_dto.getThongtin());
          return db.insert("dt_doan",null,values);
     }
+    public int Update_DoAn(DoAn_DTO doAn_dto){
+        ContentValues values= new ContentValues();
+        values.put("tendoan",doAn_dto.getTendoan());
+        values.put("giadoan",doAn_dto.getGiadoan());
+        values.put("maloai",doAn_dto.getMaloai());
+        values.put("tenloai",doAn_dto.getTenloai());
+        values.put("thongtin",doAn_dto.getThongtin());
+        String[] dk = new String[]{String.valueOf(doAn_dto.getMadoan())};
+
+        return db.update("dt_doan",values,"madoan=?",dk);
+    }
+    public int Delete_DoAn(DoAn_DTO doAn_dto){
+        String[] dk = new String[]{String.valueOf(doAn_dto.getMadoan())};
+
+        return db.delete("dt_doan","madoan=?",dk);
+
+    }
 
     public List<DoAn_DTO> getAll(){
-        List<DoAn_DTO> list= new ArrayList<>();
-        SQLiteDatabase db = myDbHelper.getWritableDatabase();
+        String sql = "SELECT * FROM dt_doan";
+        return getData(sql);
+    }
+    public DoAn_DTO getID(String id){
+        String sql = "SELECT * FROM dt_doan WHERE madoan=?";
+        List<DoAn_DTO> list = getData(sql,id);
 
-        Cursor c=db.rawQuery("SELECT * FROM dt_doan",null);
+        return list.get(0);
+    }
+
+
+    public List<DoAn_DTO> getData(String sql , String...selectionArgs){
+        List<DoAn_DTO> list= new ArrayList<>();
+
+        Cursor c=db.rawQuery(sql,selectionArgs);
 if (c!=null && c.getCount()>0){
 c.moveToFirst();
 do {
