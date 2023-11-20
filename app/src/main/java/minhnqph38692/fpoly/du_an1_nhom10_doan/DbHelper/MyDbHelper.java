@@ -6,10 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "duan_datdoan";
-    static final int DB_VERSION = 1;
+    static final int DB_VERSION=3;
 
-    public MyDbHelper(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+    public MyDbHelper(Context context){
+        super(context,DB_NAME,null,DB_VERSION);
     }
 
     @Override
@@ -24,18 +24,13 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 "    SDT     TEXT\n" +
                 ");\n";
         sqLiteDatabase.execSQL(sql_nguoidung);
-        String mauUSer = "INSERT INTO dt_nguoidung " +
+        String mauUSer ="INSERT INTO dt_nguoidung " +
                 "VALUES ('admin','Quản lý','admin','helo@gmail.com','2004','012345678')," +
                 "('nguoidung01','Người dùng','nguoidung01','nguoidung@gmail.com','2005','123456789')";
         sqLiteDatabase.execSQL(mauUSer);
 
-        String sql_Loai = "CREATE TABLE dt_loai (maloai integer primary key not null, tenloai text not null)";
-        sqLiteDatabase.execSQL(sql_Loai);
 
-        String sql_doan = "CREATE TABLE dt_doan(madoan text primary key not null ,tendoan text not null,giadoan integer not null, maloai integer references dt_loai(maloai)  not null,tenloai text not null,thongtin integer not null )";
-        sqLiteDatabase.execSQL(sql_doan);
-        String doan_1= "INSERT INTO dt_doan values('com_1','com rang',1000,001,'com','com rat ngon')";
-        sqLiteDatabase.execSQL(doan_1);
+
     }
 
     @Override
