@@ -65,7 +65,7 @@ public class DoAn_DAO {
 if (c!=null && c.getCount()>0){
 c.moveToFirst();
 do {
-    String ma=c.getString(0);
+    int ma=c.getInt(0);
     String ten=c.getString(1);
     int gia=c.getInt(2);
     int maloai=c.getInt(3);

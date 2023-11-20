@@ -1,27 +1,30 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.DTO;
 
 public class DoAn_DTO {
-    private String madoan;
+    private int madoan;
     private String tendoan;
     private int giadoan;
     private int maloai;
     private String tenloai;
     private String thongtin;
 
-    public DoAn_DTO() {
+    public DoAn_DTO(int madoan, String tendoan, int giadoan, int maloai, String tenloai, String thongtin) {
         this.madoan = madoan;
         this.tendoan = tendoan;
         this.giadoan = giadoan;
         this.maloai = maloai;
         this.tenloai = tenloai;
-        this.thongtin=thongtin;
+        this.thongtin = thongtin;
     }
 
-    public String getMadoan() {
+    public DoAn_DTO() {
+    }
+
+    public int getMadoan() {
         return madoan;
     }
 
-    public void setMadoan(String madoan) {
+    public void setMadoan(int madoan) {
         this.madoan = madoan;
     }
 
