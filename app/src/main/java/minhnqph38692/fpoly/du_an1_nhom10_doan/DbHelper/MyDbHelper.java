@@ -31,6 +31,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(mauUSer);
         String sql_Loai = "CREATE TABLE dt_loai (maloai integer primary key not null, tenloai text not null)";
         sqLiteDatabase.execSQL(sql_Loai);
+        String mauLoai = "INSERT INTO dt_loai values('1','com'),('2','bun')";
+        sqLiteDatabase.execSQL(mauLoai);
 
         String sql_doan = "CREATE TABLE dt_doan(madoan integer primary key not null ,tendoan text not null,giadoan integer not null, maloai integer references dt_loai(maloai)  not null,tenloai text not null,thongtin integer not null )";
         sqLiteDatabase.execSQL(sql_doan);

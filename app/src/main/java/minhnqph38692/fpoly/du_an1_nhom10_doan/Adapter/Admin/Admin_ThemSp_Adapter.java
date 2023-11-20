@@ -43,8 +43,8 @@ public class Admin_ThemSp_Adapter extends RecyclerView.Adapter<Admin_ThemSp_Adap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         DoAn_DTO doAn_dto = list.get(position);
-        holder.tsp_tensp.setText(doAn_dto.getTendoan()+"VND");
-        holder.tsp_gia.setText("Giá"+doAn_dto.getGiadoan());
+        holder.tsp_tensp.setText(doAn_dto.getTendoan());
+        holder.tsp_gia.setText("Giá"+doAn_dto.getGiadoan()+"VND");
         holder.tsp_loaidoan.setText("Loại : "+ doAn_dto.getMaloai());
         holder.tsp_mota.setText(doAn_dto.getThongtin());
         holder.tsp_edit.setOnClickListener(new View.OnClickListener() {
