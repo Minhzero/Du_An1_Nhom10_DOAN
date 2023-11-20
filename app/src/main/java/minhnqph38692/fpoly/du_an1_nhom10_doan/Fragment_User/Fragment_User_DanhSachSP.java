@@ -6,11 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -23,7 +26,8 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 public class Fragment_User_DanhSachSP extends Fragment {
 
     private ImageView headerImageView;
-    private ListView listViewDanhSach;
+    private User_DanhSachSP_Adapter adapter;
+    private RecyclerView listViewDanhSach;
 
     private int[] imageResources = {R.drawable.anh, R.drawable.login, R.drawable.login1};
     private int currentImageIndex = 0;
@@ -49,10 +53,15 @@ public class Fragment_User_DanhSachSP extends Fragment {
 
         DoAn_DAO doAnDAO;
         doAnDAO = new DoAn_DAO(getContext());
-
-
-        User_DanhSachSP_Adapter adapter = new User_DanhSachSP_Adapter((ArrayList<DoAn_DTO>) doAnDAO.getAll(), getContext());
+        ArrayList<DoAn_DTO> list= doAnDAO.getAll();
+        adapter = new User_DanhSachSP_Adapter(list,requireContext());
+        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false);
+        listViewDanhSach.setLayoutManager(linearLayoutManager);
         listViewDanhSach.setAdapter(adapter);
+
+
+
+
         handler.post(imageSwitcher);
         return rootView;
     }

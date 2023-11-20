@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "duan_datdoan";
-    static final int DB_VERSION=7;
+    static final int DB_VERSION=5;
 
     public MyDbHelper(Context context){
         super(context,DB_NAME,null,DB_VERSION);
@@ -23,6 +23,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 "    NamSinh TEXT ,\n" +
                 "    SDT     TEXT\n" +
                 ");\n";
+
         sqLiteDatabase.execSQL(sql_nguoidung);
         String mauUSer ="INSERT INTO dt_nguoidung " +
                 "VALUES ('admin','Quản lý','admin','helo@gmail.com','2004','012345678')," +
@@ -31,18 +32,10 @@ public class MyDbHelper extends SQLiteOpenHelper {
         String sql_Loai = "CREATE TABLE dt_loai (maloai integer primary key not null, tenloai text not null)";
         sqLiteDatabase.execSQL(sql_Loai);
 
-        String sql_doan = "CREATE TABLE dt_doan(madoan text primary key not null ,tendoan text not null,giadoan integer not null, maloai integer references dt_loai(maloai)  not null,tenloai text not null,thongtin integer not null, anh text )";
+        String sql_doan = "CREATE TABLE dt_doan(madoan text primary key not null ,tendoan text not null,giadoan integer not null, maloai integer references dt_loai(maloai)  not null,tenloai text not null,thongtin integer not null )";
         sqLiteDatabase.execSQL(sql_doan);
-        String doan_1= "INSERT INTO dt_doan values('com_1','com rang',1000,001,'com','com rat ngon','anh')";
+        String doan_1= "INSERT INTO dt_doan values('com_1','com rang',1000,001,'com','com rat ngon')";
         sqLiteDatabase.execSQL(doan_1);
-
-        String sql_doanphu="CREATE TABLE dt_doanphu (\n" +
-                "    MaDoAnPhu  INTEGER PRIMARY KEY,\n" +
-                "    TenDoAnPhu TEXT    NOT NULL\n" +
-                ");\n";
-        sqLiteDatabase.execSQL(sql_doanphu);
-        String doanphu="INSERT INTO dt_doanphu(TenDoAnPhu) VALUES ('GIo'),('Cha')";
-        sqLiteDatabase.execSQL(doanphu);
 
 
 
@@ -51,9 +44,6 @@ public class MyDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE if exists dt_nguoidung");
-        sqLiteDatabase.execSQL("DROP TABLE if exists dt_doan");
-        sqLiteDatabase.execSQL("DROP TABLE if exists dt_loai");
-        sqLiteDatabase.execSQL("DROP TABLE if exists dt_doanphu");
         onCreate(sqLiteDatabase);
 
     }

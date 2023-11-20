@@ -21,11 +21,11 @@
         android:layout_height="200dp"
         android:scaleType="centerCrop" />
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listView_ds"
         android:layout_width="match_parent"
-        android:layout_marginTop="20sp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:id="@+id/listView_ds"/>
+        android:layout_marginTop="20sp"
+        android:layout_weight="1" />
 
 </LinearLayout>

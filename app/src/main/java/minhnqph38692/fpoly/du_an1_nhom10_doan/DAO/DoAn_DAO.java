@@ -46,7 +46,7 @@ public class DoAn_DAO {
 
     }
 
-    public List<DoAn_DTO> getAll(){
+    public ArrayList<DoAn_DTO> getAll(){
         String sql = "SELECT * FROM dt_doan";
         return getData(sql);
     }
@@ -58,8 +58,8 @@ public class DoAn_DAO {
     }
 
 
-    public List<DoAn_DTO> getData(String sql , String...selectionArgs){
-        List<DoAn_DTO> list= new ArrayList<>();
+    public ArrayList<DoAn_DTO> getData(String sql , String...selectionArgs){
+        ArrayList<DoAn_DTO> list= new ArrayList<>();
 
         Cursor c=db.rawQuery(sql,selectionArgs);
 if (c!=null && c.getCount()>0){
