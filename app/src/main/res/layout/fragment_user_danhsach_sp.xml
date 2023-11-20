@@ -3,8 +3,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="danhsachus"/>
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="10dp"
+        android:background="@drawable/khung_tim_kiem"
+        android:hint="tim kiem tai day"/>
+
+
+    <ImageView
+        android:id="@+id/headerImageView"
+        android:layout_width="387dp"
+        android:layout_gravity="center"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_marginTop="20sp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/listView_ds"/>
+
 </LinearLayout>
