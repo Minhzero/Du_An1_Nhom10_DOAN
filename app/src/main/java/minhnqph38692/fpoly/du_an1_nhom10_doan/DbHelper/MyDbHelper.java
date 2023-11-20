@@ -28,6 +28,13 @@ public class MyDbHelper extends SQLiteOpenHelper {
                 "VALUES ('admin','Quản lý','admin','helo@gmail.com','2004','012345678')," +
                 "('nguoidung01','Người dùng','nguoidung01','nguoidung@gmail.com','2005','123456789')";
         sqLiteDatabase.execSQL(mauUSer);
+        String sql_Loai = "CREATE TABLE dt_loai (maloai integer primary key not null, tenloai text not null)";
+        sqLiteDatabase.execSQL(sql_Loai);
+
+        String sql_doan = "CREATE TABLE dt_doan(madoan text primary key not null ,tendoan text not null,giadoan integer not null, maloai integer references dt_loai(maloai)  not null,tenloai text not null,thongtin integer not null )";
+        sqLiteDatabase.execSQL(sql_doan);
+        String doan_1= "INSERT INTO dt_doan values('com_1','com rang',1000,001,'com','com rat ngon')";
+        sqLiteDatabase.execSQL(doan_1);
 
 
 
