@@ -87,4 +87,19 @@ list.add(doAn_dto);
 }
 return list;
     }
+    public ArrayList<DoAn_DTO> timKiemDoAnTheoTen(String tendoan) {
+        ArrayList<DoAn_DTO> list = new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase = myDbHelper.getReadableDatabase();
+        String[] columns = {"madoan", "tendoan","giadoan"};
+        String selection = "tendoan=?";
+        String[] selectionArgs = {tendoan};
+        Cursor cursor = sqLiteDatabase.query("dt_doan", columns, selection, selectionArgs, null, null, null);
+        if (cursor.getCount() != 0) {
+            cursor.moveToFirst();
+            do {
+                //list.add(new DoAn_DTO(cursor.getInt(0), cursor.getString(1),cursor.getString(2)));
+            } while (cursor.moveToNext());
+        }
+        return list;
+    }
 }

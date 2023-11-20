@@ -17,8 +17,19 @@
         android:layout_width="match_parent"
         android:layout_height="180dp" />
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ten mon an"
+        android:id="@+id/txt_ten"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="gia"
+        android:id="@+id/txt_gia"/>
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/txt_thongtin"
         android:text="thong tin chi tiet mon an"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="10dp"
@@ -39,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="mua hang"
+        android:id="@+id/btn_muahang"
         android:layout_marginTop="30dp"/>
 
 </LinearLayout>

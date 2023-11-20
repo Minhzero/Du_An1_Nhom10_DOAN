@@ -45,6 +45,9 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         Intent i= new Intent(context, ChiTietSP.class);
+        i.putExtra("tenmon",list.get(position).getTendoan());
+        i.putExtra("giadoan",list.get(position).getGiadoan());
+        i.putExtra("thongtin",list.get(position).getThongtin());
         context.startActivity(i);
     }
 });
