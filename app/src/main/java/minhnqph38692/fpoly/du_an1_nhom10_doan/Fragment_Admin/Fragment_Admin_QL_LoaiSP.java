@@ -1,9 +1,13 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,11 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter.Admin.Admin_QL_LoaiSP_Adapter;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.LoaiDoAn_DAO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.DoAnPhu_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.LoaiDoAn_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 
@@ -24,7 +30,7 @@ public class Fragment_Admin_QL_LoaiSP extends Fragment {
     RecyclerView rc_loaidoan;
     FloatingActionButton lda_float_add;
     List<LoaiDoAn_DTO > list;
-    LoaiDoAn_DAO doAn_dao;
+    LoaiDoAn_DAO loaiDoAn_dao;
     Admin_QL_LoaiSP_Adapter admin_ql_loaiSP_adapter;
     @Nullable
     @Override
@@ -38,13 +44,64 @@ public class Fragment_Admin_QL_LoaiSP extends Fragment {
         rc_loaidoan = view.findViewById(R.id.rc_loaidoan);
         lda_float_add = view.findViewById(R.id.lda_float_add);
 
-        doAn_dao = new LoaiDoAn_DAO(getContext());
-        list = doAn_dao.getAll();
+        loaiDoAn_dao = new LoaiDoAn_DAO(getContext());
+        list = loaiDoAn_dao.getAll();
         admin_ql_loaiSP_adapter = new Admin_QL_LoaiSP_Adapter(getContext(),list);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL,false);
         rc_loaidoan.setLayoutManager(linearLayoutManager);
         rc_loaidoan.setAdapter(admin_ql_loaiSP_adapter);
+
+        lda_float_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog_ADD();
+            }
+        });
+    }
+    public void Dialog_ADD() {
+        AlertDialog.Builder  builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = ((Activity)getContext()).getLayoutInflater();
+        View v = inflater.inflate(R.layout.layout_themloaidoan,null);
+        builder.setView(v);
+        builder.setCancelable(false);
+        AlertDialog dialog = builder.create();
+        TextInputEditText ed_themloaidoan = v.findViewById(R.id.ed_themloaidoan);
+        Button btn_themloaidoan = v.findViewById(R.id.btn_themloaidoan);
+        Button btn_huythemloaidoan = v.findViewById(R.id.btn_huythemloaidoan);
+
+        btn_themloaidoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tenloai = ed_themloaidoan.getText().toString();
+
+                LoaiDoAn_DTO loaiDoAn_dto = new LoaiDoAn_DTO();
+                loaiDoAn_dto.setTenloai(tenloai);
+                long kq = loaiDoAn_dao.Insert_LoaiDoAn(loaiDoAn_dto);
+                if(kq>0){
+                    Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                    list.clear();
+                    list.addAll(loaiDoAn_dao.getAll());
+                    admin_ql_loaiSP_adapter.notifyDataSetChanged();
+                    ed_themloaidoan.setText("");
+                    dialog.dismiss();
+                }
+                else {
+                    Toast.makeText(getContext(), "ko Thêm dc", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+
+            }
+        });
+        btn_huythemloaidoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), " Hủy Thêm", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        dialog.show();
+
     }
 }

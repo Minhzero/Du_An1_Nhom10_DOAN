@@ -1,9 +1,13 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
@@ -21,6 +26,7 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.DoAnPhu_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 
 public class Fragment_Admin_SP_phu extends Fragment {
+
     RecyclerView rc_doanphu;
     FloatingActionButton dap_float_add;
     List<DoAnPhu_DTO> list;
@@ -50,8 +56,54 @@ public class Fragment_Admin_SP_phu extends Fragment {
         dap_float_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Dialog_ADD();
 
             }
         });
+    }
+
+    public void Dialog_ADD() {
+        AlertDialog.Builder  builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = ((Activity)getContext()).getLayoutInflater();
+        View v = inflater.inflate(R.layout.layout_themsp_phu,null);
+        builder.setView(v);
+        builder.setCancelable(false);
+        AlertDialog dialog = builder.create();
+        TextInputEditText ed_themspphu = v.findViewById(R.id.ed_themspphu);
+        Button btn_addspphu = v.findViewById(R.id.btn_themspphu);
+        Button btn_huyaddspphu = v.findViewById(R.id.btn_huythemspphu);
+
+        btn_addspphu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tenspphu = ed_themspphu.getText().toString();
+
+                DoAnPhu_DTO doAnPhu_dto = new DoAnPhu_DTO();
+                doAnPhu_dto.setTenDoAnPhu(tenspphu);
+                long kq = doAnPhu_dao.Insert_DoAnPhu(doAnPhu_dto);
+                if(kq>0){
+                    Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                    list.clear();
+                    list.addAll(doAnPhu_dao.getAll());
+                    admin_sp_phu_adapter.notifyDataSetChanged();
+                    ed_themspphu.setText("");
+                    dialog.dismiss();
+                }
+                else {
+                    Toast.makeText(getContext(), "ko Thêm dc", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+
+            }
+        });
+        btn_huyaddspphu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), " Hủy Thêm", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        dialog.show();
+
     }
 }

@@ -30,13 +30,13 @@ public class LoaiDoAn_DAO {
         values.put("tenloai",doAn_dto.getTenloai());
         String[] dk = new String[]{String.valueOf(doAn_dto.getMaloai())};
 
-        return db.update("dt_loai",values,"dt_loai=?",dk);
+        return db.update("dt_loai",values,"maloai=?",dk);
 
     }
     public int Delete_LoaiDoAn(LoaiDoAn_DTO doAn_dto){
         String[] dk = new String[]{String.valueOf(doAn_dto.getMaloai())};
 
-        return db.delete("dt_loai","dt_loai=?",dk);
+        return db.delete("dt_loai","maloai=?",dk);
 
     }
 

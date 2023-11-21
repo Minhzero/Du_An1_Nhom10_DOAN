@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity {
     }
     public  void Remember(String u , String  p ,boolean status){
         // lưu sharedpreference
-        SharedPreferences sharedPreferences = getSharedPreferences("thongtin",MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("user",MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(!status){
             //xóa tình trạng lưu trước đó
