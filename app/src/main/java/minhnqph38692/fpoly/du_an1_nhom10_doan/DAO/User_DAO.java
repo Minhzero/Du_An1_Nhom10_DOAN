@@ -59,12 +59,13 @@ public class User_DAO {
             c.moveToFirst();
             do {
                 User_DTO userDto = new User_DTO();
-                userDto.setMaND(c.getString(0));
-                userDto.setHoTen(c.getString(1));
-                userDto.setMatKhau(c.getString(2));
-                userDto.setEmail(c.getString(3));
-                userDto.setNamSinh(c.getString(4));
-                userDto.setSDT(c.getString(5));
+                userDto.setMaTV(c.getInt(0));
+                userDto.setMaND(c.getString(1));
+                userDto.setHoTen(c.getString(2));
+                userDto.setMatKhau(c.getString(3));
+                userDto.setEmail(c.getString(4));
+                userDto.setNamSinh(c.getString(5));
+                userDto.setSDT(c.getString(6));
 
                 list.add(userDto);
 

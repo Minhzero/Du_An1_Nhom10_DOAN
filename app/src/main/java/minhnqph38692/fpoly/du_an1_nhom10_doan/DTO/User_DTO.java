@@ -1,6 +1,7 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.DTO;
 
 public class User_DTO {
+    int MaTV;
     String MaND;
     String HoTen;
     String MatKhau;
@@ -8,7 +9,8 @@ public class User_DTO {
     String NamSinh;
     String SDT;
 
-    public User_DTO(String maND, String hoTen, String matKhau, String email, String namSinh, String SDT) {
+    public User_DTO(int maTV,String maND, String hoTen, String matKhau, String email, String namSinh, String SDT) {
+        MaTV=maTV;
         MaND = maND;
         HoTen = hoTen;
         MatKhau = matKhau;
@@ -18,6 +20,14 @@ public class User_DTO {
     }
 
     public User_DTO() {
+    }
+
+    public int getMaTV() {
+        return MaTV;
+    }
+
+    public void setMaTV(int maTV) {
+        MaTV = maTV;
     }
 
     public String getMaND() {

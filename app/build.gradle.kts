@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "minhnqph38692.fpoly.du_an1_nhom10_doan"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "minhnqph38692.fpoly.du_an1_nhom10_doan"
         minSdk = 21
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
