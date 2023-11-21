@@ -7,14 +7,16 @@ public class DoAn_DTO {
     private int maloai;
     private String tenloai;
     private String thongtin;
+    String anh;
 
-    public DoAn_DTO(int madoan, String tendoan, int giadoan, int maloai, String tenloai, String thongtin) {
+    public DoAn_DTO(int madoan, String tendoan, int giadoan, int maloai, String tenloai, String thongtin, String anh) {
         this.madoan = madoan;
         this.tendoan = tendoan;
         this.giadoan = giadoan;
         this.maloai = maloai;
         this.tenloai = tenloai;
         this.thongtin = thongtin;
+        this.anh = anh;
     }
 
     public DoAn_DTO() {
@@ -66,5 +68,13 @@ public class DoAn_DTO {
 
     public void setThongtin(String thongtin) {
         this.thongtin = thongtin;
+    }
+
+    public String getAnh() {
+        return anh;
+    }
+
+    public void setAnh(String anh) {
+        this.anh = anh;
     }
 }

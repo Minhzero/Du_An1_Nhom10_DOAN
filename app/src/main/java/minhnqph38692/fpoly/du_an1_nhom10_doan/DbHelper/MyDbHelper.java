@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "duan_datdoan";
-    static final int DB_VERSION=9;
+    static final int DB_VERSION=10;
 
     public MyDbHelper(Context context){
         super(context,DB_NAME,null,DB_VERSION);
@@ -35,9 +35,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
         String mauLoai = "INSERT INTO dt_loai values('1','com'),('2','bun')";
         sqLiteDatabase.execSQL(mauLoai);
 
-        String sql_doan = "CREATE TABLE dt_doan(madoan integer primary key not null ,tendoan text not null,giadoan integer not null, maloai integer references dt_loai(maloai)  not null,tenloai text not null,thongtin integer not null )";
+        String sql_doan = "CREATE TABLE dt_doan(madoan integer primary key not null ,tendoan text not null,giadoan integer not null, maloai integer references dt_loai(maloai)  not null,tenloai text not null,thongtin integer not null,anh text )";
         sqLiteDatabase.execSQL(sql_doan);
-        String doan_1= "INSERT INTO dt_doan values('1','com rang',1000,1,'com','com rat ngon')";
+        String doan_1= "INSERT INTO dt_doan values('1','com rang',1000,1,'com','com rat ngon','ảnh đồ ăn')";
         sqLiteDatabase.execSQL(doan_1);
         String sql_doanphu="CREATE TABLE dt_doanphu (\n" +
                 "    MaDoAnPhu  INTEGER PRIMARY KEY,\n" +

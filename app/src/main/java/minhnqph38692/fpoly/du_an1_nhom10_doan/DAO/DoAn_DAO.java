@@ -71,6 +71,7 @@ do {
     int maloai=c.getInt(3);
     String tenloai=c.getString(4);
     String thongtin=c.getString(5);
+    String anh = c.getString(6);
 
 DoAn_DTO doAn_dto= new DoAn_DTO();
 
@@ -80,6 +81,7 @@ doAn_dto.setGiadoan(gia);
 doAn_dto.setMaloai(maloai);
 doAn_dto.setTenloai(tenloai);
 doAn_dto.setThongtin(thongtin);
+doAn_dto.setAnh(anh);
 list.add(doAn_dto);
 
 

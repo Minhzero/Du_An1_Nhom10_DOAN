@@ -23,9 +23,15 @@ public class Them_DOAN extends AppCompatActivity {
         btn_themdoan=findViewById(R.id.btn_themdoan);
         btn_huythemdoan = findViewById(R.id.btn_themdoan);
 
+
+
         btn_themdoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String linkanh = ed_linkanh.getText().toString();
+                String tendoan = ed_tendoan.getText().toString();
+                int giadoan = Integer.parseInt(ed_giadoan.getText().toString());
+                String modoan = ed_mota.getText().toString();
 
             }
         });
