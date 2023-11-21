@@ -47,5 +47,11 @@ public class Fragment_Admin_SP_phu extends Fragment {
                 LinearLayoutManager.VERTICAL,false);
         rc_doanphu.setLayoutManager(linearLayoutManager);
         rc_doanphu.setAdapter(admin_sp_phu_adapter);
+        dap_float_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
