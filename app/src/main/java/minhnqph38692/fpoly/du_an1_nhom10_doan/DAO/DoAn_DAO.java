@@ -26,6 +26,7 @@ public class DoAn_DAO {
         values.put("maloai",doAn_dto.getMaloai());
         values.put("tenloai",doAn_dto.getTenloai());
         values.put("thongtin",doAn_dto.getThongtin());
+        values.put("anh",doAn_dto.getAnh());
          return db.insert("dt_doan",null,values);
     }
     public int Update_DoAn(DoAn_DTO doAn_dto){
@@ -35,6 +36,7 @@ public class DoAn_DAO {
         values.put("maloai",doAn_dto.getMaloai());
         values.put("tenloai",doAn_dto.getTenloai());
         values.put("thongtin",doAn_dto.getThongtin());
+        values.put("anh",doAn_dto.getAnh());
         String[] dk = new String[]{String.valueOf(doAn_dto.getMadoan())};
 
         return db.update("dt_doan",values,"madoan=?",dk);

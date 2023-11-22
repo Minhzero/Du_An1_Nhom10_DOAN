@@ -1,9 +1,13 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.List;
 
@@ -46,6 +51,71 @@ public class Fragment_Admin_ThemSP extends Fragment {
         rc_themsp.setLayoutManager(linearLayoutManager);
         rc_themsp.setAdapter(admin_themSp_adapter);
 
+        tsp_float_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog_ADD();
+            }
+        });
+
+    }
+    public void Dialog_ADD() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
+        View v = inflater.inflate(R.layout.layout_themdoan, null);
+        builder.setView(v);
+        builder.setCancelable(false);
+        AlertDialog dialog = builder.create();
+        TextInputEditText ed_linkanh=v.findViewById(R.id.ed_linkanh);
+        TextInputEditText ed_tendoan=v.findViewById(R.id.ed_tendoan);
+        TextInputEditText ed_giadoan=v.findViewById(R.id.ed_giadoan);
+        TextInputEditText ed_mota=v.findViewById(R.id.ed_mota);
+
+
+        Button btn_themdoan=v.findViewById(R.id.btn_themdoan);
+        Button btn_huythemdoan=v.findViewById(R.id.btn_huythemdoan);
+
+        btn_themdoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String linkanh = ed_linkanh.getText().toString();
+                String tendoan = ed_tendoan.getText().toString();
+                int giadoan = Integer.parseInt(ed_giadoan.getText().toString());
+                String modoan = ed_mota.getText().toString();
+
+                doAn_dao = new DoAn_DAO(getContext());
+
+                DoAn_DTO doAn_dto = new DoAn_DTO();
+                doAn_dto.setTendoan(tendoan);
+                doAn_dto.setMaloai(1);
+                doAn_dto.setTenloai("com");
+                doAn_dto.setGiadoan(giadoan);
+                doAn_dto.setAnh(linkanh);
+                doAn_dto.setThongtin(modoan);
+
+                if (doAn_dao.insertDoAn(doAn_dto)>0){
+                    Toast.makeText(getContext(), "thêm thành công", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+
+                }else {
+                    Toast.makeText(getContext(), "thêm thất bại", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+
+            }
+        });
+        btn_huythemdoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "huy them", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+
+            }
+        });
+        dialog.show();
     }
 
 

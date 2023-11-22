@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.DoAn_DAO;
@@ -43,6 +45,7 @@ public class Admin_ThemSp_Adapter extends RecyclerView.Adapter<Admin_ThemSp_Adap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         DoAn_DTO doAn_dto = list.get(position);
+        Picasso.get().load(doAn_dto.getAnh()).into(holder.tsp_anh);
         holder.tsp_tensp.setText(doAn_dto.getTendoan());
         holder.tsp_gia.setText("Giá"+doAn_dto.getGiadoan()+"VND");
         holder.tsp_loaidoan.setText("Loại : "+ doAn_dto.getMaloai());
@@ -70,7 +73,7 @@ public class Admin_ThemSp_Adapter extends RecyclerView.Adapter<Admin_ThemSp_Adap
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView tsp_tensp,tsp_gia,tsp_mota,tsp_loaidoan;
-        ImageView tsp_delete,tsp_edit;
+        ImageView tsp_delete,tsp_edit,tsp_anh;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,6 +84,7 @@ public class Admin_ThemSp_Adapter extends RecyclerView.Adapter<Admin_ThemSp_Adap
             tsp_delete = itemView.findViewById(R.id.tsp_delete);
             tsp_edit = itemView.findViewById(R.id.tsp_edit);
             tsp_loaidoan=itemView.findViewById(R.id.tsp_loaidoan);
+            tsp_anh = itemView.findViewById(R.id.tsp_anh);
         }
     }
 
