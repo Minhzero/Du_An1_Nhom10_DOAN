@@ -14,11 +14,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DbHelper.MyDbHelper;
 
-public class ChiTietSP extends AppCompatActivity {
+public class ChiTietSPActivity extends AppCompatActivity {
 private TextView txt_ten, txt_gia,txt_thongtin;
 private Button btn_muahang;
 private ImageView img_anhchitiet;
@@ -31,6 +33,7 @@ private EditText edt_soluong;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chi_tiet_sp);
         Button back=findViewById(R.id.back);
+        img_anhchitiet= findViewById(R.id.img_anhchitiet);
         btn_muahang=findViewById(R.id.btn_muahang);
         txt_gia=findViewById(R.id.txt_gia);
         txt_ten=findViewById(R.id.txt_ten);
@@ -46,6 +49,7 @@ private EditText edt_soluong;
         });
         Intent intent = getIntent();
         if (intent != null) {
+            String anh = intent.getStringExtra("anh");
             String tenMon = intent.getStringExtra("tenmon");
             int donGia = intent.getIntExtra("giadoan", 0);
             String thongTin = intent.getStringExtra("thongtin");
@@ -54,6 +58,7 @@ private EditText edt_soluong;
             txt_ten.setText(tenMon);
             txt_gia.setText(String.valueOf(donGia));
             txt_thongtin.setText(thongTin);
+            Picasso.get().load(anh).into(img_anhchitiet);
 
             ArrayList<String> doanPhuList = getDoanPhuData();
 

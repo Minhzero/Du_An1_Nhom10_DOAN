@@ -15,7 +15,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 
-public class Login extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     TextView lg_qmk;
     Button lg_login,lg_singup;
     TextInputEditText lg_name,lg_pass;
@@ -49,14 +49,14 @@ public class Login extends AppCompatActivity {
         lg_singup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this,SingUp.class);
+                Intent intent = new Intent(LoginActivity.this, SingUpActivity.class);
                 startActivity(intent);
             }
         });
         lg_qmk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, KiemTraMK.class);
+                Intent intent = new Intent(LoginActivity.this, KiemTraMKActivity.class);
                 startActivity(intent);
             }
         });
@@ -71,7 +71,7 @@ public class Login extends AppCompatActivity {
             if (user_dao.checkLogin(user,pass)){//sua cho này
                 Toast.makeText(this, "Login Thành công", Toast.LENGTH_SHORT).show();
                 Remember(user,pass,lg_check.isChecked());
-                Intent intent = new Intent(Login.this, Home.class);
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("user",user);
                 intent.putExtras(bundle);
@@ -79,7 +79,7 @@ public class Login extends AppCompatActivity {
                 finish();
             }
             else {
-                Toast.makeText(Login.this, "Username hoặc password ko đúng", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Username hoặc password ko đúng", Toast.LENGTH_SHORT).show();
             }
         }
     }

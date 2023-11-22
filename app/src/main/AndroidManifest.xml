@@ -15,22 +15,22 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".ThemDOANActivity"
+            android:name=".ChiTietSPActivity"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".SingUp"
+            android:name=".SingUpActivity"
             android:exported="false" />
         <activity
-            android:name=".KiemTraMK"
+            android:name=".KiemTraMKActivity"
             android:exported="false" />
         <activity
-            android:name=".QuenMK"
+            android:name=".QuenMKActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -12,7 +12,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 
-public class QuenMK extends AppCompatActivity {
+public class QuenMKActivity extends AppCompatActivity {
     TextInputEditText qmk_mk,qmk_mk1;
     Button qmk_ht,qmk_huy;
     User_DAO user_dao;
@@ -35,16 +35,16 @@ public class QuenMK extends AppCompatActivity {
                 String email = bundle.getString("email");
                 String newPass = qmk_mk.getText().toString();
                 String cfPass = qmk_mk1.getText().toString();
-                user_dao = new User_DAO(QuenMK.this);
+                user_dao = new User_DAO(QuenMKActivity.this);
                 if(newPass != null && newPass.equals(cfPass)){
                     int kq = user_dao.Update_DangNhap(email,newPass);
 
                     if(kq>0){
-                        Toast.makeText(QuenMK.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(QuenMK.this, Login.class);
+                        Toast.makeText(QuenMKActivity.this, "Đổi mật khẩu thành công", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(QuenMKActivity.this, LoginActivity.class);
                         startActivity(intent);
                     }else {
-                        Toast.makeText(QuenMK.this, "Đổi mật khẩu không thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QuenMKActivity.this, "Đổi mật khẩu không thành công", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -54,8 +54,8 @@ public class QuenMK extends AppCompatActivity {
         qmk_huy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(QuenMK.this, "Hủy đổi mật khẩu", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(QuenMK.this, Login.class);
+                Toast.makeText(QuenMKActivity.this, "Hủy đổi mật khẩu", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(QuenMKActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

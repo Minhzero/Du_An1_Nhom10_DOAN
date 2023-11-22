@@ -13,7 +13,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
 
-public class KiemTraMK extends AppCompatActivity {
+public class KiemTraMKActivity extends AppCompatActivity {
     TextInputEditText xntk_email;
     Button xntk_kt;
 
@@ -30,17 +30,17 @@ public class KiemTraMK extends AppCompatActivity {
             public void onClick(View v) {
                 String email = xntk_email.getText().toString();
 
-                User_DAO user_dao = new User_DAO(KiemTraMK.this);
+                User_DAO user_dao = new User_DAO(KiemTraMKActivity.this);
                 User_DTO user_dto = user_dao.getAccountEmail(email);
 
                 if (user_dto != null && user_dto.getEmail().equals(email)){
-                    Intent intent = new Intent(KiemTraMK.this, QuenMK.class);
+                    Intent intent = new Intent(KiemTraMKActivity.this, QuenMKActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("email",email);
                     intent.putExtras(bundle);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(KiemTraMK.this, "email sai", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(KiemTraMKActivity.this, "email sai", Toast.LENGTH_SHORT).show();
                 }
             }
         });

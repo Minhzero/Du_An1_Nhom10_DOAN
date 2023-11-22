@@ -31,7 +31,7 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_User.Fragment_User_DanhSa
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_User.Fragment_User_HoaDon;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_User.Fragment_User_LoaiSP;
 
-public class Home extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
     DrawerLayout home_all;
     NavigationView main_nav_view;
     Toolbar home_toolbar;
@@ -134,7 +134,7 @@ public class Home extends AppCompatActivity {
                 }else if(item.getItemId() == R.id.home_doimatkhau){
                     fm.beginTransaction().replace(R.id.home_fragment,fragment_doiMatKhau).commit();
                 }else if(item.getItemId() == R.id.home_Dangxuat){
-                    Intent intent = new Intent(Home.this, Login.class);
+                    Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
 

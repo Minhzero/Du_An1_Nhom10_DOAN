@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Them_DOAN"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thêm đồ ăn"
+        android:text="Sửa đồ ăn"
         android:textSize="30dp"
         android:layout_gravity="center"
         android:textStyle="bold"
@@ -25,7 +23,7 @@
         app:boxCornerRadiusTopStart="20dp"
         app:boxCornerRadiusTopEnd="20dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_linkanh"
+            android:id="@+id/ed_sualinkanh"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập link ảnh"/>
@@ -39,7 +37,7 @@
         app:boxCornerRadiusTopStart="20dp"
         app:boxCornerRadiusTopEnd="20dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_tendoan"
+            android:id="@+id/ed_suatendoan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập tên đồ ăn"/>
@@ -53,7 +51,7 @@
         app:boxCornerRadiusTopStart="20dp"
         app:boxCornerRadiusTopEnd="20dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_giadoan"
+            android:id="@+id/ed_suagiadoan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập giá đồ ăn"/>
@@ -67,7 +65,7 @@
         app:boxCornerRadiusTopStart="20dp"
         app:boxCornerRadiusTopEnd="20dp">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_mota"
+            android:id="@+id/ed_suamota"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập mô tả đồ ăn"/>
@@ -77,14 +75,14 @@
         android:layout_height="wrap_content"
         android:gravity="center">
         <Button
-            android:id="@+id/btn_themdoan"
+            android:id="@+id/btn_suadoan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ADD"
             android:layout_margin="20dp"
             android:backgroundTint="#0066FF"/>
         <Button
-            android:id="@+id/btn_huythemdoan"
+            android:id="@+id/btn_huysuadoan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CANCEL"

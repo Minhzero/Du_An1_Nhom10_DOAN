@@ -1,23 +1,22 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import minhnqph38692.fpoly.du_an1_nhom10_doan.ChiTietSP;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.ChiTietSPActivity;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.DoAn_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 
@@ -39,12 +38,14 @@ public class User_DanhSachSP_Adapter extends RecyclerView.Adapter<User_DanhSachS
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-holder.txt_ten.setText("ten mon "+list.get(position).getTendoan());
-holder.txt_gia.setText("don gia "+list.get(position).getGiadoan());
+        Picasso.get().load(list.get(position).getAnh()).into(holder.img_anh);
+holder.txt_ten.setText("Tên món: "+list.get(position).getTendoan());
+holder.txt_gia.setText("Giá: "+list.get(position).getGiadoan());
 holder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        Intent i= new Intent(context, ChiTietSP.class);
+        Intent i= new Intent(context, ChiTietSPActivity.class);
+        i.putExtra("anh",list.get(position).getAnh());
         i.putExtra("tenmon",list.get(position).getTendoan());
         i.putExtra("giadoan",list.get(position).getGiadoan());
         i.putExtra("thongtin",list.get(position).getThongtin());

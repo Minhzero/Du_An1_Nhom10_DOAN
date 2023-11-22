@@ -15,7 +15,7 @@ import java.util.List;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
 
-public class SingUp extends AppCompatActivity {
+public class SingUpActivity extends AppCompatActivity {
     TextInputEditText sg_tenDN,sg_tenND,sg_email,sg_Mk,sg_Mk1;
     Button sg_Singup,sg_back;
     User_DAO user_dao;
@@ -42,7 +42,7 @@ public class SingUp extends AppCompatActivity {
         sg_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SingUp.this, Login.class);
+                Intent intent = new Intent(SingUpActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -69,7 +69,7 @@ public class SingUp extends AppCompatActivity {
                 long kq = user_dao.Insert_User(userDto);
                 if (kq > 0) {
                     Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SingUp.this, Login.class);
+                    Intent intent = new Intent(SingUpActivity.this, LoginActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(this, "Đăng ký ko thành công", Toast.LENGTH_SHORT).show();
