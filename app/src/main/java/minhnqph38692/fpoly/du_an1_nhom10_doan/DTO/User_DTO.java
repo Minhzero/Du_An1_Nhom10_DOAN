@@ -8,8 +8,9 @@ public class User_DTO {
     String Email;
     String NamSinh;
     String SDT;
+    String typeAcc;
 
-    public User_DTO(int maTV,String maND, String hoTen, String matKhau, String email, String namSinh, String SDT) {
+    public User_DTO(int maTV,String maND, String hoTen, String matKhau, String email, String namSinh, String SDT,String typeAcc) {
         MaTV=maTV;
         MaND = maND;
         HoTen = hoTen;
@@ -17,6 +18,15 @@ public class User_DTO {
         Email = email;
         NamSinh = namSinh;
         this.SDT = SDT;
+        this.typeAcc=typeAcc;
+    }
+
+    public String getTypeAcc() {
+        return typeAcc;
+    }
+
+    public void setTypeAcc(String typeAcc) {
+        this.typeAcc = typeAcc;
     }
 
     public User_DTO() {

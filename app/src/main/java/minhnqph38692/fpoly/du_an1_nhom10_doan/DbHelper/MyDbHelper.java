@@ -16,19 +16,19 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String sql_nguoidung = "CREATE TABLE dt_nguoidung (\n" +
                 "    maTV INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "    MaND    TEXT NOT NULL\n" +
-                "                 NOT NULL,\n" +
+                "    MaND    TEXT NOT NULL,\n" +
                 "    HoTen   TEXT NOT NULL,\n" +
                 "    MatKhau TEXT NOT NULL,\n" +
                 "    Email   TEXT NOT NULL,\n" +
                 "    NamSinh TEXT ,\n" +
-                "    SDT     TEXT\n" +
+                "    SDT     TEXT,\n" +
+                "    LoaiTaiKhoan TEXT\n" +
                 ");\n";
 
         sqLiteDatabase.execSQL(sql_nguoidung);
         String mauUSer ="INSERT INTO dt_nguoidung " +
-                "VALUES (1,'admin','Quản lý','admin','helo@gmail.com','2004','012345678')," +
-                "(2,'nguoidung01','Người dùng','nguoidung01','nguoidung@gmail.com','2005','123456789')";
+                "VALUES (1,'admin','Quản lý','admin','helo@gmail.com','2004','012345678','admin')," +
+                "(2,'nguoidung01','Người dùng','nguoidung01','nguoidung@gmail.com','2005','123456789','user')";
         sqLiteDatabase.execSQL(mauUSer);
         String sql_Loai = "CREATE TABLE dt_loai (maloai integer primary key not null, tenloai text not null)";
         sqLiteDatabase.execSQL(sql_Loai);

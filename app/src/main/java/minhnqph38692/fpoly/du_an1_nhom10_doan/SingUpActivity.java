@@ -16,7 +16,7 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
 
 public class SingUpActivity extends AppCompatActivity {
-    TextInputEditText sg_tenDN,sg_tenND,sg_email,sg_Mk,sg_Mk1;
+    TextInputEditText sg_tenDN,sg_tenND,sg_email,sg_Mk,sg_Mk1,sg_phone,sg_year;
     Button sg_Singup,sg_back;
     User_DAO user_dao;
     List<User_DTO> list;
@@ -28,6 +28,8 @@ public class SingUpActivity extends AppCompatActivity {
         sg_tenDN = findViewById(R.id.sg_tenDN);
         sg_tenND = findViewById(R.id.sg_tenND);
         sg_email = findViewById(R.id.sg_email);
+        sg_phone = findViewById(R.id.sg_phone);
+        sg_year = findViewById(R.id.sg_year);
         sg_Mk = findViewById(R.id.sg_Mk);
         sg_Mk1 = findViewById(R.id.sg_Mk1);
         sg_Singup = findViewById(R.id.sg_Singup);
@@ -52,10 +54,12 @@ public class SingUpActivity extends AppCompatActivity {
         String tenDN = sg_tenDN.getText().toString();
         String tenND = sg_tenND.getText().toString();
         String email = sg_email.getText().toString();
+        String phone = sg_phone.getText().toString();
+        String year = sg_year.getText().toString();
         String mk = sg_Mk.getText().toString();
         String mk1 = sg_Mk1.getText().toString();
 
-        if(tenDN.isEmpty()||tenND.isEmpty()||email.isEmpty()||mk.isEmpty()||mk1.isEmpty()){
+        if(tenDN.isEmpty()||tenND.isEmpty()||email.isEmpty()||mk.isEmpty()||mk1.isEmpty()||phone.isEmpty()||year.isEmpty()){
             Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
         }else {
             if (mk.equals(mk1)) {
@@ -65,7 +69,8 @@ public class SingUpActivity extends AppCompatActivity {
                 userDto.setHoTen(tenND);
                 userDto.setEmail(email);
                 userDto.setMatKhau(mk);
-
+userDto.setSDT(phone);
+userDto.setNamSinh(year);
                 long kq = user_dao.Insert_User(userDto);
                 if (kq > 0) {
                     Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
