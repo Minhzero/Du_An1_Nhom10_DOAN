@@ -79,6 +79,7 @@ public class User_DAO {
         return getData(sql);
     }
 
+
     public User_DTO getID(String id){
         String sql = "SELECT * FROM dt_nguoidung WHERE MaND=?";
         List<User_DTO> list = getData(sql,id);
