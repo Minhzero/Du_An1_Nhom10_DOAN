@@ -24,6 +24,7 @@
         app:boxCornerRadiusBottomStart="20dp"
         android:background="#FDF7F7">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập mật khẩu cũ"
@@ -43,6 +44,7 @@
         app:boxCornerRadiusBottomStart="20dp"
         android:background="#FDF7F7">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ednewpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập mật khẩu mới"
@@ -62,6 +64,7 @@
         app:boxCornerRadiusBottomStart="20dp"
         android:background="#FDF7F7">
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edrepassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nhập lại mật khẩu mới"
@@ -72,12 +75,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center">
         <Button
+            android:id="@+id/btnluu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lưu"
             android:layout_margin="30dp"
             android:backgroundTint="#04A8F4"/>
         <Button
+            android:id="@+id/btnhuy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hủy"
