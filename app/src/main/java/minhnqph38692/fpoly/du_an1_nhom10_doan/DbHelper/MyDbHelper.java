@@ -46,7 +46,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql_doanphu);
         String doanphu="INSERT INTO dt_doanphu(TenDoAnPhu) VALUES ('GIo'),('Cha')";
         sqLiteDatabase.execSQL(doanphu);
-
+String sql_hoadon="CREATE TABLE dt_hoadon(mahoadon integer primary key,Email text not null,hoten text,SDT text not null,diachinhan text not null, thucdon text ,ngaydathang date,tongtien integer ,thanhtoan text,trangthai integer)";
+sqLiteDatabase.execSQL(sql_hoadon);
 
 
     }
