@@ -26,7 +26,6 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.Fragment_Admin_SP_p
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.Fragment_Admin_ThemSP;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.Fragment_Admin_ThongKeTOP;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_User.Fragment_DoiMatKhau;
-import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_User.Fragment_TaiKhoanND;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_User.Fragment_User_DanhSachSP;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_User.Fragment_User_HoaDon;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_User.Fragment_User_LoaiSP;
@@ -52,7 +51,8 @@ public class HomeActivity extends AppCompatActivity {
     Fragment_User_HoaDon fragment_user_hoaDon;
     Fragment_User_LoaiSP fragment_user_loaiSP;
     Fragment_DoiMatKhau fragment_doiMatKhau;
-    Fragment_TaiKhoanND fragment_taiKhoanND;
+
+    String maND;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
         fragment_user_loaiSP = new Fragment_User_LoaiSP();
         fragment_user_danhSachSP = new Fragment_User_DanhSachSP();
         fragment_doiMatKhau = new Fragment_DoiMatKhau();
-        fragment_taiKhoanND = new Fragment_TaiKhoanND();
 
         fm = getSupportFragmentManager();
         fm.beginTransaction().add(R.id.home_fragment,fragment_admin_themSP).commit();
@@ -90,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
         mHeaderview = main_nav_view.getHeaderView(0);
         Nameuser = mHeaderview.findViewById(R.id.tv_header);
         Bundle bundle = getIntent().getExtras();
-        String maND = bundle.getString("user");
+         maND = bundle.getString("user");
         user_dao = new User_DAO(this);
         User_DTO user_dto = user_dao.getID(maND);
         String username = user_dto.getHoTen();
@@ -130,7 +129,11 @@ public class HomeActivity extends AppCompatActivity {
                 }else if(item.getItemId() == R.id.home_user_loaiSP){
                     fm.beginTransaction().replace(R.id.home_fragment,fragment_user_loaiSP).commit();
                 } else if(item.getItemId() == R.id.home_taikhoan){
-                    fm.beginTransaction().replace(R.id.home_fragment,fragment_taiKhoanND).commit();
+                    Intent intent = new Intent(HomeActivity.this, TaiKhoanNDActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("ma",maND);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
                 }else if(item.getItemId() == R.id.home_doimatkhau){
                     fm.beginTransaction().replace(R.id.home_fragment,fragment_doiMatKhau).commit();
                 }else if(item.getItemId() == R.id.home_Dangxuat){

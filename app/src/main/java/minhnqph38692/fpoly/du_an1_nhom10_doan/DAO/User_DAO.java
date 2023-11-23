@@ -2,6 +2,7 @@ package minhnqph38692.fpoly.du_an1_nhom10_doan.DAO;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -12,11 +13,13 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DbHelper.MyDbHelper;
 
 public class User_DAO {
+    SharedPreferences sharedPreferences;
     MyDbHelper myDbHelper ;
     SQLiteDatabase db;
     public User_DAO(Context context){
         myDbHelper = new MyDbHelper(context);
         db = myDbHelper.getWritableDatabase();
+        sharedPreferences= context.getSharedPreferences("THONGTIN",Context.MODE_PRIVATE);
     }
 
     public long Insert_User(User_DTO userDto){
@@ -79,6 +82,7 @@ public class User_DAO {
         return getData(sql);
     }
 
+
     public User_DTO getID(String id){
         String sql = "SELECT * FROM dt_nguoidung WHERE MaND=?";
         List<User_DTO> list = getData(sql,id);
@@ -89,6 +93,10 @@ public class User_DAO {
     public boolean checkLogin(String user , String pass){
         Cursor c = db.rawQuery("SELECT * FROM dt_nguoidung WHERE MaND=? AND MatKhau=?",new String[]{user,pass});
         if(c.getCount()>0){
+            c.moveToFirst();
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            editor.putString("MaND", c.getString(1));
+            editor.commit();
             return true;
         }else {
             return false;
@@ -119,5 +127,18 @@ public class User_DAO {
 
         }
         return  user_dto;
+    }
+    public boolean updatepass(String username,String oldpass,String newpass){
+
+        Cursor cursor=db.rawQuery("SELECT * FROM dt_nguoidung WHERE MaND=? AND MatKhau=?",new String[]{username,oldpass});
+        if (cursor.getCount()>0){
+            ContentValues contentValues=new ContentValues();
+            contentValues.put("matkhau",newpass);
+            long check=db.update("dt_nguoidung",contentValues,"MaND=?",new String[]{username});
+            if(check==-1){
+                return false;}else{
+                return true;}
+        }
+        return false;
     }
 }
