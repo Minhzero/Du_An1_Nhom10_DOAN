@@ -16,19 +16,19 @@ public class MyDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String sql_nguoidung = "CREATE TABLE dt_nguoidung (\n" +
                 "    maTV INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                "    MaND    TEXT NOT NULL\n" +
-                "                 NOT NULL,\n" +
+                "    MaND    TEXT NOT NULL,\n" +
                 "    HoTen   TEXT NOT NULL,\n" +
                 "    MatKhau TEXT NOT NULL,\n" +
                 "    Email   TEXT NOT NULL,\n" +
                 "    NamSinh TEXT ,\n" +
-                "    SDT     TEXT\n" +
+                "    SDT     TEXT,\n" +
+                "    LoaiTaiKhoan TEXT\n" +
                 ");\n";
 
         sqLiteDatabase.execSQL(sql_nguoidung);
         String mauUSer ="INSERT INTO dt_nguoidung " +
-                "VALUES (1,'admin','Quản lý','admin','helo@gmail.com','2004','012345678')," +
-                "(2,'nguoidung01','Người dùng','nguoidung01','nguoidung@gmail.com','2005','123456789')";
+                "VALUES (1,'admin','Quản lý','admin','helo@gmail.com','2004','012345678','admin')," +
+                "(2,'nguoidung01','Người dùng','nguoidung01','nguoidung@gmail.com','2005','123456789','user')";
         sqLiteDatabase.execSQL(mauUSer);
         String sql_Loai = "CREATE TABLE dt_loai (maloai integer primary key not null, tenloai text not null)";
         sqLiteDatabase.execSQL(sql_Loai);
@@ -37,7 +37,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
 
         String sql_doan = "CREATE TABLE dt_doan(madoan integer primary key not null ,tendoan text not null,giadoan integer not null, maloai integer references dt_loai(maloai)  not null,tenloai text not null,thongtin integer not null,anh text )";
         sqLiteDatabase.execSQL(sql_doan);
-        String doan_1= "INSERT INTO dt_doan values('1','com rang',1000,1,'com','com rat ngon','ảnh đồ ăn')";
+        String doan_1= "INSERT INTO dt_doan values('1','com rang',1000,1,'com','com rat ngon','https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')";
         sqLiteDatabase.execSQL(doan_1);
         String sql_doanphu="CREATE TABLE dt_doanphu (\n" +
                 "    MaDoAnPhu  INTEGER PRIMARY KEY,\n" +

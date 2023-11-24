@@ -30,7 +30,7 @@ public class User_DAO {
         values.put("Email",userDto.getEmail());
         values.put("NamSinh",userDto.getNamSinh());
         values.put("SDT",userDto.getSDT());
-
+values.put("LoaiTaiKhoan","user");
         return db.insert("dt_nguoidung",null,values);
 
     }
@@ -69,7 +69,7 @@ public class User_DAO {
                 userDto.setEmail(c.getString(4));
                 userDto.setNamSinh(c.getString(5));
                 userDto.setSDT(c.getString(6));
-
+userDto.setTypeAcc(c.getString(7));
                 list.add(userDto);
 
             }while (c.moveToNext());

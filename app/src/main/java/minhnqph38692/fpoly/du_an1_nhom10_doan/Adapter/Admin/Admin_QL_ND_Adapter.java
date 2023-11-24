@@ -1,12 +1,15 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter.Admin;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,8 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.DoAn_DAO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.LoaiDoAn_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.DoAn_DTO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.LoaiDoAn_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 
@@ -48,19 +53,25 @@ public class Admin_QL_ND_Adapter extends RecyclerView.Adapter<Admin_QL_ND_Adapte
         holder.txtmatv.setText("Ma Thanh Vien:"+user_dto.getMaTV());
         holder.txttentv.setText("Ho Va Ten:"+user_dto.getHoTen());
         holder.txtnamsinh.setText("Nam sinh:"+user_dto.getNamSinh());
-        holder.imgedit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         holder.imgdel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+Delete_User(user_dto);
             }
         });
+        if (user_dto.getTypeAcc().equalsIgnoreCase("admin")){
+ViewGroup.LayoutParams params=holder.itemView.getLayoutParams();
+params.height=1;
+holder.itemView.setLayoutParams(params);
+            holder.itemView.setVisibility(View.INVISIBLE);
+        }else{
+            ViewGroup.LayoutParams params=holder.itemView.getLayoutParams();
+            holder.itemView.setLayoutParams(params);
+            params.height=ViewGroup.LayoutParams.WRAP_CONTENT;
+            holder.itemView.setVisibility(View.VISIBLE);
 
+        }
     }
 
     @Override
@@ -80,10 +91,46 @@ public class Admin_QL_ND_Adapter extends RecyclerView.Adapter<Admin_QL_ND_Adapte
             txttentv = itemView.findViewById(R.id.txttentv);
             txtnamsinh = itemView.findViewById(R.id.txtnamsinh);
 
-            imgedit = itemView.findViewById(R.id.imgedit);
+
             imgdel=itemView.findViewById(R.id.imgdel);
         }
     }
+    public  void Delete_User(User_DTO user_dto){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setIcon(android.R.drawable.ic_delete);
+        builder.setTitle("Thông báo");
+        builder.setMessage("Bạn có muốn xóa hay không?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                user_dao = new User_DAO(context);
 
+                int kq = user_dao.Delete_User(user_dto);
+                if(kq>0){
+                    Toast.makeText(context, "Xóa Thành công", Toast.LENGTH_SHORT).show();
+                    list.clear();
+                    list.addAll(user_dao.getAll());
+                    notifyDataSetChanged();
+                    dialog.dismiss();
+                }else {
+                    Toast.makeText(context, "ko xóa được", Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+
+            }
+        });
+        builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(context, "hủy xóa", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+    }
 
 }
