@@ -40,6 +40,8 @@ private EditText edt_soluong;
         txt_thongtin=findViewById(R.id.txt_thongtin);
         spn_doanphu=findViewById(R.id.spn_doanphu);
         edt_soluong=findViewById(R.id.edt_soluong);
+btn_muahang=findViewById(R.id.btn_muahang);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +56,8 @@ private EditText edt_soluong;
             int donGia = intent.getIntExtra("giadoan", 0);
             String thongTin = intent.getStringExtra("thongtin");
            // int soluong= Integer.parseInt(edt_soluong.getText().toString());
+
+
 
             txt_ten.setText(tenMon);
             txt_gia.setText(String.valueOf(donGia));

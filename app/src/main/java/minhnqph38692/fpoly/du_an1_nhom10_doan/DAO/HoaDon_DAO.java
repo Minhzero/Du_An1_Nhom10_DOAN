@@ -17,7 +17,7 @@ public class HoaDon_DAO {
         myDbHelper = new MyDbHelper(context);
         db = myDbHelper.getWritableDatabase();
     }
-    public ArrayList<HoaDon_DTO> getAll(){
+    public static ArrayList<HoaDon_DTO> getAll(){
         String sql = "SELECT * FROM dt_hoadon";
         return getData(sql);
     }
