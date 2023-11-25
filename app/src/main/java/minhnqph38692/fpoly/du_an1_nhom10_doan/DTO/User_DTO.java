@@ -21,6 +21,11 @@ public class User_DTO {
         this.typeAcc=typeAcc;
     }
 
+public User_DTO(String SDT, String hoTen, String email){
+    HoTen = hoTen;
+    Email = email;
+    this.SDT = SDT;
+}
     public String getTypeAcc() {
         return typeAcc;
     }

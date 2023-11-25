@@ -21,9 +21,6 @@
             android:name=".DatDoAnActivity"
             android:exported="false" />
         <activity
-            android:name=".ChinhsuaTaiKhoanActivity"
-            android:exported="false" />
-        <activity
             android:name=".TaiKhoanNDActivity"
             android:exported="false" />
         <activity

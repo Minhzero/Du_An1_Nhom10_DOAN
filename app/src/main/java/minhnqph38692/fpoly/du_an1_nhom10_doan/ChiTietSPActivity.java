@@ -13,11 +13,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DbHelper.MyDbHelper;
 
 public class ChiTietSPActivity extends AppCompatActivity {
@@ -27,7 +30,7 @@ private ImageView img_anhchitiet;
 private Spinner spn_doanphu;
 private EditText edt_soluong;
 
-
+private int tongtien;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +52,19 @@ btn_muahang=findViewById(R.id.btn_muahang);
                 finish();
             }
         });
+
         Intent intent = getIntent();
         if (intent != null) {
             String anh = intent.getStringExtra("anh");
             String tenMon = intent.getStringExtra("tenmon");
             int donGia = intent.getIntExtra("giadoan", 0);
             String thongTin = intent.getStringExtra("thongtin");
-           // int soluong= Integer.parseInt(edt_soluong.getText().toString());
+            String soLuong = edt_soluong.getText().toString();
+            if (!soLuong.isEmpty()) {
+                int soluong = Integer.parseInt(soLuong);
+                tongtien= soluong*donGia;
+            } else {
+                Toast.makeText(this, "vui long nhap so luong la mot so lon hon 0", Toast.LENGTH_SHORT).show();            }
 
 
 
@@ -82,6 +91,33 @@ btn_muahang=findViewById(R.id.btn_muahang);
             spn_doanphu.setAdapter(adapter);
 
         }
+
+        btn_muahang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                User_DAO userDAO = new User_DAO(ChiTietSPActivity.this);
+                User_DTO loggedInUser = userDAO.getCurrentLoggedInUser();
+
+                Intent intent = new Intent(ChiTietSPActivity.this, DatDoAnActivity.class);
+                String tenMon = txt_ten.getText().toString();
+                int tongtien = Integer.parseInt(txt_gia.getText().toString());
+                String thongTin = txt_thongtin.getText().toString();
+                String doanPhu = spn_doanphu.getSelectedItem().toString();
+
+                // mon an
+                intent.putExtra("TenMon", tenMon);
+                intent.putExtra("TongTien", tongtien);
+                intent.putExtra("ThongTin", thongTin);
+                intent.putExtra("DoanPhu", doanPhu);
+
+                // nguoi dung
+                intent.putExtra("Email", loggedInUser.getEmail());
+                intent.putExtra("HoTen", loggedInUser.getHoTen());
+                intent.putExtra("SDT", loggedInUser.getSDT());
+
+                startActivity(intent);
+            }
+        });
 
     }
 
