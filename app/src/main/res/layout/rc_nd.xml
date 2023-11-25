@@ -41,6 +41,22 @@
                 android:textSize="20dp"
                 android:layout_margin="5dp"
                 android:textColor="#fff"/>
+            <TextView
+                android:id="@+id/txtemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email:"
+                android:textSize="20dp"
+                android:layout_margin="5dp"
+                android:textColor="#fff"/>
+            <TextView
+                android:id="@+id/txtphone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone:"
+                android:textSize="20dp"
+                android:layout_margin="5dp"
+                android:textColor="#fff"/>
         </LinearLayout>
         <ImageView
             android:id="@+id/imgdel"
