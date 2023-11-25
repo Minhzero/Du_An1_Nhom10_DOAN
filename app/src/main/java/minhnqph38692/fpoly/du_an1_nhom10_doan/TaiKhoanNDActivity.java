@@ -40,7 +40,7 @@ public class TaiKhoanNDActivity extends AppCompatActivity {
 
 
         Bundle bundle = getIntent().getExtras();
-        String maND = bundle.getString("ma");
+         maND = bundle.getString("ma");
         user_dao = new User_DAO(this);
         user = (user_dao.getID(maND));
         tennguoidung.setText(user.getHoTen());
