@@ -10,20 +10,20 @@ public class User_DTO {
     String SDT;
     String typeAcc;
 
-    public User_DTO(int maTV,String maND, String hoTen, String matKhau, String email, String namSinh, String SDT,String typeAcc) {
-        MaTV=maTV;
+    public User_DTO(String maTV, String maND, String hoTen, String matKhau, String email, String namSinh, String SDT, String typeAcc) {
+        MaTV = Integer.parseInt(maTV);
         MaND = maND;
         HoTen = hoTen;
         MatKhau = matKhau;
         Email = email;
         NamSinh = namSinh;
         this.SDT = SDT;
-        this.typeAcc=typeAcc;
+        this.typeAcc = typeAcc;
     }
 
-public User_DTO(String SDT, String hoTen, String email){
-    HoTen = hoTen;
-    Email = email;
+    public User_DTO(String SDT, String hoTen, String email){
+    this.HoTen = hoTen;
+   this.Email = email;
     this.SDT = SDT;
 }
     public String getTypeAcc() {

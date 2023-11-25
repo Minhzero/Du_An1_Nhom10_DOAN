@@ -21,14 +21,14 @@ public class DienThongTinActivity extends AppCompatActivity {
         String hoTen = intent.getStringExtra("HoTen");
         String sdt = intent.getStringExtra("SDT");
 
-        TextView txtTenMon = findViewById(R.id.txt_thucdon);
-        TextView txtDonGia = findViewById(R.id.txt_tongtien);
+        TextView txtTenMon = findViewById(R.id.txt_thucdon1);
+        TextView txtDonGia = findViewById(R.id.txt_tongtien1);
       // TextView txtDoanPhu = findViewById(R.id.);
-        TextView txtSoLuong = findViewById(R.id.txt_tongtien);
-        TextView txtEmail = findViewById(R.id.txt_email);
-        TextView txtHoTen = findViewById(R.id.txt_hoten);
-        TextView txtSDT = findViewById(R.id.txt_SDT);
-        EditText edt_diachi=findViewById(R.id.edt_diachi);
+     //   TextView txtSoLuong = findViewById(R.id.txt_tongtien);
+        TextView txtEmail = findViewById(R.id.txt_email1);
+        TextView txtHoTen = findViewById(R.id.txt_hoten1);
+        TextView txtSDT = findViewById(R.id.txt_SDT1);
+        EditText edt_diachi=findViewById(R.id.edt_diachi1);
 
 
         txtTenMon.setText(tenMon);

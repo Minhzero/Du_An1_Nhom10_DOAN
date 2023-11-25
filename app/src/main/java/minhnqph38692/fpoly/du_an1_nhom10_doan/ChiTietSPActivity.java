@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -64,7 +65,7 @@ btn_muahang=findViewById(R.id.btn_muahang);
                 int soluong = Integer.parseInt(soLuong);
                 tongtien= soluong*donGia;
             } else {
-                Toast.makeText(this, "vui long nhap so luong la mot so lon hon 0", Toast.LENGTH_SHORT).show();            }
+                     }
 
 
 
@@ -104,6 +105,7 @@ btn_muahang=findViewById(R.id.btn_muahang);
                 String thongTin = txt_thongtin.getText().toString();
                 String doanPhu = spn_doanphu.getSelectedItem().toString();
 
+
                 // mon an
                 intent.putExtra("TenMon", tenMon);
                 intent.putExtra("TongTien", tongtien);
@@ -114,6 +116,14 @@ btn_muahang=findViewById(R.id.btn_muahang);
                 intent.putExtra("Email", loggedInUser.getEmail());
                 intent.putExtra("HoTen", loggedInUser.getHoTen());
                 intent.putExtra("SDT", loggedInUser.getSDT());
+
+                Log.d("ChiTietSPActivity", "tenMon: " + tenMon);
+                Log.d("ChiTietSPActivity", "tongtien: " + tongtien);
+                Log.d("ChiTietSPActivity", "thongTin: " + thongTin);
+                Log.d("ChiTietSPActivity", "doanPhu: " + doanPhu);
+                Log.d("ChiTietSPActivity", "Email: " + loggedInUser.getEmail());
+                Log.d("ChiTietSPActivity", "HoTen: " + loggedInUser.getHoTen());
+                Log.d("ChiTietSPActivity", "SDT: " + loggedInUser.getSDT());
 
                 startActivity(intent);
             }

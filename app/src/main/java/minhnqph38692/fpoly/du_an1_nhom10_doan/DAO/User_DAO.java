@@ -58,10 +58,11 @@ values.put("LoaiTaiKhoan","user");
     public List<User_DTO> getData(String sql, String...selectionArgs){
         List<User_DTO> list = new ArrayList<>();
         Cursor c = db.rawQuery(sql,selectionArgs);
-        if(c!= null && c.getCount()>0){
+
+        if (c != null && c.getCount() > 0) {
             c.moveToFirst();
+            User_DTO userDto = new User_DTO();
             do {
-                User_DTO userDto = new User_DTO();
                 userDto.setMaTV(c.getInt(0));
                 userDto.setMaND(c.getString(1));
                 userDto.setHoTen(c.getString(2));
@@ -69,11 +70,14 @@ values.put("LoaiTaiKhoan","user");
                 userDto.setEmail(c.getString(4));
                 userDto.setNamSinh(c.getString(5));
                 userDto.setSDT(c.getString(6));
-userDto.setTypeAcc(c.getString(7));
-                list.add(userDto);
+                userDto.setTypeAcc(c.getString(7));
+            } while (c.moveToNext());
 
-            }while (c.moveToNext());
+            saveLoggedInUser(userDto);
+
+            list.add(userDto);
         }
+
         return list;
     }
 
@@ -143,27 +147,38 @@ userDto.setTypeAcc(c.getString(7));
     }
     public void saveLoggedInUser(User_DTO userDto) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Email", userDto.getEmail());
+        editor.putInt("MaTV", userDto.getMaTV());
+        editor.putString("MaND", userDto.getMaND());
         editor.putString("HoTen", userDto.getHoTen());
-        editor.putString("SDT",userDto.getSDT());
+        editor.putString("MatKhau", userDto.getMatKhau());
+        editor.putString("Email", userDto.getEmail());
+        editor.putString("NamSinh", userDto.getNamSinh());
+        editor.putString("SDT", userDto.getSDT());
+        editor.putString("TypeAcc", userDto.getTypeAcc());
         editor.apply();
     }
-
     public boolean isLoggedIn() {
-        return sharedPreferences.contains("MaND");
+        return sharedPreferences.contains("MaTV");
     }
-
     public User_DTO getCurrentLoggedInUser() {
         if (isLoggedIn()) {
-            String Email= sharedPreferences.getString("Email","");
+            String maTV= String.valueOf(sharedPreferences.getInt("MaTv",0));
+            String maND = sharedPreferences.getString("MaND", "");
             String hoTen = sharedPreferences.getString("HoTen", "");
-String SDT = sharedPreferences.getString("SDT","");
+            String matKhau = sharedPreferences.getString("MatKhau", "");
+            String email = sharedPreferences.getString("Email", "");
+            String namSinh = sharedPreferences.getString("NamSinh", "");
+            String sdt = sharedPreferences.getString("SDT", "");
+            String typeAcc = sharedPreferences.getString("TypeAcc", "");
 
-            return new User_DTO(Email, hoTen, SDT);
+            return new User_DTO(maTV,maND, hoTen, matKhau, email, namSinh, sdt, typeAcc);
         } else {
             return null;
         }
     }
+
+
+
 
 
 }

@@ -39,6 +39,8 @@ public class MyDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql_doan);
         String doan_1= "INSERT INTO dt_doan values('1','com rang',1000,1,'com','com rat ngon','https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')";
         sqLiteDatabase.execSQL(doan_1);
+        String doan_2= "INSERT INTO dt_doan values('2','bun cha ',1000,2,'bun','bun rat ngon','https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')";
+        sqLiteDatabase.execSQL(doan_2);
         String sql_doanphu="CREATE TABLE dt_doanphu (\n" +
                 "    MaDoAnPhu  INTEGER PRIMARY KEY,\n" +
                 "    TenDoAnPhu TEXT    NOT NULL\n" +
