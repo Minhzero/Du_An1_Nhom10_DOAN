@@ -1,8 +1,11 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter.Admin;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.HoaDon_DTO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 
 public class AdminHoaDonAdapter extends RecyclerView.Adapter<AdminHoaDonAdapter.ViewHolder>{
     Context context;
@@ -23,23 +27,47 @@ public class AdminHoaDonAdapter extends RecyclerView.Adapter<AdminHoaDonAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+        View v = inflater.inflate(R.layout.rc_admin_hoadon,parent,false);
+        AdminHoaDonAdapter.ViewHolder viewHolder = new AdminHoaDonAdapter.ViewHolder(v);
+
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.txt_madon.setText(list.get(position).getMahoadon()+"");
+        holder.txt_email.setText(list.get(position).getEmail());
+        holder.txt_hoten.setText(list.get(position).getHoten());
+        holder.txt_sdt.setText(list.get(position).getSDT());
+        holder.txt_diachi.setText(list.get(position).getDiachinhan());
+        holder.txt_thucdon.setText(list.get(position).getThucdon());
+        holder.txt_ngaydat.setText(list.get(position).getNgaydathang());
+        holder.txt_tongtien.setText(list.get(position).getTongtien()+"");
+        holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
+        TextView txt_madon,txt_email,txt_hoten,txt_sdt,txt_diachi,txt_thucdon,txt_ngaydat,txt_tongtien,txt_thanhtoan;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            txt_madon=itemView.findViewById(R.id.txt_madon2);
+            txt_email=itemView.findViewById(R.id.txt_email2);
+            txt_hoten=itemView.findViewById(R.id.txt_hoten2);
+            txt_sdt=itemView.findViewById(R.id.txt_SDT2);
+            txt_diachi=itemView.findViewById(R.id.txt_diachi2);
+            txt_tongtien=itemView.findViewById(R.id.txt_tongtien2);
+            txt_thanhtoan=itemView.findViewById(R.id.txt_thanhtoan2);
+            txt_thucdon=itemView.findViewById(R.id.txt_thucdon2);
+            txt_ngaydat=itemView.findViewById(R.id.txt_ngaydat2);
         }
     }
 }

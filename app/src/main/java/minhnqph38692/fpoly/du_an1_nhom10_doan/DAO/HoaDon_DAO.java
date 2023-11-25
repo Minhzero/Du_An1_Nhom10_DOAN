@@ -1,5 +1,6 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.DAO;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,6 +19,20 @@ public class HoaDon_DAO {
         myDbHelper = new MyDbHelper(context);
         db = myDbHelper.getWritableDatabase();
     }
+    public long InsertHD(HoaDon_DTO hoaDonDto){
+        ContentValues values = new ContentValues();
+        values.put("Email",hoaDonDto.getEmail());
+        values.put("hoten",hoaDonDto.getHoten());
+        values.put("SDT",hoaDonDto.getSDT());
+        values.put("diachinhan",hoaDonDto.getDiachinhan());
+        values.put("thucdon",hoaDonDto.getThucdon());
+        values.put("ngaydathang",hoaDonDto.getNgaydathang());
+        values.put("tongtien",hoaDonDto.getTongtien());
+        values.put("thanhtoan",hoaDonDto.getThanhtoan());
+        values.put("trangthai",hoaDonDto.getTrangthai());
+
+        return db.insert("dt_hoadon",null,values);
+    }
     public List<HoaDon_DTO> getAll(){
         String sql = "SELECT * FROM dt_hoadon";
         return getData(sql);
@@ -28,7 +43,7 @@ public class HoaDon_DAO {
         return list.get(0);
     }
 
-    public static List<HoaDon_DTO> getData(String sql, String... selectionArgs){
+    public List<HoaDon_DTO> getData(String sql, String... selectionArgs){
         List<HoaDon_DTO> list= new ArrayList<>();
         Cursor c=db.rawQuery(sql,selectionArgs);
         if (c!=null && c.getCount()>0){

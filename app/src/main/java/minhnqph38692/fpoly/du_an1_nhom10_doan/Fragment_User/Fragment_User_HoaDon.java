@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter.HoaDonAdapter;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.HoaDon_DAO;
@@ -29,7 +30,7 @@ HoaDonAdapter adapter;
         View view= inflater.inflate(R.layout.fragment_user_hoadon,container,false);
         rcl_hoadon=view.findViewById(R.id.rcl_hoadon);
         HoaDon_DAO hoaDon_dao= new HoaDon_DAO(getContext());
-        ArrayList<HoaDon_DTO> list= hoaDon_dao.getAll();
+        List<HoaDon_DTO> list= hoaDon_dao.getAll();
         adapter=new HoaDonAdapter(list,requireContext());
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(requireContext(),rcl_hoadon.VERTICAL,false);
         rcl_hoadon.setAdapter(adapter);

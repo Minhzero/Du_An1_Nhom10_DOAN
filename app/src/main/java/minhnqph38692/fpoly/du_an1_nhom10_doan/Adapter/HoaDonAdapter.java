@@ -12,15 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.HoaDon_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 
 public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder> {
-    ArrayList<HoaDon_DTO> list;
+    List<HoaDon_DTO> list;
     Context context;
 
-    public HoaDonAdapter(ArrayList<HoaDon_DTO> list, Context context) {
+    public HoaDonAdapter(List<HoaDon_DTO> list, Context context) {
         this.list = list;
         this.context = context;
     }
