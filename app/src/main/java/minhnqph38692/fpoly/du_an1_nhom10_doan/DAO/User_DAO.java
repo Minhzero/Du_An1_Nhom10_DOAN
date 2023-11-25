@@ -141,4 +141,29 @@ userDto.setTypeAcc(c.getString(7));
         }
         return false;
     }
+    public void saveLoggedInUser(User_DTO userDto) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Email", userDto.getEmail());
+        editor.putString("HoTen", userDto.getHoTen());
+        editor.putString("SDT",userDto.getSDT());
+        editor.apply();
+    }
+
+    public boolean isLoggedIn() {
+        return sharedPreferences.contains("MaND");
+    }
+
+    public User_DTO getCurrentLoggedInUser() {
+        if (isLoggedIn()) {
+            String Email= sharedPreferences.getString("Email","");
+            String hoTen = sharedPreferences.getString("HoTen", "");
+String SDT = sharedPreferences.getString("SDT","");
+
+            return new User_DTO(Email, hoTen, SDT);
+        } else {
+            return null;
+        }
+    }
+
+
 }

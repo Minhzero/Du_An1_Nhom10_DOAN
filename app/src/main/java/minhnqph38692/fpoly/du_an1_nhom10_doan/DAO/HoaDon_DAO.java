@@ -11,17 +11,17 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.DbHelper.MyDbHelper;
 
 public class HoaDon_DAO {
     MyDbHelper myDbHelper ;
-    SQLiteDatabase db;
+    static SQLiteDatabase db;
 
     public HoaDon_DAO(Context context) {
         myDbHelper = new MyDbHelper(context);
         db = myDbHelper.getWritableDatabase();
     }
-    public ArrayList<HoaDon_DTO> getAll(){
+    public static ArrayList<HoaDon_DTO> getAll(){
         String sql = "SELECT * FROM dt_hoadon";
         return getData(sql);
     }
-    public ArrayList<HoaDon_DTO> getData(String sql,String...selectionArgs){
+    public static ArrayList<HoaDon_DTO> getData(String sql, String... selectionArgs){
         ArrayList<HoaDon_DTO> list= new ArrayList<>();
         Cursor c=db.rawQuery(sql,selectionArgs);
         if (c!=null && c.getCount()>0){
