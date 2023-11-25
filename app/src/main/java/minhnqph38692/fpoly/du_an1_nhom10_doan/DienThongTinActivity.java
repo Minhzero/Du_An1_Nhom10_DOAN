@@ -24,7 +24,7 @@ public class DienThongTinActivity extends AppCompatActivity {
         TextView txtTenMon = findViewById(R.id.txt_thucdon1);
         TextView txtDonGia = findViewById(R.id.txt_tongtien1);
       // TextView txtDoanPhu = findViewById(R.id.);
-     //   TextView txtSoLuong = findViewById(R.id.txt_tongtien);
+//        TextView txtSoLuong = findViewById(R.id.txt_tongtien);
         TextView txtEmail = findViewById(R.id.txt_email1);
         TextView txtHoTen = findViewById(R.id.txt_hoten1);
         TextView txtSDT = findViewById(R.id.txt_SDT1);

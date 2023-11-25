@@ -99,11 +99,12 @@ btn_muahang=findViewById(R.id.btn_muahang);
                 User_DAO userDAO = new User_DAO(ChiTietSPActivity.this);
                 User_DTO loggedInUser = userDAO.getCurrentLoggedInUser();
 
-                Intent intent = new Intent(ChiTietSPActivity.this, DatDoAnActivity.class);
+                Intent intent = new Intent(ChiTietSPActivity.this, DienThongTinActivity.class);
                 String tenMon = txt_ten.getText().toString();
-                int tongtien = Integer.parseInt(txt_gia.getText().toString());
+                int tongtien = Integer.parseInt(txt_gia.getText().toString()) * Integer.parseInt(edt_soluong.getText().toString());
                 String thongTin = txt_thongtin.getText().toString();
                 String doanPhu = spn_doanphu.getSelectedItem().toString();
+
 
 
                 // mon an
@@ -111,6 +112,7 @@ btn_muahang=findViewById(R.id.btn_muahang);
                 intent.putExtra("TongTien", tongtien);
                 intent.putExtra("ThongTin", thongTin);
                 intent.putExtra("DoanPhu", doanPhu);
+
 
                 // nguoi dung
                 intent.putExtra("Email", loggedInUser.getEmail());
