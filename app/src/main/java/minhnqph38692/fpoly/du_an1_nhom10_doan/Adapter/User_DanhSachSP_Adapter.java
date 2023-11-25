@@ -41,6 +41,7 @@ public class User_DanhSachSP_Adapter extends RecyclerView.Adapter<User_DanhSachS
         Picasso.get().load(list.get(position).getAnh()).into(holder.img_anh);
 holder.txt_ten.setText("Tên món: "+list.get(position).getTendoan());
 holder.txt_gia.setText("Giá: "+list.get(position).getGiadoan());
+holder.txt_loai.setText("Loại đồ ăn : "+list.get(position).getTenloai());
 holder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -61,7 +62,7 @@ holder.itemView.setOnClickListener(new View.OnClickListener() {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-TextView txt_ten,txt_gia;
+TextView txt_ten,txt_gia,txt_loai;
 ImageView img_anh;
 Button btn_datmon;
         public ViewHolder(@NonNull View itemView) {
@@ -69,7 +70,8 @@ Button btn_datmon;
              txt_ten=itemView.findViewById(R.id.txt_ten);
              txt_gia=itemView.findViewById(R.id.txt_gia);
              img_anh=itemView.findViewById(R.id.img_sp);
-             btn_datmon=itemView.findViewById(R.id.btn_datmon);
+            txt_loai = itemView.findViewById(R.id.txt_loai);
+//             btn_datmon=itemView.findViewById(R.id.btn_datmon);
         }
     }
 

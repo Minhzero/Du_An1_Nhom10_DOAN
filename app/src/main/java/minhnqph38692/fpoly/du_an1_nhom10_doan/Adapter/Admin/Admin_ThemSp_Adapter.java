@@ -54,7 +54,7 @@ public class Admin_ThemSp_Adapter extends RecyclerView.Adapter<Admin_ThemSp_Adap
         Picasso.get().load(doAn_dto.getAnh()).into(holder.tsp_anh);
         holder.tsp_tensp.setText(doAn_dto.getTendoan());
         holder.tsp_gia.setText("Giá"+doAn_dto.getGiadoan()+"VND");
-        holder.tsp_loaidoan.setText("Loại : "+ doAn_dto.getMaloai());
+        holder.tsp_loaidoan.setText("Loại : "+ doAn_dto.getTenloai());
         holder.tsp_mota.setText(doAn_dto.getThongtin());
         holder.tsp_edit.setOnClickListener(new View.OnClickListener() {
             @Override

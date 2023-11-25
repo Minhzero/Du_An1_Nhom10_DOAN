@@ -11,7 +11,8 @@
         android:layout_margin="16dp"
         android:padding="10dp"
         android:background="@drawable/khung_tim_kiem"
-        android:hint="tim kiem tai day"/>
+        android:drawableStart="@drawable/baseline_search_24"
+        android:hint="Tìm kiếm tại đây"/>
 
 
     <ImageView
@@ -26,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:layout_margin="10dp"/>
 
 </LinearLayout>

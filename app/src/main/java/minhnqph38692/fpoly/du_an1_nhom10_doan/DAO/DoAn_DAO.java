@@ -49,7 +49,8 @@ public class DoAn_DAO {
     }
 
     public ArrayList<DoAn_DTO> getAll(){
-        String sql = "SELECT * FROM dt_doan";
+        String sql = "SELECT da.madoan ,da.tendoan,da.giadoan,da.maloai,la.tenloai,da.thongtin,da.anh " +
+                "FROM dt_doan da INNER JOIN dt_loai la ON da.maloai = la.maloai";
         return getData(sql);
     }
     public DoAn_DTO getID(String id){
