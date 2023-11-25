@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.HoaDon_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DbHelper.MyDbHelper;
@@ -17,12 +18,18 @@ public class HoaDon_DAO {
         myDbHelper = new MyDbHelper(context);
         db = myDbHelper.getWritableDatabase();
     }
-    public static ArrayList<HoaDon_DTO> getAll(){
+    public List<HoaDon_DTO> getAll(){
         String sql = "SELECT * FROM dt_hoadon";
         return getData(sql);
     }
-    public static ArrayList<HoaDon_DTO> getData(String sql, String... selectionArgs){
-        ArrayList<HoaDon_DTO> list= new ArrayList<>();
+    public HoaDon_DTO getID(String id){
+        String sql = "SELECT * FROM dt_hoadon WHERE Email=?";
+        List <HoaDon_DTO> list = getData(sql,id);
+        return list.get(0);
+    }
+
+    public static List<HoaDon_DTO> getData(String sql, String... selectionArgs){
+        List<HoaDon_DTO> list= new ArrayList<>();
         Cursor c=db.rawQuery(sql,selectionArgs);
         if (c!=null && c.getCount()>0){
             c.moveToFirst();
