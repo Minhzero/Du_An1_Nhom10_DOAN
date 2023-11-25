@@ -52,7 +52,9 @@ public class Admin_QL_ND_Adapter extends RecyclerView.Adapter<Admin_QL_ND_Adapte
         User_DTO user_dto = list.get(position);
         holder.txtmatv.setText("Ma Thanh Vien:"+user_dto.getMaTV());
         holder.txttentv.setText("Ho Va Ten:"+user_dto.getHoTen());
-        holder.txtnamsinh.setText("Nam sinh:"+user_dto.getNamSinh());
+        holder.txtnamsinh.setText("Năm sinh:"+user_dto.getNamSinh());
+        holder.txtemail.setText("Email:"+user_dto.getEmail());
+        holder.txtphone.setText("Phone:"+user_dto.getSDT());
 
         holder.imgdel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +83,7 @@ holder.itemView.setLayoutParams(params);
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView txtmatv,txttentv,txtnamsinh;
+        TextView txtmatv,txttentv,txtnamsinh,txtemail,txtphone;
         ImageView imgedit,imgdel;
 
         public ViewHolder(@NonNull View itemView) {
@@ -90,6 +92,8 @@ holder.itemView.setLayoutParams(params);
             txtmatv = itemView.findViewById(R.id.txtmatv);
             txttentv = itemView.findViewById(R.id.txttentv);
             txtnamsinh = itemView.findViewById(R.id.txtnamsinh);
+            txtemail = itemView.findViewById(R.id.txtemail);
+            txtphone = itemView.findViewById(R.id.txtphone);
 
 
             imgdel=itemView.findViewById(R.id.imgdel);
