@@ -95,10 +95,14 @@ public class Fragment_Admin_ThemSP extends Fragment {
 
                 if (doAn_dao.insertDoAn(doAn_dto)>0){
                     Toast.makeText(getContext(), "thêm thành công", Toast.LENGTH_SHORT).show();
+                    list.clear();
+                    list.addAll(doAn_dao.getAll());
+                    admin_themSp_adapter.notifyDataSetChanged();
                     dialog.dismiss();
 
                 }else {
                     Toast.makeText(getContext(), "thêm thất bại", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 }
 
 
