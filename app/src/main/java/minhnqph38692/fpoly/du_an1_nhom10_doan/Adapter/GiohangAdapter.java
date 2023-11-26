@@ -1,0 +1,75 @@
+package minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter;
+
+import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+import minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter.Admin.Admin_QL_ND_Adapter;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.GioHangDTO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
+
+public class GiohangAdapter extends RecyclerView.Adapter<GiohangAdapter.ViewHolder> {
+    Context context;
+    List<GioHangDTO> list;
+
+    public GiohangAdapter(Context context, List<GioHangDTO> list) {
+        this.context = context;
+        this.list = list;
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+        View v = inflater.inflate(R.layout.rc_giohangsp,parent,false);
+        GiohangAdapter.ViewHolder viewHolder = new GiohangAdapter.ViewHolder(v);
+
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        GioHangDTO gioHangDTO = list.get(position);
+        Picasso.get().load(gioHangDTO.getAnhsp()).into(holder.gh_anh);
+        holder.gh_tensp.setText(gioHangDTO.getTensp()+" và "+gioHangDTO.getTendoanphu());
+        holder.gh_gia.setText(gioHangDTO.getGiasp()+"");
+        holder.gh_soluongdoan.setText(""+gioHangDTO.getSoluongsp());
+
+
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+        TextView gh_tensp,gh_gia,gh_soluongdoan;
+        ImageView gh_anh,gh_delete,gh_edit;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            gh_anh = itemView.findViewById(R.id.gh_anh);
+            gh_tensp = itemView.findViewById(R.id.gh_tensp);
+            gh_gia = itemView.findViewById(R.id.gh_gia);
+            gh_soluongdoan = itemView.findViewById(R.id.gh_soluongdoan);
+            gh_delete = itemView.findViewById(R.id.gh_delete);
+            gh_edit = itemView.findViewById(R.id.gh_edit);
+
+        }
+    }
+}

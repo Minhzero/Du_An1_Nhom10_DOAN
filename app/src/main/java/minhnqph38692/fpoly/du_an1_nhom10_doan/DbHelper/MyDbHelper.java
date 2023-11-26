@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "duan_datdoan";
-    static final int DB_VERSION=11;
+    static final int DB_VERSION=14;
 
     public MyDbHelper(Context context){
         super(context,DB_NAME,null,DB_VERSION);
@@ -39,7 +39,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql_doan);
         String doan_1= "INSERT INTO dt_doan values('1','com rang',1000,1,'com rat ngon','https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')";
         sqLiteDatabase.execSQL(doan_1);
-        String doan_2= "INSERT INTO dt_doan values('2','bun cha ',1000,2,'bun rat ngon','https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')";
+        String doan_2= "INSERT INTO dt_doan values('2','bun cha ',1000,2,'bun rat ngon','https://bizweb.dktcdn.net/100/442/328/products/bun-cha-ha-noi.jpg?v=1644892472637')";
         sqLiteDatabase.execSQL(doan_2);
         String sql_doanphu="CREATE TABLE dt_doanphu (\n" +
                 "    MaDoAnPhu  INTEGER PRIMARY KEY,\n" +
@@ -53,6 +53,13 @@ sqLiteDatabase.execSQL(sql_hoadon);
         String mauhoadon = "INSERT INTO dt_hoadon values('1','nguoidung@gmail.com','Người dùng','123456789','ha noi','com rang','22/2/2002',12000,'tien mat',1)";
         sqLiteDatabase.execSQL(mauhoadon);
 
+        String giohang = "CREATE TABLE dt_giohang(masp integer primary key not null ,tensp text not null,tendoanphu text," +
+                "giasp integer not null,soluong integer,anhsp text )";
+        sqLiteDatabase.execSQL(giohang);
+        String maugh = "INSERT INTO dt_giohang(tensp,tendoanphu,giasp,soluong,anhsp) VALUES ('com rang','gio',12000,2,'https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')," +
+                "('bun cha','cha',13000,3,'https://bizweb.dktcdn.net/100/442/328/products/bun-cha-ha-noi.jpg?v=1644892472637')";
+        sqLiteDatabase.execSQL(maugh);
+
 
     }
 
@@ -63,6 +70,8 @@ sqLiteDatabase.execSQL(sql_hoadon);
         sqLiteDatabase.execSQL("DROP TABLE if exists dt_loai");
         sqLiteDatabase.execSQL("DROP TABLE if exists dt_doanphu");
         sqLiteDatabase.execSQL("DROP TABLE if exists dt_hoadon");
+        sqLiteDatabase.execSQL("DROP TABLE if exists dt_giohang");
+
         onCreate(sqLiteDatabase);
 
     }
