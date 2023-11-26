@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.DoAnPhu_DAO;
@@ -30,11 +32,13 @@ public class Admin_ThemSp_Adapter extends RecyclerView.Adapter<Admin_ThemSp_Adap
     Context context;
     List<DoAn_DTO> list;
     DoAn_DAO doAn_dao;
+    private List<HashMap<String,Object>> listHM;
 
-    public Admin_ThemSp_Adapter(Context context, List<DoAn_DTO> list) {
+    public Admin_ThemSp_Adapter(Context context, List<DoAn_DTO> list,List<HashMap<String,Object>> listHM,DoAn_DAO doAn_dao) {
         this.context = context;
         this.list = list;
-
+this.listHM=listHM;
+this.doAn_dao=doAn_dao;
     }
 
     @NonNull

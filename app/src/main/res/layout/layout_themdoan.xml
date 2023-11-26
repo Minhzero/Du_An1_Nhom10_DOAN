@@ -43,6 +43,10 @@
             android:layout_height="wrap_content"
             android:hint="Nhập tên đồ ăn"/>
     </com.google.android.material.textfield.TextInputLayout>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spnloaidoan"/>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

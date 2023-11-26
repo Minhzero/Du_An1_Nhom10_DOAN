@@ -24,7 +24,7 @@ public class DoAn_DAO {
         values.put("tendoan",doAn_dto.getTendoan());
         values.put("giadoan",doAn_dto.getGiadoan());
         values.put("maloai",doAn_dto.getMaloai());
-        values.put("tenloai",doAn_dto.getTenloai());
+
         values.put("thongtin",doAn_dto.getThongtin());
         values.put("anh",doAn_dto.getAnh());
          return db.insert("dt_doan",null,values);
