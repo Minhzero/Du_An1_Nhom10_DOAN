@@ -68,7 +68,8 @@ holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
 
     public void updateDataFromActivity(Bundle bundle) {
         if (bundle != null) {
-            // Tạo đối tượng HoaDon_DTO từ dữ liệu Bundle
+
+
             HoaDon_DTO hoaDonDTO = new HoaDon_DTO();
             hoaDonDTO.setDiachinhan(bundle.getString("DiaChi", ""));
             hoaDonDTO.setThucdon(bundle.getString("tenMon", "")+bundle.getString("doanPhu",""));

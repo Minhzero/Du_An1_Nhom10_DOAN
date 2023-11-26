@@ -82,6 +82,8 @@ adapter= new HoaDonAdapter(danhSachHoaDon,getApplicationContext());
         bundle.putInt("tongtien",donGia);
         bundle.putString("doanphu",doanPhu);
         bundle.putString("thanhtoan",thanhtoan);
+
+
         // Gọi phương thức updateDataFromActivity trong adapter
         adapter.updateDataFromActivity(bundle);
 
