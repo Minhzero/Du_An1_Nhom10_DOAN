@@ -6,24 +6,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".DienThongTinActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:text="Ma Don Hang :"
-            android:textStyle="bold" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="madon"
-            android:layout_weight="1"
-            android:id="@+id/txt_madon"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -123,6 +106,24 @@
         <TextView
             android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:text="Do An Phu :"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="do an phu"
+            android:layout_weight="1"
+            android:id="@+id/txt_doanphu"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
             android:text="Ngay Dat Hang :"
             android:textStyle="bold" />
         <TextView
@@ -161,13 +162,37 @@
             android:layout_height="wrap_content"
             android:text="Thanh Toan"
             android:textStyle="bold" />
-        <TextView
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="thanhtoan"
-            android:layout_weight="1"
-            android:id="@+id/txt_thanhtoan1"/>
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/btn_tienmat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="tien mat"/>
+
+            <RadioButton
+                android:id="@+id/btn_chuyenkhoan"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="chuyen khoan"/>
+
+        </RadioGroup>
 
     </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="xac nhan"
+        android:id="@+id/btn_xacnhan"/>
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="huy "
+    android:id="@+id/btn_huy"/>
 
 </LinearLayout>
