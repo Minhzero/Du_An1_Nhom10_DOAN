@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,11 +20,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter.Admin.Admin_ThemSp_Adapter;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.DoAn_DAO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.LoaiDoAn_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.DoAn_DTO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.LoaiDoAn_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 
 public class Fragment_Admin_ThemSP extends Fragment {
@@ -44,7 +50,7 @@ public class Fragment_Admin_ThemSP extends Fragment {
 
         doAn_dao = new DoAn_DAO(getContext());
         list = doAn_dao.getAll();
-        admin_themSp_adapter = new Admin_ThemSp_Adapter(getContext(),list);
+        admin_themSp_adapter = new Admin_ThemSp_Adapter(getContext(),list,getdsloai(),doAn_dao);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),
                 LinearLayoutManager.VERTICAL,false);
@@ -70,7 +76,10 @@ public class Fragment_Admin_ThemSP extends Fragment {
         TextInputEditText ed_tendoan=v.findViewById(R.id.ed_tendoan);
         TextInputEditText ed_giadoan=v.findViewById(R.id.ed_giadoan);
         TextInputEditText ed_mota=v.findViewById(R.id.ed_mota);
+        Spinner spnLoai=v.findViewById(R.id.spnloaidoan);
 
+        SimpleAdapter simpleAdapter=new SimpleAdapter(getContext(),getdsloai(), android.R.layout.simple_list_item_1,new String[]{"tenloai"},new int[]{android.R.id.text1});
+        spnLoai.setAdapter(simpleAdapter);
 
         Button btn_themdoan=v.findViewById(R.id.btn_themdoan);
         Button btn_huythemdoan=v.findViewById(R.id.btn_huythemdoan);
@@ -82,13 +91,15 @@ public class Fragment_Admin_ThemSP extends Fragment {
                 String tendoan = ed_tendoan.getText().toString();
                 int giadoan = Integer.parseInt(ed_giadoan.getText().toString());
                 String modoan = ed_mota.getText().toString();
-
+                HashMap<String, Object> hs = (HashMap<String, Object>) spnLoai.getSelectedItem();
+                int maloai = (int) hs.get("maloai");
                 doAn_dao = new DoAn_DAO(getContext());
 
                 DoAn_DTO doAn_dto = new DoAn_DTO();
                 doAn_dto.setTendoan(tendoan);
-                doAn_dto.setMaloai(1);
-                doAn_dto.setTenloai("com");
+                doAn_dto.setMaloai(maloai);
+
+
                 doAn_dto.setGiadoan(giadoan);
                 doAn_dto.setAnh(linkanh);
                 doAn_dto.setThongtin(modoan);
@@ -121,6 +132,17 @@ public class Fragment_Admin_ThemSP extends Fragment {
         });
         dialog.show();
     }
-
+    private List<HashMap<String, Object>> getdsloai(){
+        LoaiDoAn_DAO loaiDoAn_dao=new LoaiDoAn_DAO(getContext());
+        List<LoaiDoAn_DTO> list=loaiDoAn_dao.getAll();
+        List<HashMap<String, Object>> listHM=new ArrayList<>();
+        for (LoaiDoAn_DTO loai:list){
+            HashMap<String,Object> hs=new HashMap<>();
+            hs.put("maloai",loai.getMaloai());
+            hs.put("tenloai",loai.getTenloai());
+            listHM.add(hs);
+        }
+        return listHM;
+    }
 
 }
