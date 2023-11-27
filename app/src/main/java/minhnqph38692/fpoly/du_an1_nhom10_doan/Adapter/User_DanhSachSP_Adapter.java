@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.ChiTietSPActivity;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.DoAn_DTO;
@@ -23,6 +25,8 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 public class User_DanhSachSP_Adapter extends RecyclerView.Adapter<User_DanhSachSP_Adapter.ViewHolder> {
     ArrayList<DoAn_DTO> list;
     Context context;
+
+
 
     public User_DanhSachSP_Adapter(ArrayList<DoAn_DTO> list, Context context) {
         this.list = list;
@@ -35,12 +39,15 @@ public class User_DanhSachSP_Adapter extends RecyclerView.Adapter<User_DanhSachS
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_sp,parent,false);
         return new ViewHolder(view);
     }
-
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+
+// Định dạng số tiền
         Picasso.get().load(list.get(position).getAnh()).into(holder.img_anh);
 holder.txt_ten.setText("Tên món: "+list.get(position).getTendoan());
-holder.txt_gia.setText("Giá: "+list.get(position).getGiadoan());
+holder.txt_gia.setText("Giá: "+ decimalFormat.format(list.get(position).getGiadoan())+" VND");
 holder.txt_loai.setText("Loại đồ ăn : "+list.get(position).getTenloai());
 holder.itemView.setOnClickListener(new View.OnClickListener() {
     @Override

@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.Date;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.HoaDon_DAO;
@@ -19,7 +21,7 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.HoaDon_DTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
 
 public class DienThongTinTuGHActivity extends AppCompatActivity {
-    Button mua;
+    Button mua,back;
     String tenMon;
     String donGia;
     String doanPhu;
@@ -32,7 +34,8 @@ public class DienThongTinTuGHActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dien_thong_tin_tugh);
-        mua = findViewById(R.id.mua);
+        mua = findViewById(R.id.muagh);
+        back = findViewById(R.id.backgh);
         Bundle bundle = getIntent().getExtras();
          tenMon = bundle.getString("TenMon");
          donGia = bundle.getString("TongTien");
@@ -40,12 +43,12 @@ public class DienThongTinTuGHActivity extends AppCompatActivity {
          hoTen = bundle.getString("HoTen");
         sdt = bundle.getString("SDT");
 
-        TextView txtTenMon = findViewById(R.id.txt_thucdon3);
-        TextView txtDonGia = findViewById(R.id.txt_tongtien3);
-        TextView txtEmail = findViewById(R.id.txt_email3);
-        TextView txtHoTen = findViewById(R.id.txt_hoten3);
-        TextView txtSDT = findViewById(R.id.txt_SDT3);
-        EditText edt_diachi=findViewById(R.id.edt_diachi3);
+        TextInputEditText txtTenMon = findViewById(R.id.txt_thucdon3);
+        TextInputEditText txtDonGia = findViewById(R.id.txt_tongtien3);
+        TextInputEditText txtEmail = findViewById(R.id.txt_email3);
+        TextInputEditText txtHoTen = findViewById(R.id.txt_hoten3);
+        TextInputEditText txtSDT = findViewById(R.id.txt_SDT3);
+        TextInputEditText edt_diachi=findViewById(R.id.edt_diachi3);
 
 
         txtTenMon.setText(tenMon);

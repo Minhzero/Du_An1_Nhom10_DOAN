@@ -47,7 +47,6 @@ public class Fragment_Admin_ThemSP extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         rc_themsp =view.findViewById(R.id.rc_themsp);
         tsp_float_add = view.findViewById(R.id.tsp_float_add);
-
         doAn_dao = new DoAn_DAO(getContext());
         list = doAn_dao.getAll();
         admin_themSp_adapter = new Admin_ThemSp_Adapter(getContext(),list,getdsloai(),doAn_dao);

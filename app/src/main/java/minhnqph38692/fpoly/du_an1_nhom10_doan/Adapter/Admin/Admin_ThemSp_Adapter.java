@@ -18,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.DoAnPhu_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.DoAn_DAO;
