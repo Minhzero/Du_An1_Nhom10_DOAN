@@ -5,8 +5,6 @@ import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +35,12 @@ HoaDonAdapter adapter;
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(requireContext(),rcl_hoadon.VERTICAL,false);
         rcl_hoadon.setAdapter(adapter);
         rcl_hoadon.setLayoutManager(linearLayoutManager);
+
+
+
+
+
+
 
         return view;
     }

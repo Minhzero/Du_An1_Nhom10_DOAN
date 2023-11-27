@@ -99,7 +99,6 @@ public class Fragment_Admin_ThemSP extends Fragment {
                 doAn_dto.setTendoan(tendoan);
                 doAn_dto.setMaloai(maloai);
 
-
                 doAn_dto.setGiadoan(giadoan);
                 doAn_dto.setAnh(linkanh);
                 doAn_dto.setThongtin(modoan);

@@ -21,6 +21,9 @@
             android:name=".DienThongTinActivity"
             android:exported="false" />
         <activity
+            android:name=".DienThongTinTuGHActivity"
+            android:exported="false" />
+        <activity
             android:name=".DatDoAnActivity"
             android:exported="false" />
         <activity

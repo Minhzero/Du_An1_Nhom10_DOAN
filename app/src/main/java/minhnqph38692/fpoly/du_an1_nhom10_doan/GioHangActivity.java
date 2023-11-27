@@ -15,7 +15,9 @@ import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter.GiohangAdapter;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.GioHangDAo;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.GioHangDTO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
 
 public class GioHangActivity extends AppCompatActivity {
     TextView gh_tongtien;
@@ -30,6 +32,9 @@ public class GioHangActivity extends AppCompatActivity {
     int donGia;
     String thongTin;
     StringBuilder invoice;
+    StringBuilder doanphu;
+    long tongtiengh = 0;
+
 
 
     @Override
@@ -51,12 +56,22 @@ public class GioHangActivity extends AppCompatActivity {
         rc_giohang.setAdapter(giohangAdapter);
         TT();
         Tensp();
+//        TenDoanphu();
+
 
         gh_dathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GioHangActivity.this, DienThongTinActivity.class);
-                intent.putExtra("TenMon",String.valueOf(invoice));
+                User_DAO userDAO = new User_DAO(GioHangActivity.this);
+                User_DTO loggedInUser = userDAO.getCurrentLoggedInUser();
+                Intent intent = new Intent(GioHangActivity.this, DienThongTinTuGHActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("TenMon", String.valueOf(invoice));
+                bundle.putString("Email", loggedInUser.getEmail());
+                bundle.putString("HoTen", loggedInUser.getHoTen());
+                bundle.putString("SDT", loggedInUser.getSDT());
+                bundle.putString("TongTien", String.valueOf(tongtiengh));
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
@@ -85,19 +100,27 @@ public class GioHangActivity extends AppCompatActivity {
 
     }
     private void TT(){
-        long tongtien = 0;
+
         for (int i =0; i<list.size();i++){
-            tongtien = tongtien+(list.get(i).getGiasp() * list.get(i).getSoluongsp());
+            tongtiengh = tongtiengh+(list.get(i).getGiasp() * list.get(i).getSoluongsp());
 
         }
-        gh_tongtien.setText(String.valueOf(tongtien));
+        gh_tongtien.setText(String.valueOf(tongtiengh));
     }
-    public void Tensp(){
+    public void Tensp() {
 
-         invoice = new StringBuilder();
+        invoice = new StringBuilder();
 
-        for (GioHangDTO gioHangDTO : list){
-            invoice.append(gioHangDTO.getTensp()+"\n");
+        for (GioHangDTO gioHangDTO : list) {
+            invoice.append( "\n"+gioHangDTO.getTensp()+" và " +gioHangDTO.getTendoanphu());
         }
     }
+//        public void TenDoanphu(){
+//
+//            doanphu = new StringBuilder();
+//
+//            for (GioHangDTO gioHangDTO : list){
+//                doanphu.append(gioHangDTO.getTendoanphu()+"\n");
+//            }
+//    }
 }

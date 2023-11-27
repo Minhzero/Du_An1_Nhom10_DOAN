@@ -83,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
         fragment_doiMatKhau = new Fragment_DoiMatKhau();
 
         fm = getSupportFragmentManager();
-        fm.beginTransaction().add(R.id.home_fragment,fragment_admin_themSP).commit();
+//        fm.beginTransaction().add(R.id.home_fragment,fragment_admin_themSP).commit();
 
         main_nav_view = findViewById(R.id.main_nav_view);
         mHeaderview = main_nav_view.getHeaderView(0);
@@ -98,10 +98,12 @@ public class HomeActivity extends AppCompatActivity {
         if(maND.equalsIgnoreCase("admin")){
             main_nav_view.getMenu().findItem(R.id.admin).setVisible(true);
             main_nav_view.getMenu().findItem(R.id.admin1).setVisible(true);
+            fm.beginTransaction().add(R.id.home_fragment,fragment_admin_themSP).commit();
 
 
         }else {
             main_nav_view.getMenu().findItem(R.id.user).setVisible(true);
+            fm.beginTransaction().add(R.id.home_fragment,fragment_user_danhSachSP).commit();
 
         }
         main_nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

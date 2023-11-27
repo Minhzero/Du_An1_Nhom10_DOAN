@@ -1,7 +1,6 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.HoaDon_DTO;
-import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_User.Fragment_User_HoaDon;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 
 public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder> {
     List<HoaDon_DTO> list;
     Context context;
-    private Fragment_User_HoaDon fragmentUserHoaDon;
 
     public HoaDonAdapter(List<HoaDon_DTO> list, Context context) {
         this.list = list;
@@ -61,41 +58,15 @@ holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
 
 
     }
-    public void addHoaDon(HoaDon_DTO hoaDonDTO) {
-        list.add(hoaDonDTO);
-        notifyDataSetChanged();
-    }
-
-    public void updateDataFromActivity(Bundle bundle) {
-        if (bundle != null) {
-
-
-            HoaDon_DTO hoaDonDTO = new HoaDon_DTO();
-            hoaDonDTO.setDiachinhan(bundle.getString("DiaChi", ""));
-            hoaDonDTO.setThucdon(bundle.getString("tenMon", "")+bundle.getString("doanPhu",""));
-            hoaDonDTO.setEmail(bundle.getString("email", ""));
-            hoaDonDTO.setHoten(bundle.getString("hoten", ""));
-            hoaDonDTO.setSDT(bundle.getString("sdt", ""));
-            hoaDonDTO.setTongtien(bundle.getInt("tongtien", 0));
-            hoaDonDTO.setThanhtoan(bundle.getString("thanhtoan", ""));
-
-            addHoaDon(hoaDonDTO);
-        }
-    }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
 
-
-
-
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView txt_madon,txt_email,txt_hoten,txt_sdt,txt_diachi,txt_thucdon,txt_ngaydat,txt_tongtien,txt_thanhtoan;
         CheckBox cb_xacnhan;
-        private List<HoaDon_DTO> list;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,10 +81,6 @@ holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
             txt_ngaydat=itemView.findViewById(R.id.txt_ngaydat);
 
             cb_xacnhan=itemView.findViewById(R.id.cb_xacnhan);
-        }
-        public void updateData(List<HoaDon_DTO> newList) {
-            this.list = newList;
-            notifyDataSetChanged();
         }
     }
 }
