@@ -61,8 +61,9 @@ values.put("LoaiTaiKhoan","user");
 
         if (c != null && c.getCount() > 0) {
             c.moveToFirst();
-            User_DTO userDto = new User_DTO();
+
             do {
+                User_DTO userDto = new User_DTO();
                 userDto.setMaTV(c.getInt(0));
                 userDto.setMaND(c.getString(1));
                 userDto.setHoTen(c.getString(2));
@@ -71,11 +72,12 @@ values.put("LoaiTaiKhoan","user");
                 userDto.setNamSinh(c.getString(5));
                 userDto.setSDT(c.getString(6));
                 userDto.setTypeAcc(c.getString(7));
+                saveLoggedInUser(userDto);
+
+                list.add(userDto);
             } while (c.moveToNext());
 
-            saveLoggedInUser(userDto);
 
-            list.add(userDto);
         }
 
         return list;
