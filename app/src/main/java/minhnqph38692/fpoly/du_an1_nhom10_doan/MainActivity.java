@@ -19,5 +19,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         },2000);
+        finish();
     }
 }

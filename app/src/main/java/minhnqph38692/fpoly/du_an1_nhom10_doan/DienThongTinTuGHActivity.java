@@ -14,7 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Date;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.HoaDon_DAO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.HoaDon_DTO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
 
 public class DienThongTinTuGHActivity extends AppCompatActivity {
     Button mua;
@@ -24,6 +26,7 @@ public class DienThongTinTuGHActivity extends AppCompatActivity {
     String email;
     String hoTen;
     String sdt;
+    User_DAO userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +81,15 @@ public class DienThongTinTuGHActivity extends AppCompatActivity {
                 long kq = hoaDonDao.InsertHD(hoaDonDto);
                 if(kq>0){
                     Toast.makeText(DienThongTinTuGHActivity.this, "thanh cong", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(DienThongTinTuGHActivity.this,HoaDonUserActivity.class);
+                    userDao = new User_DAO(DienThongTinTuGHActivity.this);
+                    User_DTO loggedInUser = userDao.getCurrentLoggedInUser();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("user",loggedInUser.getMaND());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+
+
                 }else {
                     Toast.makeText(DienThongTinTuGHActivity.this, "that bai", Toast.LENGTH_SHORT).show();
 

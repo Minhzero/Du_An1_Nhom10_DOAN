@@ -55,6 +55,9 @@ public class Admin_QL_ND_Adapter extends RecyclerView.Adapter<Admin_QL_ND_Adapte
         holder.txtnamsinh.setText("Năm sinh:"+user_dto.getNamSinh());
         holder.txtemail.setText("Email:"+user_dto.getEmail());
         holder.txtphone.setText("Phone:"+user_dto.getSDT());
+        if (user_dto.getTypeAcc().equalsIgnoreCase("admin")){
+            holder.imgdel.setVisibility(View.GONE);
+        }
 
         holder.imgdel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,18 +65,19 @@ public class Admin_QL_ND_Adapter extends RecyclerView.Adapter<Admin_QL_ND_Adapte
 Delete_User(user_dto);
             }
         });
-        if (user_dto.getTypeAcc().equalsIgnoreCase("admin")){
-ViewGroup.LayoutParams params=holder.itemView.getLayoutParams();
-params.height=1;
-holder.itemView.setLayoutParams(params);
-            holder.itemView.setVisibility(View.INVISIBLE);
-        }else{
-            ViewGroup.LayoutParams params=holder.itemView.getLayoutParams();
-            holder.itemView.setLayoutParams(params);
-            params.height=ViewGroup.LayoutParams.WRAP_CONTENT;
-            holder.itemView.setVisibility(View.VISIBLE);
+//        if (user_dto.getTypeAcc().equalsIgnoreCase("admin")){
+//ViewGroup.LayoutParams params=holder.itemView.getLayoutParams();
+//params.height=1;
+//holder.itemView.setLayoutParams(params);
+//            holder.itemView.setVisibility(View.INVISIBLE);
+//        }else{
+//            ViewGroup.LayoutParams params=holder.itemView.getLayoutParams();
+//            holder.itemView.setLayoutParams(params);
+//            params.height=ViewGroup.LayoutParams.WRAP_CONTENT;
+//            holder.itemView.setVisibility(View.VISIBLE);
+//
+//        }
 
-        }
     }
 
     @Override
