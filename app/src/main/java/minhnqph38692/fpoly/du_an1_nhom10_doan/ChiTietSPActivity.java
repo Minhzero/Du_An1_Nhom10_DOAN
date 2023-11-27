@@ -3,6 +3,7 @@ package minhnqph38692.fpoly.du_an1_nhom10_doan;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ private EditText edt_soluong;
     int donGia;
     String thongTin;
     String soLuong;
+    String ma;
 
 private int tongtien;
     @Override
@@ -61,7 +63,13 @@ btn_muahang=findViewById(R.id.btn_muahang);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(ChiTietSPActivity.this, HomeActivity.class);
+                SharedPreferences sharedPreferences = getSharedPreferences("user",MODE_PRIVATE);
+                ma = sharedPreferences.getString("USERNAME","");
+                Bundle bundle = new Bundle();
+                bundle.putString("user",ma);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
@@ -130,13 +138,20 @@ btn_muahang=findViewById(R.id.btn_muahang);
                 intent.putExtra("HoTen", loggedInUser.getHoTen());
                 intent.putExtra("SDT", loggedInUser.getSDT());
 
-                Log.d("ChiTietSPActivity", "tenMon: " + tenMon);
-                Log.d("ChiTietSPActivity", "tongtien: " + tongtien);
-                Log.d("ChiTietSPActivity", "thongTin: " + thongTin);
-                Log.d("ChiTietSPActivity", "doanPhu: " + doanPhu);
-                Log.d("ChiTietSPActivity", "Email: " + loggedInUser.getEmail());
-                Log.d("ChiTietSPActivity", "HoTen: " + loggedInUser.getHoTen());
-                Log.d("ChiTietSPActivity", "SDT: " + loggedInUser.getSDT());
+//                Log.d("ChiTietSPActivity", "tenMon: " + tenMon);
+//                Log.d("ChiTietSPActivity", "tongtien: " + tongtien);
+//                Log.d("ChiTietSPActivity", "thongTin: " + thongTin);
+//                Log.d("ChiTietSPActivity", "doanPhu: " + doanPhu);
+//                Log.d("ChiTietSPActivity", "Email: " + loggedInUser.getEmail());
+//                Log.d("ChiTietSPActivity", "HoTen: " + loggedInUser.getHoTen());
+//                Log.d("ChiTietSPActivity", "SDT: " + loggedInUser.getSDT());
+
+
+                intent.putExtra("anh",anh);
+                intent.putExtra("tenmon",tenMon);
+                intent.putExtra("giadoan",donGia);
+                intent.putExtra("thongtin",thongTin);
+
 
                 startActivity(intent);
             }

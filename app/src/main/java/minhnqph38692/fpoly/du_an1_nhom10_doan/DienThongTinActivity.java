@@ -19,19 +19,24 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.GioHangDTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.HoaDon_DTO;
 
 public class DienThongTinActivity extends AppCompatActivity {
-    Button mua;
+    Button mua,trolai;
     String tenMon;
     int donGia;
     String doanPhu;
     String email;
     String hoTen;
     String sdt;
+    String anh;
+    String tenMon1;
+    int donGia1;
+    String thongTin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dien_thong_tin);
         mua = findViewById(R.id.mua);
+        trolai = findViewById(R.id.trolai);
         Intent intent = getIntent();
          tenMon = intent.getStringExtra("TenMon");
          donGia = intent.getIntExtra("TongTien", 0);
@@ -91,5 +96,28 @@ public class DienThongTinActivity extends AppCompatActivity {
                 }
             }
         });
+
+        Intent intent1 = getIntent();
+        if (intent1 != null) {
+            anh = intent1.getStringExtra("anh");
+            tenMon1 = intent1.getStringExtra("tenmon");
+            donGia1 = intent1.getIntExtra("giadoan", 0);
+            thongTin = intent1.getStringExtra("thongtin");
+
+        }
+
+        trolai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DienThongTinActivity.this, ChiTietSPActivity.class);
+
+                i.putExtra("anh",anh);
+                i.putExtra("tenmon",tenMon1);
+                i.putExtra("giadoan",donGia1);
+                i.putExtra("thongtin",thongTin);
+                startActivity(i);
+            }
+        });
+
     }
 }
