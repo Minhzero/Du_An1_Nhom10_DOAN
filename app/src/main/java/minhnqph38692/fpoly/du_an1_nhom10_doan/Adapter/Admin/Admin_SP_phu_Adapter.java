@@ -142,8 +142,14 @@ public class Admin_SP_phu_Adapter extends RecyclerView.Adapter<Admin_SP_phu_Adap
                 String tenspphu = ed_suaspphu.getText().toString();
                 doAnPhu_dao = new DoAnPhu_DAO(context);
                 doAnPhu_dto.setTenDoAnPhu(tenspphu);
-                if(tenspphu.equals("")){
-                    Toast.makeText(context, "Vui lòng nhập tên loại sách mới", Toast.LENGTH_SHORT).show();
+                String regex=".*\\s";
+                String numregex=".*\\d.*";
+                if(tenspphu.isEmpty()){
+                    Toast.makeText(context, "Vui lòng nhập tên sản phẩm phụ mới", Toast.LENGTH_SHORT).show();
+                } else if (tenspphu.matches(regex) || tenspphu.startsWith(" ")) {
+                    Toast.makeText(context, "Không được để khoảng trắng", Toast.LENGTH_SHORT).show();
+                } else if (tenspphu.matches(numregex)) {
+                    Toast.makeText(context, "Không được chứa số", Toast.LENGTH_SHORT).show();
                 }else {
                     int kq = doAnPhu_dao.Update_DoAnPhu(doAnPhu_dto);
                     if(kq>0){

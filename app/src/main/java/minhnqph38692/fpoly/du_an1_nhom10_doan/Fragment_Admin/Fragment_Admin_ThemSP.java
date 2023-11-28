@@ -88,36 +88,49 @@ public class Fragment_Admin_ThemSP extends Fragment {
             public void onClick(View v) {
                 String linkanh = ed_linkanh.getText().toString();
                 String tendoan = ed_tendoan.getText().toString();
-                int giadoan = Integer.parseInt(ed_giadoan.getText().toString());
                 String modoan = ed_mota.getText().toString();
-                HashMap<String, Object> hs = (HashMap<String, Object>) spnLoai.getSelectedItem();
-                int maloai = (int) hs.get("maloai");
-                doAn_dao = new DoAn_DAO(getContext());
+                String regex=".*\\s";
+                String numregex=".*\\d.*";
+                if (linkanh.isEmpty() || tendoan.isEmpty() || modoan.isEmpty()){
+                    Toast.makeText(getContext(), "Không được bỏ trống", Toast.LENGTH_SHORT).show();
+                } else if (linkanh.matches(regex) || tendoan.matches(regex) || modoan.matches(regex) || linkanh.startsWith(" ") || tendoan.startsWith(" ") || modoan.startsWith(" ")) {
+                    Toast.makeText(getContext(), "Không được nhập khoảng trắng", Toast.LENGTH_SHORT).show();
+                } else if (tendoan.matches(numregex)) {
+                    Toast.makeText(getContext(), "Tên đồ ăn không được chứa số", Toast.LENGTH_SHORT).show();
+                } else{
+try {
 
-                DoAn_DTO doAn_dto = new DoAn_DTO();
-                doAn_dto.setTendoan(tendoan);
-                doAn_dto.setMaloai(maloai);
 
-                doAn_dto.setGiadoan(giadoan);
-                doAn_dto.setAnh(linkanh);
-                doAn_dto.setThongtin(modoan);
+    int giadoan = Integer.parseInt(ed_giadoan.getText().toString());
 
-                if (doAn_dao.insertDoAn(doAn_dto)>0){
-                    Toast.makeText(getContext(), "thêm thành công", Toast.LENGTH_SHORT).show();
-                    list.clear();
-                    list.addAll(doAn_dao.getAll());
-                    admin_themSp_adapter.notifyDataSetChanged();
-                    dialog.dismiss();
+    HashMap<String, Object> hs = (HashMap<String, Object>) spnLoai.getSelectedItem();
+    int maloai = (int) hs.get("maloai");
+    doAn_dao = new DoAn_DAO(getContext());
 
-                }else {
-                    Toast.makeText(getContext(), "thêm thất bại", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
+    DoAn_DTO doAn_dto = new DoAn_DTO();
+    doAn_dto.setTendoan(tendoan);
+    doAn_dto.setMaloai(maloai);
+
+    doAn_dto.setGiadoan(giadoan);
+    doAn_dto.setAnh(linkanh);
+    doAn_dto.setThongtin(modoan);
+
+    if (doAn_dao.insertDoAn(doAn_dto) > 0) {
+        Toast.makeText(getContext(), "thêm thành công", Toast.LENGTH_SHORT).show();
+        list.clear();
+        list.addAll(doAn_dao.getAll());
+        admin_themSp_adapter.notifyDataSetChanged();
+        dialog.dismiss();
+
+    } else {
+        Toast.makeText(getContext(), "thêm thất bại", Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+    }
+
+}catch (Exception e){
+    Toast.makeText(getContext(), "Giá phải là số và không được bỏ trống", Toast.LENGTH_SHORT).show();
+}
                 }
-
-
-
-
-
             }
         });
         btn_huythemdoan.setOnClickListener(new View.OnClickListener() {

@@ -58,34 +58,58 @@ public class SingUpActivity extends AppCompatActivity {
         String year = sg_year.getText().toString();
         String mk = sg_Mk.getText().toString();
         String mk1 = sg_Mk1.getText().toString();
+String logregex="^[a-zA-Z0-9_]{3,15}$";
+String passregex="^(?=.*[a-zA-Z0-9]).{6,}$";
+        String yearregex="\\d{4}";
+        String emailregex="^[a-z0-9](\\.?[a-z0-9]){5,}@g(oogle)?mail\\.com$";
+        String phoneregex="0\\d{9}";
+        String regex=".*\\s";
+        String numregex=".*\\d.*";
+        if(tenDN.isEmpty() || tenND.isEmpty() || email.isEmpty() || phone.isEmpty() || year.isEmpty() || mk.isEmpty() || mk1.isEmpty()){
+            Toast.makeText(this, "Không được bỏ trống", Toast.LENGTH_SHORT).show();
+        } else if (tenND.matches(regex) || tenND.startsWith(" ") || tenDN.matches(regex) || tenDN.startsWith(" ") || email.matches(regex) || email.startsWith(" ") || phone.matches(regex) || phone.startsWith(" ") || year.matches(regex) || year.startsWith(" ") || mk.matches(regex) || mk.startsWith(" ") || mk1.matches(regex) || mk1.startsWith(" ")) {
+            Toast.makeText(this, "Không được để khoảng trắng", Toast.LENGTH_SHORT).show();
+        } else if (tenND.matches(numregex)) {
+            Toast.makeText(this, "Tên người dùng Không được chứa số", Toast.LENGTH_SHORT).show();
+        } else if (!phone.matches(phoneregex)) {
+            Toast.makeText(this, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
+        } else if (!year.matches(yearregex)) {
+            Toast.makeText(this, "Năm sinh không hợp lệ", Toast.LENGTH_SHORT).show();
+        } else if (!email.matches(emailregex)) {
+            Toast.makeText(this, "email không hợp lệ", Toast.LENGTH_SHORT).show();
+        } else if (!tenDN.matches(logregex)) {
+            Toast.makeText(this, "Tên đăng nhập không hợp lệ", Toast.LENGTH_SHORT).show();
+        } else if (!mk.matches(passregex) || !mk1.matches(passregex)) {
+            Toast.makeText(this, "Mật khẩu phải ít nhất 6 kí tự số hoặc chữ", Toast.LENGTH_SHORT).show();
+        } else if (!mk.matches(mk1)) {
+            Toast.makeText(this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
+        } else {
 
-        if(tenDN.isEmpty()||tenND.isEmpty()||email.isEmpty()||mk.isEmpty()||mk1.isEmpty()||phone.isEmpty()||year.isEmpty()){
-            Toast.makeText(this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-        }else {
-            if (mk.equals(mk1)) {
-                user_dao = new User_DAO(this);
-                User_DTO userDto = new User_DTO();
-                userDto.setMaND(tenDN);
-                userDto.setHoTen(tenND);
-                userDto.setEmail(email);
-                userDto.setMatKhau(mk);
-userDto.setSDT(phone);
-userDto.setNamSinh(year);
-                long kq = user_dao.Insert_User(userDto);
-                if (kq > 0) {
-                    Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SingUpActivity.this, LoginActivity.class);
-                    startActivity(intent);
+
+                if (mk.equals(mk1)) {
+                    user_dao = new User_DAO(this);
+                    User_DTO userDto = new User_DTO();
+                    userDto.setMaND(tenDN);
+                    userDto.setHoTen(tenND);
+                    userDto.setEmail(email);
+                    userDto.setMatKhau(mk);
+                    userDto.setSDT(phone);
+                    userDto.setNamSinh(year);
+                    long kq = user_dao.Insert_User(userDto);
+                    if (kq > 0) {
+                        Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SingUpActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(this, "Đăng ký ko thành công", Toast.LENGTH_SHORT).show();
+
+                    }
                 } else {
-                    Toast.makeText(this, "Đăng ký ko thành công", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
                 }
-            } else {
-                Toast.makeText(this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
-            }
+
+
+
         }
-
-
-
     }
 }

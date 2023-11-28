@@ -140,11 +140,17 @@ public class Admin_QL_LoaiSP_Adapter extends RecyclerView.Adapter<Admin_QL_LoaiS
             @Override
             public void onClick(View v) {
                 String tenloai = ed_sualoaidoan.getText().toString();
+                String regex=".*\\s";
+                String numregex=".*\\d.*";
                 loaiDoAn_dao = new LoaiDoAn_DAO(context);
                 loaiDoAn_dto.setTenloai(tenloai);
                 if(tenloai.equals("")){
-                    Toast.makeText(context, "Vui lòng nhập tên loại sách mới", Toast.LENGTH_SHORT).show();
-                }else {
+                    Toast.makeText(context, "Vui lòng nhập tên loại đồ ăn mới", Toast.LENGTH_SHORT).show();
+                } else if (tenloai.matches(regex) || tenloai.startsWith(" ")) {
+                    Toast.makeText(context, "Không được để khoảng trắng", Toast.LENGTH_SHORT).show();
+                } else if (tenloai.matches(numregex)) {
+                    Toast.makeText(context, "Không được chứa số", Toast.LENGTH_SHORT).show();
+                } else {
                     int kq = loaiDoAn_dao.Update_LoaiDoAn(loaiDoAn_dto);
                     if(kq>0){
                         Toast.makeText(context, "Update thành công", Toast.LENGTH_SHORT).show();

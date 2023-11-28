@@ -77,30 +77,38 @@ public class Fragment_Admin_SP_phu extends Fragment {
             @Override
             public void onClick(View v) {
                 String tenspphu = ed_themspphu.getText().toString();
+                String regex=".*\\s";
+                String numregex=".*\\d.*";
+                if(tenspphu.isEmpty()){
+                    Toast.makeText(getContext(), "Vui lòng nhập tên sản phẩm phụ mới", Toast.LENGTH_SHORT).show();
+                } else if (tenspphu.matches(regex) || tenspphu.startsWith(" ")) {
+                    Toast.makeText(getContext(), "Không được để khoảng trắng", Toast.LENGTH_SHORT).show();
+                } else if (tenspphu.matches(numregex)) {
+                    Toast.makeText(getContext(), "Không được chứa số", Toast.LENGTH_SHORT).show();
+                }else {
 
-                DoAnPhu_DTO doAnPhu_dto = new DoAnPhu_DTO();
-                doAnPhu_dto.setTenDoAnPhu(tenspphu);
-                long kq = doAnPhu_dao.Insert_DoAnPhu(doAnPhu_dto);
-                if(kq>0){
-                    Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-                    list.clear();
-                    list.addAll(doAnPhu_dao.getAll());
-                    admin_sp_phu_adapter.notifyDataSetChanged();
-                    ed_themspphu.setText("");
-                    dialog.dismiss();
+                    DoAnPhu_DTO doAnPhu_dto = new DoAnPhu_DTO();
+                    doAnPhu_dto.setTenDoAnPhu(tenspphu);
+                    long kq = doAnPhu_dao.Insert_DoAnPhu(doAnPhu_dto);
+                    if (kq > 0) {
+                        Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                        list.clear();
+                        list.addAll(doAnPhu_dao.getAll());
+                        admin_sp_phu_adapter.notifyDataSetChanged();
+                        ed_themspphu.setText("");
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(getContext(), "ko Thêm dc", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
                 }
-                else {
-                    Toast.makeText(getContext(), "ko Thêm dc", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
-                }
-
             }
         });
         btn_huyaddspphu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), " Hủy Thêm", Toast.LENGTH_SHORT).show();
-
+dialog.dismiss();
             }
         });
         dialog.show();

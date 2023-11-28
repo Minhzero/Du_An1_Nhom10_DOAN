@@ -164,24 +164,38 @@ this.doAn_dao=doAn_dao;
             public void onClick(View v) {
                 String anh = ed_linkanh.getText().toString();
                 String ten = ed_tendoan.getText().toString();
-                int gia = Integer.parseInt(ed_giadoan.getText().toString());
                 String mota = ed_mota.getText().toString();
-                doAn_dao = new DoAn_DAO(context);
+                String regex=".*\\s";
+                String numregex=".*\\d.*";
+                if (anh.isEmpty() || ten.isEmpty() || mota.isEmpty()) {
+                    Toast.makeText(context, "Không được bỏ trống", Toast.LENGTH_SHORT).show();
+                } else if (anh.matches(regex) || ten.matches(regex) || mota.matches(regex) || anh.startsWith(" ") || ten.startsWith(" ") || mota.startsWith(" ")) {
+                    Toast.makeText(context, "Không được nhập khoảng trắng", Toast.LENGTH_SHORT).show();
+                } else if (ten.matches(numregex)) {
+                    Toast.makeText(context, "Tên đồ ăn không được chứa số", Toast.LENGTH_SHORT).show();
+                } else {
+                    try {
+                        int gia = Integer.parseInt(ed_giadoan.getText().toString());
+                        doAn_dao = new DoAn_DAO(context);
 
-                doAn_dto.setAnh(anh);
-                doAn_dto.setTendoan(ten);
-                doAn_dto.setGiadoan(gia);
-                doAn_dto.setThongtin(mota);
-                int kq = doAn_dao.Update_DoAn(doAn_dto);
-                if(kq>0){
-                    Toast.makeText(context, "thanh cong", Toast.LENGTH_SHORT).show();
-                    list.clear();
-                    list.addAll(doAn_dao.getAll());
-                    notifyDataSetChanged();
-                    dialog.dismiss();
-                }else {
-                    Toast.makeText(context, "ko thanh con", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
+                        doAn_dto.setAnh(anh);
+                        doAn_dto.setTendoan(ten);
+                        doAn_dto.setGiadoan(gia);
+                        doAn_dto.setThongtin(mota);
+                        int kq = doAn_dao.Update_DoAn(doAn_dto);
+                        if (kq > 0) {
+                            Toast.makeText(context, "thanh cong", Toast.LENGTH_SHORT).show();
+                            list.clear();
+                            list.addAll(doAn_dao.getAll());
+                            notifyDataSetChanged();
+                            dialog.dismiss();
+                        } else {
+                            Toast.makeText(context, "ko thanh con", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    }catch (Exception e){
+                        Toast.makeText(context, "Giá phải là số và không được bỏ trống", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

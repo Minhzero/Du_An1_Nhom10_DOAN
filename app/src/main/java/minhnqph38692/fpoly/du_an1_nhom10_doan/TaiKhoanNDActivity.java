@@ -95,39 +95,56 @@ public class TaiKhoanNDActivity extends AppCompatActivity {
                 String email = suaemailnguoidung.getText().toString();
                 String sdt = suasdtnguoidung.getText().toString();
                 String nam = suanamsinhnguoidung.getText().toString();
+                String yearregex="\\d{4}";
+String emailregex="^[a-z0-9](\\.?[a-z0-9]){5,}@g(oogle)?mail\\.com$";
+String phoneregex="0\\d{9}";
+                String regex=".*\\s";
+                String numregex=".*\\d.*";
+                if(ten.isEmpty() || email.isEmpty() || sdt.isEmpty() || nam.isEmpty()){
+                    Toast.makeText(TaiKhoanNDActivity.this, "Không được bỏ trống", Toast.LENGTH_SHORT).show();
+                } else if (ten.matches(regex) || ten.startsWith(" ") || email.matches(regex) || email.startsWith(" ") || sdt.matches(regex) || sdt.startsWith(" ") || nam.matches(regex) || nam.startsWith(" ")) {
+                    Toast.makeText(TaiKhoanNDActivity.this, "Không được để khoảng trắng", Toast.LENGTH_SHORT).show();
+                } else if (ten.matches(numregex)) {
+                    Toast.makeText(TaiKhoanNDActivity.this, "Không được chứa số", Toast.LENGTH_SHORT).show();
+                } else if (!sdt.matches(phoneregex)) {
+                    Toast.makeText(TaiKhoanNDActivity.this, "Số điện thoại không hợp lệ", Toast.LENGTH_SHORT).show();
+                } else if (!nam.matches(yearregex)) {
+                    Toast.makeText(TaiKhoanNDActivity.this, "Năm sinh không hợp lệ", Toast.LENGTH_SHORT).show();
+                } else if (!email.matches(emailregex)) {
+                    Toast.makeText(TaiKhoanNDActivity.this, "email không hợp lệ", Toast.LENGTH_SHORT).show();
+                } else {
 
-                user_dao = new User_DAO(TaiKhoanNDActivity.this);
-                userDto.setHoTen(ten);
-                userDto.setEmail(email);
-                userDto.setSDT(sdt);
-                userDto.setNamSinh(nam);
+                    user_dao = new User_DAO(TaiKhoanNDActivity.this);
+                    userDto.setHoTen(ten);
+                    userDto.setEmail(email);
+                    userDto.setSDT(sdt);
+                    userDto.setNamSinh(nam);
 
 
+                    int kq = user_dao.Update_User(userDto);
+                    if (kq > 0) {
+                        Toast.makeText(TaiKhoanNDActivity.this, "update thành công", Toast.LENGTH_SHORT).show();
 
-                int kq = user_dao.Update_User(userDto);
-                if(kq>0){
-                    Toast.makeText(TaiKhoanNDActivity.this, "update thành công", Toast.LENGTH_SHORT).show();
-
-                    suatennguoidung.setText("");
-                    suaemailnguoidung.setText("");
-                    suasdtnguoidung.setText("");
-                    suanamsinhnguoidung.setText("");
-
-
-                    tennguoidung.setText(userDto.getHoTen());
-                    emailnguoidung.setText(userDto.getEmail());
-                    sdtnguoidung.setText(userDto.getSDT());
-                    namsinhnguoidung.setText(userDto.getNamSinh());
-
-                    dialog.dismiss();
+                        suatennguoidung.setText("");
+                        suaemailnguoidung.setText("");
+                        suasdtnguoidung.setText("");
+                        suanamsinhnguoidung.setText("");
 
 
-                }else {
-                    Toast.makeText(TaiKhoanNDActivity.this, "update ko thành công", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
+                        tennguoidung.setText(userDto.getHoTen());
+                        emailnguoidung.setText(userDto.getEmail());
+                        sdtnguoidung.setText(userDto.getSDT());
+                        namsinhnguoidung.setText(userDto.getNamSinh());
 
+                        dialog.dismiss();
+
+
+                    } else {
+                        Toast.makeText(TaiKhoanNDActivity.this, "update ko thành công", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+
+                    }
                 }
-
             }
 
         });

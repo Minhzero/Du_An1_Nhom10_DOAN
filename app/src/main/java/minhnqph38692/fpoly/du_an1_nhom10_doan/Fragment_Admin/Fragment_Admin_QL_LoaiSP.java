@@ -75,21 +75,29 @@ public class Fragment_Admin_QL_LoaiSP extends Fragment {
             @Override
             public void onClick(View v) {
                 String tenloai = ed_themloaidoan.getText().toString();
-
-                LoaiDoAn_DTO loaiDoAn_dto = new LoaiDoAn_DTO();
-                loaiDoAn_dto.setTenloai(tenloai);
-                long kq = loaiDoAn_dao.Insert_LoaiDoAn(loaiDoAn_dto);
-                if(kq>0){
-                    Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-                    list.clear();
-                    list.addAll(loaiDoAn_dao.getAll());
-                    admin_ql_loaiSP_adapter.notifyDataSetChanged();
-                    ed_themloaidoan.setText("");
-                    dialog.dismiss();
-                }
-                else {
-                    Toast.makeText(getContext(), "ko Thêm dc", Toast.LENGTH_SHORT).show();
-                    dialog.dismiss();
+                String regex=".*\\s";
+                String numregex=".*\\d.*";
+                if(tenloai.isEmpty()){
+                    Toast.makeText(getContext(), "Vui lòng nhập tên loại đồ ăn mới", Toast.LENGTH_SHORT).show();
+                } else if (tenloai.matches(regex) || tenloai.startsWith(" ")) {
+                    Toast.makeText(getContext(), "Không được để khoảng trắng", Toast.LENGTH_SHORT).show();
+                } else if (tenloai.matches(numregex)) {
+                    Toast.makeText(getContext(), "Không được chứa số", Toast.LENGTH_SHORT).show();
+                }else{
+                    LoaiDoAn_DTO loaiDoAn_dto = new LoaiDoAn_DTO();
+                    loaiDoAn_dto.setTenloai(tenloai);
+                    long kq = loaiDoAn_dao.Insert_LoaiDoAn(loaiDoAn_dto);
+                    if (kq > 0) {
+                        Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+                        list.clear();
+                        list.addAll(loaiDoAn_dao.getAll());
+                        admin_ql_loaiSP_adapter.notifyDataSetChanged();
+                        ed_themloaidoan.setText("");
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(getContext(), "ko Thêm dc", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
                 }
 
             }
@@ -98,7 +106,7 @@ public class Fragment_Admin_QL_LoaiSP extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), " Hủy Thêm", Toast.LENGTH_SHORT).show();
-
+dialog.dismiss();
             }
         });
         dialog.show();
