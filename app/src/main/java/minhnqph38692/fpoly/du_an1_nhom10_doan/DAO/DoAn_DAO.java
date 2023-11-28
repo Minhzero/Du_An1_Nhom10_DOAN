@@ -59,6 +59,18 @@ public class DoAn_DAO {
         return list.get(0);
     }
 
+    public ArrayList<DoAn_DTO> getData1(String loai){
+        ArrayList<DoAn_DTO> list=new ArrayList<>();
+        SQLiteDatabase sqLiteDatabase=myDbHelper.getReadableDatabase();
+        Cursor cursor=sqLiteDatabase.rawQuery("SELECT tendoan,giadoan,thongtin,anh FROM dt_doan JOIN dt_loai ON dt_doan.maloai=dt_loai.maloai WHERE dt_loai.tenloai=?",new String[]{loai});
+        if (cursor.getCount()!=0){
+            cursor.moveToFirst();
+            do {
+                list.add(new DoAn_DTO(cursor.getString(0), cursor.getInt(1), cursor.getString(2),cursor.getString(3)));
+            }while (cursor.moveToNext());
+        }
+        return list;
+    }
 
     public ArrayList<DoAn_DTO> getData(String sql , String...selectionArgs){
         ArrayList<DoAn_DTO> list= new ArrayList<>();
