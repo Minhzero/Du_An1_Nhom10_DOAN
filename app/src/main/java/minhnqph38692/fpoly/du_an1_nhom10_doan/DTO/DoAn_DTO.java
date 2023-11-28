@@ -19,6 +19,13 @@ public class DoAn_DTO {
         this.anh = anh;
     }
 
+    public DoAn_DTO(String tendoan, int giadoan,String thongtin,String anh) {
+        this.tendoan = tendoan;
+        this.giadoan = giadoan;
+        this.thongtin = thongtin;
+        this.anh=anh;
+    }
+
     public DoAn_DTO() {
     }
 
