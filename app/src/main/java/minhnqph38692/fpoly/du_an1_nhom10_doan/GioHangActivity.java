@@ -34,6 +34,7 @@ public class GioHangActivity extends AppCompatActivity {
     StringBuilder invoice;
     StringBuilder doanphu;
     long tongtiengh = 0;
+    float tongtienmoi=0;
 
 
 
@@ -45,7 +46,7 @@ public class GioHangActivity extends AppCompatActivity {
         giohangback = findViewById(R.id.giohangback);
         gh_tongtien = findViewById(R.id.gh_tongtien);
         gh_dathang = findViewById(R.id.gh_dathang);
-
+//        tongtienmoi=TT(list);
         gioHangDAo = new GioHangDAo(this);
         list = gioHangDAo.getAll();
         giohangAdapter = new GiohangAdapter(GioHangActivity.this,list);
@@ -54,16 +55,17 @@ public class GioHangActivity extends AppCompatActivity {
                 LinearLayoutManager.VERTICAL,false);
         rc_giohang.setLayoutManager(linearLayoutManager);
         rc_giohang.setAdapter(giohangAdapter);
-        TT();
+        capNhatTongTien();
         Tensp();
-//        TenDoanphu();
 
+//        TenDoanphu();
 
         gh_dathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 User_DAO userDAO = new User_DAO(GioHangActivity.this);
                 User_DTO loggedInUser = userDAO.getCurrentLoggedInUser();
+                gioHangDAo.xoaToanBoSanPhamTrongGioHang();
                 Intent intent = new Intent(GioHangActivity.this, DienThongTinTuGHActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("TenMon", String.valueOf(invoice));
@@ -73,6 +75,7 @@ public class GioHangActivity extends AppCompatActivity {
                 bundle.putString("TongTien", String.valueOf(tongtiengh));
                 intent.putExtras(bundle);
                 startActivity(intent);
+
             }
         });
 
@@ -97,15 +100,46 @@ public class GioHangActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        giohangAdapter.setOnItemClickListener(new GiohangAdapter.OnItemClickListener() {
+            @Override
+            public void onDeleteClick(int position) {
+                // Xóa sản phẩm khỏi giỏ hàng khi nhấn nút xóa trong Adapter
+                xoaSanPhamKhoiGioHang(position);
+            }
+        });
 
     }
-    private void TT(){
+//    private void TT(){
+//
+//        for (int i = 0; i< this.list.size(); i++){
+//            tongtiengh = tongtiengh+(this.list.get(i).getGiasp() * this.list.get(i).getSoluongsp());
+//
+//        }
+//        gh_tongtien.setText(String.valueOf("Tổng tiền: "+tongtiengh));
+//    }
+    // Xử lý sự kiện xóa sản phẩm khỏi danh sách (trong Activity hoặc Adapter)
+    private void xoaSanPhamKhoiGioHang(int position) {
+        // Xóa sản phẩm khỏi danh sách (list)
+        list.remove(position);
 
-        for (int i =0; i<list.size();i++){
-            tongtiengh = tongtiengh+(list.get(i).getGiasp() * list.get(i).getSoluongsp());
+        // Cập nhật lại tổng giá tiền sau khi xóa sản phẩm
+        capNhatTongTien();
 
+        // Cập nhật giao diện hiển thị
+        giohangAdapter.notifyDataSetChanged();
+    }
+
+    // Phương thức để tính toán lại tổng giá tiền
+    private void capNhatTongTien() {
+        tongtiengh = 0;
+
+        // Tính tổng giá tiền dựa trên danh sách sản phẩm trong giỏ hàng (list)
+        for (GioHangDTO gioHangDTO : list) {
+            tongtiengh += gioHangDTO.getGiasp() * gioHangDTO.getSoluongsp();
         }
-        gh_tongtien.setText(String.valueOf(tongtiengh));
+
+        // Hiển thị lại tổng giá tiền trên giao diện
+        gh_tongtien.setText("Tổng tiền: " + tongtiengh);
     }
     public void Tensp() {
 

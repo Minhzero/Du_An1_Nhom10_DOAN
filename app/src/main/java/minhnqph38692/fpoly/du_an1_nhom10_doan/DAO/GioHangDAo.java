@@ -61,4 +61,12 @@ public class GioHangDAo {
         }
         return list;
     }
+    public void xoaToanBoSanPhamTrongGioHang() {
+        // Viết logic để xóa tất cả dữ liệu trong giỏ hàng ở đây
+        // Ví dụ, nếu bạn lưu giỏ hàng trong SQLite Database, bạn có thể thực hiện như sau:
+
+        db.delete("dt_giohang", null, null);
+        db.close();
+    }
+
 }
