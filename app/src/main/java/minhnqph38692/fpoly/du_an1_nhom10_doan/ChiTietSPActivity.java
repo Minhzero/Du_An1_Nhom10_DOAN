@@ -137,42 +137,39 @@ validateQuantityInput(s.toString());
                 User_DAO userDAO = new User_DAO(ChiTietSPActivity.this);
                 User_DTO loggedInUser = userDAO.getCurrentLoggedInUser();
 
-                Intent intent = new Intent(ChiTietSPActivity.this, DienThongTinActivity.class);
-                String tenMon = txt_ten.getText().toString();
-                int tongtien = Integer.parseInt(txt_gia.getText().toString()) * Integer.parseInt(edt_soluong.getText().toString());
-                String thongTin = txt_thongtin.getText().toString();
-                String doanPhu = spn_doanphu.getSelectedItem().toString();
+                try {
+                    int sl1 = Integer.parseInt(edt_soluong.getText().toString());
+                    if(sl1>0){
+                        Intent intent = new Intent(ChiTietSPActivity.this, DienThongTinActivity.class);
+                        String tenMon = txt_ten.getText().toString();
+                        int tongtien = Integer.parseInt(txt_gia.getText().toString()) * Integer.parseInt(edt_soluong.getText().toString());
+                        String thongTin = txt_thongtin.getText().toString();
+                        String doanPhu = spn_doanphu.getSelectedItem().toString();
+
+                        // mon an
+                        intent.putExtra("TenMon", tenMon);
+                        intent.putExtra("TongTien", tongtien);
+                        intent.putExtra("ThongTin", thongTin);
+                        intent.putExtra("DoanPhu", doanPhu);
+
+                        // nguoi dung
+                        intent.putExtra("Email", loggedInUser.getEmail());
+                        intent.putExtra("HoTen", loggedInUser.getHoTen());
+                        intent.putExtra("SDT", loggedInUser.getSDT());
+
+                        intent.putExtra("anh",anh);
+                        intent.putExtra("tenmon",tenMon);
+                        intent.putExtra("giadoan",donGia);
+                        intent.putExtra("thongtin",thongTin);
 
 
-
-                // mon an
-                intent.putExtra("TenMon", tenMon);
-                intent.putExtra("TongTien", tongtien);
-                intent.putExtra("ThongTin", thongTin);
-                intent.putExtra("DoanPhu", doanPhu);
-
-
-                // nguoi dung
-                intent.putExtra("Email", loggedInUser.getEmail());
-                intent.putExtra("HoTen", loggedInUser.getHoTen());
-                intent.putExtra("SDT", loggedInUser.getSDT());
-
-//                Log.d("ChiTietSPActivity", "tenMon: " + tenMon);
-//                Log.d("ChiTietSPActivity", "tongtien: " + tongtien);
-//                Log.d("ChiTietSPActivity", "thongTin: " + thongTin);
-//                Log.d("ChiTietSPActivity", "doanPhu: " + doanPhu);
-//                Log.d("ChiTietSPActivity", "Email: " + loggedInUser.getEmail());
-//                Log.d("ChiTietSPActivity", "HoTen: " + loggedInUser.getHoTen());
-//                Log.d("ChiTietSPActivity", "SDT: " + loggedInUser.getSDT());
-
-
-                intent.putExtra("anh",anh);
-                intent.putExtra("tenmon",tenMon);
-                intent.putExtra("giadoan",donGia);
-                intent.putExtra("thongtin",thongTin);
-
-
-                startActivity(intent);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(ChiTietSPActivity.this, "Số lượng phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+                    }
+                }catch (Exception e){
+                    Toast.makeText(ChiTietSPActivity.this, "Số lượng không hợp lệ", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         btn_themvaogiohang.setOnClickListener(new View.OnClickListener() {

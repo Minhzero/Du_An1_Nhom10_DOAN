@@ -43,23 +43,23 @@
 <!--            android:id="@+id/txt_email1"/>-->
 
 <!--    </LinearLayout>-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        app:boxCornerRadiusTopEnd="20dp"
-        app:boxCornerRadiusTopStart="20dp"
-        app:boxCornerRadiusBottomStart="20dp"
-        app:boxCornerRadiusBottomEnd="20dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:enabled="false"
-            android:id="@+id/txt_email1"/>
-    </com.google.android.material.textfield.TextInputLayout>
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:boxCornerRadiusTopEnd="20dp"-->
+<!--        app:boxCornerRadiusTopStart="20dp"-->
+<!--        app:boxCornerRadiusBottomStart="20dp"-->
+<!--        app:boxCornerRadiusBottomEnd="20dp">-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Email"-->
+<!--            android:enabled="false"-->
+<!--            android:id="@+id/txt_email1"/>-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -79,23 +79,23 @@
 <!--            android:id="@+id/txt_hoten1"/>-->
 
 <!--    </LinearLayout>-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        app:boxCornerRadiusTopEnd="20dp"
-        app:boxCornerRadiusTopStart="20dp"
-        app:boxCornerRadiusBottomStart="20dp"
-        app:boxCornerRadiusBottomEnd="20dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Tên người dùng"
-            android:enabled="false"
-            android:id="@+id/txt_hoten1"/>
-    </com.google.android.material.textfield.TextInputLayout>
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:boxCornerRadiusTopEnd="20dp"-->
+<!--        app:boxCornerRadiusTopStart="20dp"-->
+<!--        app:boxCornerRadiusBottomStart="20dp"-->
+<!--        app:boxCornerRadiusBottomEnd="20dp">-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Tên người dùng"-->
+<!--            android:enabled="false"-->
+<!--            android:id="@+id/txt_hoten1"/>-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -115,23 +115,23 @@
 <!--            android:id="@+id/txt_SDT1"/>-->
 
 <!--    </LinearLayout>-->
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        app:boxCornerRadiusTopEnd="20dp"
-        app:boxCornerRadiusTopStart="20dp"
-        app:boxCornerRadiusBottomStart="20dp"
-        app:boxCornerRadiusBottomEnd="20dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Số điện thoại"
-            android:enabled="false"
-            android:id="@+id/txt_SDT1"/>
-    </com.google.android.material.textfield.TextInputLayout>
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:boxCornerRadiusTopEnd="20dp"-->
+<!--        app:boxCornerRadiusTopStart="20dp"-->
+<!--        app:boxCornerRadiusBottomStart="20dp"-->
+<!--        app:boxCornerRadiusBottomEnd="20dp">-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Số điện thoại"-->
+<!--            android:enabled="false"-->
+<!--            android:id="@+id/txt_SDT1"/>-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -201,7 +201,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Món ăn đã chọn"
-            android:enabled="false"
             android:id="@+id/txt_thucdon1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -310,7 +309,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Kiểu thanh toán"
-            android:enabled="false"
             android:id="@+id/txt_thanhtoan1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
