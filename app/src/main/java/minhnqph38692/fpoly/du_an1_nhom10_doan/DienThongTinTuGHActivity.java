@@ -1,6 +1,7 @@
 package minhnqph38692.fpoly.du_an1_nhom10_doan;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -97,6 +98,18 @@ public class DienThongTinTuGHActivity extends AppCompatActivity {
                     Toast.makeText(DienThongTinTuGHActivity.this, "that bai", Toast.LENGTH_SHORT).show();
 
                 }
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DienThongTinTuGHActivity.this, HomeActivity.class);
+                SharedPreferences sharedPreferences = getSharedPreferences("user",MODE_PRIVATE);
+                String ma = sharedPreferences.getString("USERNAME","");
+                Bundle bundle = new Bundle();
+                bundle.putString("user",ma);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

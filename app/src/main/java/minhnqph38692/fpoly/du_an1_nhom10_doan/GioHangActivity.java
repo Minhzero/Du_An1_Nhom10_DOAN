@@ -139,6 +139,7 @@ public class GioHangActivity extends AppCompatActivity {
 
         // Cập nhật lại tổng giá tiền sau khi xóa sản phẩm
         capNhatTongTien();
+        Tensp();
 
         // Cập nhật giao diện hiển thị
         giohangAdapter.notifyDataSetChanged();
@@ -161,7 +162,7 @@ public class GioHangActivity extends AppCompatActivity {
         invoice = new StringBuilder();
 
         for (GioHangDTO gioHangDTO : list) {
-            invoice.append( "\n"+gioHangDTO.getTensp()+" và " +gioHangDTO.getTendoanphu());
+            invoice.append( gioHangDTO.getTensp()+" và " +gioHangDTO.getTendoanphu()+"\n");
         }
     }
 //        public void TenDoanphu(){
