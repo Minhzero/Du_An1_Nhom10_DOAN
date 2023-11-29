@@ -37,6 +37,44 @@ public class HoaDon_DAO {
         String sql = "SELECT * FROM dt_hoadon";
         return getData(sql);
     }
+    public List<HoaDon_DTO> getAllByEmail(String email){
+        List<HoaDon_DTO> list= new ArrayList<>();
+        String sql = "SELECT * FROM dt_hoadon WHERE Email=?";
+
+        Cursor c=db.rawQuery(sql, new String[]{email});
+        if (c!=null && c.getCount()>0){
+            c.moveToFirst();
+            do {
+                int madon=c.getInt(0);
+                String Email=c.getString(1);
+                String hoten=c.getString(2);
+                String sdt=c.getString(3);
+                String diachi=c.getString(4);
+                String thucdon =c.getString(5);
+                String ngaydat=c.getString(6);
+                int tongtien=c.getInt(7);
+                String thanhtoan=c.getString(8);
+                int trangthai=c.getInt(9);
+
+                HoaDon_DTO hoaDon_dto=new HoaDon_DTO();
+
+                hoaDon_dto.setMahoadon(madon);
+                hoaDon_dto.setEmail(Email);
+                hoaDon_dto.setHoten(hoten);
+                hoaDon_dto.setSDT(sdt);
+                hoaDon_dto.setDiachinhan(diachi);
+                hoaDon_dto.setThucdon(thucdon);
+                hoaDon_dto.setNgaydathang(ngaydat);
+                hoaDon_dto.setTongtien(tongtien);
+                hoaDon_dto.setThanhtoan(thanhtoan);
+                hoaDon_dto.setTrangthai(trangthai);
+                list.add(hoaDon_dto);
+
+
+            }while (c.moveToNext());
+        }
+        return list;
+    }
     public HoaDon_DTO getID(String id){
         String sql = "SELECT * FROM dt_hoadon WHERE Email=?";
         List <HoaDon_DTO> list = getData(sql,id);

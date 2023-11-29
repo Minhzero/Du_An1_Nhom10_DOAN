@@ -28,8 +28,17 @@ public class HoaDonUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hoa_don_user);
         rcl_hoadon=findViewById(R.id.rcl_hoadon);
-        HoaDon_DAO hoaDon_dao= new HoaDon_DAO(HoaDonUserActivity.this);
-        List<HoaDon_DTO> list= hoaDon_dao.getAll();
+//        HoaDon_DAO hoaDon_dao= new HoaDon_DAO(HoaDonUserActivity.this);
+//        List<HoaDon_DTO> list= hoaDon_dao.getAll();
+        User_DAO userDao = new User_DAO(HoaDonUserActivity.this);
+        User_DTO loggedInUser = userDao.getCurrentLoggedInUser();
+
+        // Lấy email của người dùng đã đăng nhập
+        String loggedInUserEmail = loggedInUser.getEmail();
+
+        // Truy vấn danh sách hóa đơn dựa trên email của người dùng
+        HoaDon_DAO hoaDon_dao = new HoaDon_DAO(HoaDonUserActivity.this);
+        List<HoaDon_DTO> list = hoaDon_dao.getAllByEmail(loggedInUserEmail);
         adapter=new HoaDonAdapter(list,HoaDonUserActivity.this);
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(HoaDonUserActivity.this,rcl_hoadon.VERTICAL,false);
         rcl_hoadon.setAdapter(adapter);
