@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter.Admin.Admin_QL_ND_Adapter;
@@ -47,6 +48,7 @@ public class GiohangAdapter extends RecyclerView.Adapter<GiohangAdapter.ViewHold
         this.context = context;
         this.list = list;
     }
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
 
     @NonNull
     @Override
@@ -63,7 +65,7 @@ public class GiohangAdapter extends RecyclerView.Adapter<GiohangAdapter.ViewHold
         GioHangDTO gioHangDTO = list.get(position);
         Picasso.get().load(gioHangDTO.getAnhsp()).into(holder.gh_anh);
         holder.gh_tensp.setText(gioHangDTO.getTensp()+" và "+gioHangDTO.getTendoanphu());
-        holder.gh_gia.setText(gioHangDTO.getGiasp()+"");
+        holder.gh_gia.setText(decimalFormat.format(gioHangDTO.getGiasp())+"VND");
         holder.gh_soluongdoan.setText(""+gioHangDTO.getSoluongsp());
 //        holder.gh_edit.setOnClickListener(new View.OnClickListener() {
 //            @Override

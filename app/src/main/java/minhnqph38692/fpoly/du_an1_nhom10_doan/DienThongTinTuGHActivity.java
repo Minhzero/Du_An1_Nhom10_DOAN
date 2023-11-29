@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.HoaDon_DAO;
@@ -30,6 +31,7 @@ public class DienThongTinTuGHActivity extends AppCompatActivity {
     String hoTen;
     String sdt;
     User_DAO userDao;
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

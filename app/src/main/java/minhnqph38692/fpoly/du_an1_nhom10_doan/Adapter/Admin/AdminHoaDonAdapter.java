@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.HoaDon_DTO;
@@ -23,6 +24,7 @@ public class AdminHoaDonAdapter extends RecyclerView.Adapter<AdminHoaDonAdapter.
         this.context = context;
         this.list = list;
     }
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
 
     @NonNull
     @Override
@@ -43,7 +45,7 @@ public class AdminHoaDonAdapter extends RecyclerView.Adapter<AdminHoaDonAdapter.
         holder.txt_diachi.setText(list.get(position).getDiachinhan());
         holder.txt_thucdon.setText(list.get(position).getThucdon());
         holder.txt_ngaydat.setText(list.get(position).getNgaydathang());
-        holder.txt_tongtien.setText(list.get(position).getTongtien()+"");
+        holder.txt_tongtien.setText(decimalFormat.format(list.get(position).getTongtien()+""));
         holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
 
     }

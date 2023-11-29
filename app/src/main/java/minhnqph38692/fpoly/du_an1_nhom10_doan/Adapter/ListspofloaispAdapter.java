@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.DoAn_DTO;
@@ -27,6 +28,7 @@ public class ListspofloaispAdapter extends RecyclerView.Adapter<ListspofloaispAd
         this.list = list;
         this.context = context;
     }
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
 
     @NonNull
     @Override
@@ -39,7 +41,7 @@ public class ListspofloaispAdapter extends RecyclerView.Adapter<ListspofloaispAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Picasso.get().load(list.get(position).getAnh()).into(holder.imgsp);
 holder.txttenmonan.setText("Tên món ăn:"+list.get(position).getTendoan());
-holder.txtgiamonan.setText("Giá món ăn:"+list.get(position).getGiadoan());
+holder.txtgiamonan.setText("Giá món ăn:"+decimalFormat.format(list.get(position).getGiadoan())+"VND");
 holder.txtthongtin.setText("Thông tin:"+list.get(position).getThongtin());
 
     }

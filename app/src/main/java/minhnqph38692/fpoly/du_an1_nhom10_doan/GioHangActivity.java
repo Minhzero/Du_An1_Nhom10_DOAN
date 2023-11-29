@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Adapter.GiohangAdapter;
@@ -36,6 +37,7 @@ public class GioHangActivity extends AppCompatActivity {
     StringBuilder doanphu;
     long tongtiengh = 0;
     float tongtienmoi=0;
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
 
 
 
@@ -155,7 +157,7 @@ public class GioHangActivity extends AppCompatActivity {
         }
 
         // Hiển thị lại tổng giá tiền trên giao diện
-        gh_tongtien.setText("Tổng tiền: " + tongtiengh);
+        gh_tongtien.setText("Tổng tiền: " + decimalFormat.format(tongtiengh));
     }
     public void Tensp() {
 

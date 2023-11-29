@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,7 @@ private EditText edt_soluong;
     String thongTin;
     String soLuong;
     String ma;
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
 
 private int tongtien;
     @Override

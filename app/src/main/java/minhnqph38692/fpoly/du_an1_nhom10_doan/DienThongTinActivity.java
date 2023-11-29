@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.GioHangDAo;
@@ -30,6 +31,7 @@ public class DienThongTinActivity extends AppCompatActivity {
     String tenMon1;
     int donGia1;
     String thongTin;
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

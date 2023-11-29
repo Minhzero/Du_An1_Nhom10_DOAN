@@ -51,6 +51,16 @@
                     android:textSize="20dp"
                     android:textColor="#ff00"
                     android:layout_marginLeft="30dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VND"
+                    android:layout_centerVertical="true"
+                    android:textSize="20dp"
+                    android:textColor="#ff00"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@id/gh_tongtien"/>
+
                 <Button
                     android:id="@+id/gh_dathang"
                     android:layout_width="wrap_content"

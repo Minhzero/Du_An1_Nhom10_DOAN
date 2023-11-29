@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder
         this.list = list;
         this.context = context;
     }
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
 
     @NonNull
     @Override
@@ -41,7 +43,7 @@ holder.txt_sdt.setText(list.get(position).getSDT());
 holder.txt_diachi.setText(list.get(position).getDiachinhan());
 holder.txt_thucdon.setText(list.get(position).getThucdon());
 holder.txt_ngaydat.setText(list.get(position).getNgaydathang());
-holder.txt_tongtien.setText(list.get(position).getTongtien()+"");
+holder.txt_tongtien.setText(decimalFormat.format(list.get(position).getTongtien())+" VND");
 holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
         holder.cb_xacnhan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
