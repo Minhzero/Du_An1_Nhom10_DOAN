@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -35,6 +37,8 @@ private Button btn_muahang,btn_themvaogiohang;
 private ImageView img_anhchitiet,back,giohang;
 private Spinner spn_doanphu;
 private EditText edt_soluong;
+    private static final int MAX_QUANTITY = 99;
+
     String anh;
     String tenMon;
     int donGia;
@@ -58,7 +62,22 @@ private int tongtien;
         edt_soluong=findViewById(R.id.edt_soluong);
 btn_muahang=findViewById(R.id.btn_muahang);
         btn_themvaogiohang = findViewById(R.id.btn_themvaogiohang);
+edt_soluong.addTextChangedListener(new TextWatcher() {
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+validateQuantityInput(s.toString());
+    }
+});
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,26 +178,33 @@ btn_muahang=findViewById(R.id.btn_muahang);
         btn_themvaogiohang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GioHangDAo gioHangDAo = new GioHangDAo(ChiTietSPActivity.this);
-                String tenMon = txt_ten.getText().toString();
-                int gia = Integer.parseInt(txt_gia.getText().toString());
-                int sl = Integer.parseInt(edt_soluong.getText().toString());
-                String doanPhu = spn_doanphu.getSelectedItem().toString();
+                try {
+                    GioHangDAo gioHangDAo = new GioHangDAo(ChiTietSPActivity.this);
+                    String tenMon = txt_ten.getText().toString();
+                    int gia = Integer.parseInt(txt_gia.getText().toString());
+                    int sl = Integer.parseInt(edt_soluong.getText().toString());
+                    String doanPhu = spn_doanphu.getSelectedItem().toString();
+if(sl<=0){
+    Toast.makeText(ChiTietSPActivity.this, "Số lượng phải lớn hơn 0", Toast.LENGTH_SHORT).show();
+}else {
+    GioHangDTO gioHangDTO = new GioHangDTO();
+    gioHangDTO.setAnhsp(anh);
+    gioHangDTO.setTensp(tenMon);
+    gioHangDTO.setGiasp(gia);
+    gioHangDTO.setSoluongsp(sl);
+    gioHangDTO.setTendoanphu(doanPhu);
 
-                GioHangDTO gioHangDTO = new GioHangDTO();
-                gioHangDTO.setAnhsp(anh);
-                gioHangDTO.setTensp(tenMon);
-                gioHangDTO.setGiasp(gia);
-                gioHangDTO.setSoluongsp(sl);
-                gioHangDTO.setTendoanphu(doanPhu);
+    long kq = gioHangDAo.InsertGH(gioHangDTO);
+    if (kq > 0) {
+        Toast.makeText(ChiTietSPActivity.this, "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
 
-                long kq = gioHangDAo.InsertGH(gioHangDTO);
-                if(kq>0){
-                    Toast.makeText(ChiTietSPActivity.this, "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+    } else {
+        Toast.makeText(ChiTietSPActivity.this, "Thêm vào giỏ hàng không thành công", Toast.LENGTH_SHORT).show();
 
-                }else {
-                    Toast.makeText(ChiTietSPActivity.this, "Thêm vào giỏ hàng không thành công", Toast.LENGTH_SHORT).show();
-
+    }
+}
+                }catch (Exception e){
+                    Toast.makeText(ChiTietSPActivity.this, "Số lượng không hợp lệ", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -201,5 +227,21 @@ btn_muahang=findViewById(R.id.btn_muahang);
         ArrayList<String> doanPhuList = new ArrayList<>();
 
         return doanPhuList;
+    }
+
+    private void validateQuantityInput(String input) {
+        // Xử lý khi người dùng nhập giá trị
+        try {
+            int quantity = Integer.parseInt(input);
+
+            // Giới hạn giá trị tối đa là 99
+            if (quantity > MAX_QUANTITY) {
+                // Nếu nhập quá giới hạn, đặt giá trị là 99
+                edt_soluong.setText(String.valueOf(MAX_QUANTITY));
+            }
+        } catch (NumberFormatException e) {
+            // Xử lý khi người dùng nhập không phải là số
+            // Có thể hiển thị thông báo lỗi hoặc thực hiện hành động phù hợp
+        }
     }
 }
