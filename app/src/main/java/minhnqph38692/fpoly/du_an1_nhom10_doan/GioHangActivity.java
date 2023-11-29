@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -120,7 +121,21 @@ public class GioHangActivity extends AppCompatActivity {
     // Xử lý sự kiện xóa sản phẩm khỏi danh sách (trong Activity hoặc Adapter)
     private void xoaSanPhamKhoiGioHang(int position) {
         // Xóa sản phẩm khỏi danh sách (list)
-        list.remove(position);
+//        list.remove(position);
+        GioHangDTO gioHangDTO = list.get(position);
+        gioHangDAo = new GioHangDAo(GioHangActivity.this);
+
+        int kq = gioHangDAo.DeleteGH(gioHangDTO);
+        if(kq>0){
+            Toast.makeText(GioHangActivity.this, "Xóa Thành công", Toast.LENGTH_SHORT).show();
+            list.clear();
+            list.addAll(gioHangDAo.getAll());
+            giohangAdapter.notifyDataSetChanged();
+
+        }else {
+            Toast.makeText(GioHangActivity.this, "ko xóa được", Toast.LENGTH_SHORT).show();
+        }
+
 
         // Cập nhật lại tổng giá tiền sau khi xóa sản phẩm
         capNhatTongTien();

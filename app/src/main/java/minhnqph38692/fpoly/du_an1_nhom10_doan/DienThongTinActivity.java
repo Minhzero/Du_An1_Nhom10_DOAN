@@ -49,18 +49,18 @@ public class DienThongTinActivity extends AppCompatActivity {
         TextView txtDonGia = findViewById(R.id.txt_tongtien1);
       // TextView txtDoanPhu = findViewById(R.id.);
 //        TextView txtSoLuong = findViewById(R.id.txt_tongtien);
-        TextView txtEmail = findViewById(R.id.txt_email1);
-        TextView txtHoTen = findViewById(R.id.txt_hoten1);
-        TextView txtSDT = findViewById(R.id.txt_SDT1);
+//        TextView txtEmail = findViewById(R.id.txt_email1);
+//        TextView txtHoTen = findViewById(R.id.txt_hoten1);
+//        TextView txtSDT = findViewById(R.id.txt_SDT1);
         EditText edt_diachi=findViewById(R.id.edt_diachi1);
 
 
         txtTenMon.setText(tenMon+"va"+doanPhu);
         txtDonGia.setText(String.valueOf(donGia));
      //   txtDoanPhu.setText(doanPhu);
-        txtEmail.setText(email);
-        txtHoTen.setText(hoTen);
-        txtSDT.setText(sdt);
+//        txtEmail.setText(email);
+//        txtHoTen.setText(hoTen);
+//        txtSDT.setText(sdt);
         mua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
