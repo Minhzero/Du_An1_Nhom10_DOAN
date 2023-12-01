@@ -4,14 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -133,7 +131,6 @@ public class HomeActivity extends AppCompatActivity {
                 }else if(item.getItemId() == R.id.home_user_loaiSP){
                     fm.beginTransaction().replace(R.id.home_fragment,fragment_user_loaiSP).commit();
                 } else if(item.getItemId() == R.id.home_taikhoan){
-                    home_all.closeDrawer(GravityCompat.START);
                     Intent intent = new Intent(HomeActivity.this, TaiKhoanNDActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("ma",maND);

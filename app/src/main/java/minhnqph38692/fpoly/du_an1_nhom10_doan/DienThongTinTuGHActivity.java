@@ -7,7 +7,6 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,13 +32,12 @@ public class DienThongTinTuGHActivity extends AppCompatActivity {
     String sdt;
     User_DAO userDao;
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
-String thanhtoan;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dien_thong_tin_tugh);
         mua = findViewById(R.id.muagh);
-        RadioGroup rdg_thanhtoan= findViewById(R.id.rdg_kieuthanhtoan);
         back = findViewById(R.id.backgh);
         Bundle bundle = getIntent().getExtras();
          tenMon = bundle.getString("TenMon");
@@ -47,17 +45,7 @@ String thanhtoan;
          email = bundle.getString("Email");
          hoTen = bundle.getString("HoTen");
         sdt = bundle.getString("SDT");
-        rdg_thanhtoan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i==R.id.rdb_tienmat){
-                    thanhtoan="tien mat";
 
-                }else {
-                    thanhtoan="chuyen khoan";
-                }
-            }
-        });
         TextInputEditText txtTenMon = findViewById(R.id.txt_thucdon3);
         TextInputEditText txtDonGia = findViewById(R.id.txt_tongtien3);
         TextInputEditText txtEmail = findViewById(R.id.txt_email3);
@@ -93,7 +81,7 @@ String thanhtoan;
                 hoaDonDto.setThucdon(tenMon);
                 hoaDonDto.setTongtien(Integer.parseInt(donGia));
                 hoaDonDto.setNgaydathang(String.valueOf(h));
-                hoaDonDto.setThanhtoan(thanhtoan);
+                hoaDonDto.setThanhtoan("tienmat");
                 hoaDonDto.setTrangthai(1);
 
                 long kq = hoaDonDao.InsertHD(hoaDonDto);

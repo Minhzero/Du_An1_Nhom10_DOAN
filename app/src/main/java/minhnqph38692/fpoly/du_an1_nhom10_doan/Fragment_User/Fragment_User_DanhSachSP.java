@@ -5,8 +5,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -30,7 +28,6 @@ public class Fragment_User_DanhSachSP extends Fragment {
     private ImageView headerImageView;
     private User_DanhSachSP_Adapter adapter;
     private RecyclerView listViewDanhSach;
-private DoAn_DAO doAnDAO;
 
     private int[] imageResources = {R.drawable.anh, R.drawable.login, R.drawable.login1};
     private int currentImageIndex = 0;
@@ -54,7 +51,7 @@ private DoAn_DAO doAnDAO;
         listViewDanhSach = rootView.findViewById(R.id.listView_ds);
 
 
-
+        DoAn_DAO doAnDAO;
         doAnDAO = new DoAn_DAO(getContext());
         ArrayList<DoAn_DTO> list= doAnDAO.getAll();
         adapter = new User_DanhSachSP_Adapter(list,requireContext());

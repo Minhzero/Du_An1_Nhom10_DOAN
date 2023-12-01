@@ -8,7 +8,6 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,12 +32,11 @@ public class DienThongTinActivity extends AppCompatActivity {
     int donGia1;
     String thongTin;
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
-    String thanhtoan="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dien_thong_tin);
-        RadioGroup rdg_thanhtoan= findViewById(R.id.rdg_kieuthanhtoan);
         mua = findViewById(R.id.mua);
         trolai = findViewById(R.id.trolai);
         Intent intent = getIntent();
@@ -49,22 +47,22 @@ public class DienThongTinActivity extends AppCompatActivity {
          hoTen = intent.getStringExtra("HoTen");
         sdt = intent.getStringExtra("SDT");
 
-rdg_thanhtoan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-    @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        if (i==R.id.rdb_tienmat){
-            thanhtoan="tien mat";
-
-        }else {
-            thanhtoan="chuyen khoan";
-        }
-    }
-});
         TextView txtTenMon = findViewById(R.id.txt_thucdon1);
         TextView txtDonGia = findViewById(R.id.txt_tongtien1);
+      // TextView txtDoanPhu = findViewById(R.id.);
+//        TextView txtSoLuong = findViewById(R.id.txt_tongtien);
+//        TextView txtEmail = findViewById(R.id.txt_email1);
+//        TextView txtHoTen = findViewById(R.id.txt_hoten1);
+//        TextView txtSDT = findViewById(R.id.txt_SDT1);
         EditText edt_diachi=findViewById(R.id.edt_diachi1);
-        txtTenMon.setText(tenMon+" va "+doanPhu);
+
+
+        txtTenMon.setText(tenMon+"va"+doanPhu);
         txtDonGia.setText(String.valueOf(donGia));
+     //   txtDoanPhu.setText(doanPhu);
+//        txtEmail.setText(email);
+//        txtHoTen.setText(hoTen);
+//        txtSDT.setText(sdt);
         mua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +86,7 @@ rdg_thanhtoan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(
                 hoaDonDto.setThucdon(tenMon+"va"+doanPhu);
                 hoaDonDto.setTongtien(donGia);
                 hoaDonDto.setNgaydathang(String.valueOf(h));
-                hoaDonDto.setThanhtoan(thanhtoan);
+                hoaDonDto.setThanhtoan("tienmat1");
                 hoaDonDto.setTrangthai(1);
 
                 long kq = hoaDonDao.InsertHD(hoaDonDto);

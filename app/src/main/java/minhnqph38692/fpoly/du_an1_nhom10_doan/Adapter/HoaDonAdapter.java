@@ -50,9 +50,9 @@ holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
-                   holder.cb_xacnhan.setVisibility(View.GONE);
+                   holder.cb_xacnhan.setVisibility(View.VISIBLE);
                 } else {
-                    holder.cb_xacnhan.setVisibility(View.VISIBLE);
+                    holder.cb_xacnhan.setVisibility(View.INVISIBLE);
 
                 }
             }
