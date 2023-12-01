@@ -153,6 +153,7 @@ validateQuantityInput(s.toString());
                         intent.putExtra("TongTien", tongtien);
                         intent.putExtra("ThongTin", thongTin);
                         intent.putExtra("DoanPhu", doanPhu);
+                        intent.putExtra("sl",edt_soluong.getText().toString());
 
                         // nguoi dung
                         intent.putExtra("Email", loggedInUser.getEmail());

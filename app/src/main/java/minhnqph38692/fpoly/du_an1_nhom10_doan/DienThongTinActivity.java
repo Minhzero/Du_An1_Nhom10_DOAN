@@ -8,7 +8,6 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,13 +31,13 @@ public class DienThongTinActivity extends AppCompatActivity {
     String tenMon1;
     int donGia1;
     String thongTin;
+    String sl;
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
-    String thanhtoan="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dien_thong_tin);
-        RadioGroup rdg_thanhtoan= findViewById(R.id.rdg_kieuthanhtoan);
         mua = findViewById(R.id.mua);
         trolai = findViewById(R.id.trolai);
         Intent intent = getIntent();
@@ -48,55 +47,62 @@ public class DienThongTinActivity extends AppCompatActivity {
          email = intent.getStringExtra("Email");
          hoTen = intent.getStringExtra("HoTen");
         sdt = intent.getStringExtra("SDT");
+        sl = intent.getStringExtra("sl");
 
-rdg_thanhtoan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-    @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        if (i==R.id.rdb_tienmat){
-            thanhtoan="tien mat";
 
-        }else {
-            thanhtoan="chuyen khoan";
-        }
-    }
-});
         TextView txtTenMon = findViewById(R.id.txt_thucdon1);
         TextView txtDonGia = findViewById(R.id.txt_tongtien1);
+      // TextView txtDoanPhu = findViewById(R.id.);
+//        TextView txtSoLuong = findViewById(R.id.txt_tongtien);
+//        TextView txtEmail = findViewById(R.id.txt_email1);
+//        TextView txtHoTen = findViewById(R.id.txt_hoten1);
+//        TextView txtSDT = findViewById(R.id.txt_SDT1);
         EditText edt_diachi=findViewById(R.id.edt_diachi1);
-        txtTenMon.setText(tenMon+" va "+doanPhu);
+
+
+        txtTenMon.setText(tenMon+"va"+doanPhu+"  SL: "+sl);
         txtDonGia.setText(String.valueOf(donGia));
+     //   txtDoanPhu.setText(doanPhu);
+//        txtEmail.setText(email);
+//        txtHoTen.setText(hoTen);
+//        txtSDT.setText(sdt);
         mua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tenMon = intent.getStringExtra("TenMon");
-                donGia = intent.getIntExtra("TongTien", 0);
-                doanPhu = intent.getStringExtra("DoanPhu");
-                email = intent.getStringExtra("Email");
-                hoTen = intent.getStringExtra("HoTen");
-                sdt = intent.getStringExtra("SDT");
-                String diachi = edt_diachi.getText().toString();
-                Date ate = new Date();
-                CharSequence h = DateFormat.format("d/MM /yyyy",ate.getTime());
-
-
-                HoaDon_DAO hoaDonDao = new HoaDon_DAO(DienThongTinActivity.this);
-                HoaDon_DTO hoaDonDto = new HoaDon_DTO();
-                hoaDonDto.setHoten(hoTen);
-                hoaDonDto.setEmail(email);
-                hoaDonDto.setSDT(sdt);
-                hoaDonDto.setDiachinhan(diachi);
-                hoaDonDto.setThucdon(tenMon+"va"+doanPhu);
-                hoaDonDto.setTongtien(donGia);
-                hoaDonDto.setNgaydathang(String.valueOf(h));
-                hoaDonDto.setThanhtoan(thanhtoan);
-                hoaDonDto.setTrangthai(1);
-
-                long kq = hoaDonDao.InsertHD(hoaDonDto);
-                if(kq>0){
-                    Toast.makeText(DienThongTinActivity.this, "thanh cong", Toast.LENGTH_SHORT).show();
+                if(edt_diachi.getText().toString().isEmpty()){
+                    Toast.makeText(DienThongTinActivity.this, "Địa chỉ không được để trống", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(DienThongTinActivity.this, "that bai", Toast.LENGTH_SHORT).show();
+                    tenMon = intent.getStringExtra("TenMon");
+                    donGia = intent.getIntExtra("TongTien", 0);
+                    doanPhu = intent.getStringExtra("DoanPhu");
+                    email = intent.getStringExtra("Email");
+                    hoTen = intent.getStringExtra("HoTen");
+                    sdt = intent.getStringExtra("SDT");
+                    sl = intent.getStringExtra("sl");
+                    String diachi = edt_diachi.getText().toString();
+                    Date ate = new Date();
+                    CharSequence h = DateFormat.format("d/MM /yyyy",ate.getTime());
 
+
+                    HoaDon_DAO hoaDonDao = new HoaDon_DAO(DienThongTinActivity.this);
+                    HoaDon_DTO hoaDonDto = new HoaDon_DTO();
+                    hoaDonDto.setHoten(hoTen);
+                    hoaDonDto.setEmail(email);
+                    hoaDonDto.setSDT(sdt);
+                    hoaDonDto.setDiachinhan(diachi);
+                    hoaDonDto.setThucdon(tenMon+"va"+doanPhu+" SL:"+sl);
+                    hoaDonDto.setTongtien(donGia);
+                    hoaDonDto.setNgaydathang(String.valueOf(h));
+                    hoaDonDto.setThanhtoan("tienmat1");
+                    hoaDonDto.setTrangthai(1);
+
+                    long kq = hoaDonDao.InsertHD(hoaDonDto);
+                    if(kq>0){
+                        Toast.makeText(DienThongTinActivity.this, "thanh cong", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(DienThongTinActivity.this, "that bai", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             }
         });

@@ -9,7 +9,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="80dp"
+        android:background="#2196F3">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -18,14 +19,18 @@
             android:layout_centerVertical="true"
             android:layout_margin="10dp"
             />
+
         <ImageView
             android:id="@+id/giohang"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/hoadon"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_margin="10dp"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/hoadon" />
     </RelativeLayout>
 
     <ImageView
@@ -34,37 +39,63 @@
         android:layout_height="200dp"
         android:scaleType="fitXY"
         android:src="@drawable/login1"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_margin="10dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ten mon an"
-        android:id="@+id/txt_ten"/>
+        android:id="@+id/txt_ten"
+        android:textSize="30dp"
+        android:layout_margin="10dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="gia"
-        android:id="@+id/txt_gia"/>
+        android:id="@+id/txt_gia"
+        android:layout_marginLeft="10dp"
+        android:textSize="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mô tả:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txt_thongtin"
-        android:text="thong tin chi tiet mon an"/>
+        android:text="thong tin chi tiet mon an"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"/>
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:boxCornerRadiusBottomEnd="20dp"
+        app:boxCornerRadiusBottomStart="20dp"
+        app:boxCornerRadiusTopStart="20dp"
+        app:boxCornerRadiusTopEnd="20dp">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/edt_soluong"
-            android:hint="nhap so luong muon dat"/>
+            android:hint="Nhập số lượng"/>
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chọn sản phẩm phụ:"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_margin="10dp"/>
     <Spinner
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
-        android:id="@+id/spn_doanphu"/>
+        android:id="@+id/spn_doanphu"
+        android:layout_margin="10dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

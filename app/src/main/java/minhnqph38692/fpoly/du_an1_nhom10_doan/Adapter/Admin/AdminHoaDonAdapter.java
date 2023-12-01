@@ -5,8 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,19 +45,8 @@ public class AdminHoaDonAdapter extends RecyclerView.Adapter<AdminHoaDonAdapter.
         holder.txt_diachi.setText(list.get(position).getDiachinhan());
         holder.txt_thucdon.setText(list.get(position).getThucdon());
         holder.txt_ngaydat.setText(list.get(position).getNgaydathang());
-        holder.txt_tongtien.setText(decimalFormat.format(list.get(position).getTongtien())+"");
+        holder.txt_tongtien.setText(decimalFormat.format(list.get(position).getTongtien()+""));
         holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
-holder.cb_xacnhan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        if (b){
-            holder.cb_xacnhan.setVisibility(View.GONE);
-        }else {
-            holder.cb_xacnhan.setVisibility(View.VISIBLE);
-
-        }
-    }
-});
 
     }
 
@@ -70,7 +57,7 @@ holder.cb_xacnhan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeL
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         TextView txt_madon,txt_email,txt_hoten,txt_sdt,txt_diachi,txt_thucdon,txt_ngaydat,txt_tongtien,txt_thanhtoan;
-CheckBox cb_xacnhan;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,7 +70,6 @@ CheckBox cb_xacnhan;
             txt_thanhtoan=itemView.findViewById(R.id.txt_thanhtoan2);
             txt_thucdon=itemView.findViewById(R.id.txt_thucdon2);
             txt_ngaydat=itemView.findViewById(R.id.txt_ngaydat2);
-            cb_xacnhan=itemView.findViewById(R.id.cb_xacnhan);
         }
     }
 }

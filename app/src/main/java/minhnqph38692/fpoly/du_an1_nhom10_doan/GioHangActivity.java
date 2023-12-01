@@ -164,15 +164,8 @@ public class GioHangActivity extends AppCompatActivity {
         invoice = new StringBuilder();
 
         for (GioHangDTO gioHangDTO : list) {
-            invoice.append( gioHangDTO.getTensp()+" và " +gioHangDTO.getTendoanphu()+"\n");
+            invoice.append( gioHangDTO.getTensp()+" và " +gioHangDTO.getTendoanphu()+ "  SL: "+gioHangDTO.getSoluongsp()+"\n");
         }
     }
-//        public void TenDoanphu(){
-//
-//            doanphu = new StringBuilder();
-//
-//            for (GioHangDTO gioHangDTO : list){
-//                doanphu.append(gioHangDTO.getTendoanphu()+"\n");
-//            }
-//    }
+
 }
