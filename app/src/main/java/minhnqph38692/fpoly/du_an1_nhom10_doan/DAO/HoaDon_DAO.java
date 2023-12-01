@@ -33,6 +33,21 @@ public class HoaDon_DAO {
 
         return db.insert("dt_hoadon",null,values);
     }
+    public int UpdateHD(HoaDon_DTO hoaDonDto){
+        ContentValues values = new ContentValues();
+        values.put("Email",hoaDonDto.getEmail());
+        values.put("hoten",hoaDonDto.getHoten());
+        values.put("SDT",hoaDonDto.getSDT());
+        values.put("diachinhan",hoaDonDto.getDiachinhan());
+        values.put("thucdon",hoaDonDto.getThucdon());
+        values.put("ngaydathang",hoaDonDto.getNgaydathang());
+        values.put("tongtien",hoaDonDto.getTongtien());
+        values.put("thanhtoan",hoaDonDto.getThanhtoan());
+        values.put("trangthai",hoaDonDto.getTrangthai());
+
+        String[] dk = new String[]{String.valueOf(hoaDonDto.getMahoadon())};
+        return db.update("dt_hoadon",values,"mahoadon=?",dk);
+    }
     public List<HoaDon_DTO> getAll(){
         String sql = "SELECT * FROM dt_hoadon";
         return getData(sql);
@@ -54,7 +69,7 @@ public class HoaDon_DAO {
                 String ngaydat=c.getString(6);
                 int tongtien=c.getInt(7);
                 String thanhtoan=c.getString(8);
-                int trangthai=c.getInt(9);
+                String trangthai=c.getString(9);
 
                 HoaDon_DTO hoaDon_dto=new HoaDon_DTO();
 
@@ -96,7 +111,7 @@ public class HoaDon_DAO {
                 String ngaydat=c.getString(6);
                 int tongtien=c.getInt(7);
                 String thanhtoan=c.getString(8);
-                int trangthai=c.getInt(9);
+                String trangthai=c.getString(9);
 
                 HoaDon_DTO hoaDon_dto=new HoaDon_DTO();
 

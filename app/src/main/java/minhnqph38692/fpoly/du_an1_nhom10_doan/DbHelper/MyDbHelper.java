@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "duan_datdoan";
-    static final int DB_VERSION=14;
+    static final int DB_VERSION=15;
 
     public MyDbHelper(Context context){
         super(context,DB_NAME,null,DB_VERSION);
@@ -48,9 +48,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql_doanphu);
         String doanphu="INSERT INTO dt_doanphu(TenDoAnPhu) VALUES ('GIo'),('Cha')";
         sqLiteDatabase.execSQL(doanphu);
-String sql_hoadon="CREATE TABLE dt_hoadon(mahoadon integer primary key,Email text not null,hoten text,SDT text not null,diachinhan text not null, thucdon text ,ngaydathang text,tongtien integer ,thanhtoan text,trangthai integer)";
+String sql_hoadon="CREATE TABLE dt_hoadon(mahoadon integer primary key,Email text not null,hoten text,SDT text not null,diachinhan text not null, thucdon text ,ngaydathang text,tongtien integer ,thanhtoan text,trangthai text)";
 sqLiteDatabase.execSQL(sql_hoadon);
-        String mauhoadon = "INSERT INTO dt_hoadon values('1','nguoidung@gmail.com','Người dùng','123456789','ha noi','com rang','22/2/2002',12000,'tien mat',1)";
+        String mauhoadon = "INSERT INTO dt_hoadon values('1','nguoidung@gmail.com','Người dùng','123456789','ha noi','com rang','22/2/2002',12000,'tien mat','đã thanh toán')";
         sqLiteDatabase.execSQL(mauhoadon);
 
         String giohang = "CREATE TABLE dt_giohang(masp integer primary key not null ,tensp text not null,tendoanphu text," +

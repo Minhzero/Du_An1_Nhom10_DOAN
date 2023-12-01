@@ -9,13 +9,13 @@ public class HoaDon_DTO {
     private String thucdon;
     private int tongtien;
     private String ngaydathang;
-    private int trangthai;
+    private String trangthai;
     private String thanhtoan;
 
     public HoaDon_DTO() {
     }
 
-    public HoaDon_DTO(int mahoadon, String email, String hoten, String SDT, String diachinhan, String thucdon, int tongtien, String ngaydathang, int trangthai, String thanhtoan) {
+    public HoaDon_DTO(int mahoadon, String email, String hoten, String SDT, String diachinhan, String thucdon, int tongtien, String ngaydathang, String trangthai, String thanhtoan) {
         this.mahoadon = mahoadon;
         this.email = email;
         this.hoten = hoten;
@@ -92,11 +92,11 @@ public class HoaDon_DTO {
         this.ngaydathang = ngaydathang;
     }
 
-    public int getTrangthai() {
+    public String getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(int trangthai) {
+    public void setTrangthai(String trangthai) {
         this.trangthai = trangthai;
     }
 

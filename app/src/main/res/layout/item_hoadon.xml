@@ -24,9 +24,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Ma Don Hang :"
+                    android:text="Mã đơn hàng :"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:text="Email :"
                     android:textStyle="bold" />
@@ -61,9 +61,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Ho Ten"
+                    android:text="Họ Tên"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:text="SDT"
                     android:textStyle="bold" />
@@ -97,9 +97,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Dia Chi Nhan :"
+                    android:text="Số bàn :"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -115,9 +115,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Thuc Don"
+                    android:text="Thực đơn"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -133,9 +133,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Ngay Dat Hang :"
+                    android:text="Ngày đặt hàng :"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -151,9 +151,9 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Tong Tien"
+                    android:text="Tổng Tiền"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -169,7 +169,25 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="100dp"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Trạng thái"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="trang thai"
+                    android:layout_weight="1"
+                    android:id="@+id/txt_trangthai"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:text="Thanh Toan"
                     android:textStyle="bold" />
@@ -189,6 +207,27 @@
                 android:visibility="visible"
                 android:text="da nhan hang"
                 android:id="@+id/cb_xacnhan"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="20dp">
+            <Button
+                android:id="@+id/tt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thanh toán"
+                android:layout_margin="10dp"/>
+            <Button
+                android:id="@+id/ttdoan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trạng thái đồ ăn"
+                android:visibility="visible"
+                android:layout_margin="10dp"/>
+
         </LinearLayout>
 
 

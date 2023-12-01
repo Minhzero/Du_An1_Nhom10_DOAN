@@ -94,7 +94,7 @@ public class DienThongTinActivity extends AppCompatActivity {
                     hoaDonDto.setTongtien(donGia);
                     hoaDonDto.setNgaydathang(String.valueOf(h));
                     hoaDonDto.setThanhtoan("tienmat1");
-                    hoaDonDto.setTrangthai(1);
+                    hoaDonDto.setTrangthai("Đang chế biến món ăn");
 
                     long kq = hoaDonDao.InsertHD(hoaDonDto);
                     if(kq>0){

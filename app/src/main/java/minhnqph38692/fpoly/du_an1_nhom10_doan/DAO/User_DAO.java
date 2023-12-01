@@ -116,23 +116,17 @@ values.put("LoaiTaiKhoan","user");
 
         return db.update("dt_nguoidung",values,"Email=?",dk);
     }
-    public User_DTO getAccountEmail(String Email){
-        User_DTO user_dto= new User_DTO();
-        String[] colum={"MaND","HoTen","MatKhau","Email","NamSinh","SDT"};
-        String vitri = "Email =?";
-        String[] dk = {Email};
-        Cursor c = db.query("dt_nguoidung",colum,vitri,dk,null,null,null);
+    public Boolean getAccountEmail(String Email){
+        String[] columns = {"Email"};
+        String selection = "Email=?";
+        String[] selectionArgs = {Email};
 
-        if(c!=null && c.moveToFirst()){
-            user_dto.setMaND(c.getString(0));
-            user_dto.setHoTen(c.getString(1));
-            user_dto.setMatKhau(c.getString(2));
-            user_dto.setEmail(c.getString(3));
-            user_dto.setNamSinh(c.getString(4));
-            user_dto.setSDT(c.getString(5));
+        Cursor cursor = db.query("dt_nguoidung", columns, selection, selectionArgs, null, null, null);
+        int count = cursor.getCount();
 
-        }
-        return  user_dto;
+        cursor.close();
+
+        return count > 0;
     }
     public boolean updatepass(String username,String oldpass,String newpass){
 

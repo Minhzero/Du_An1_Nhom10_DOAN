@@ -144,7 +144,7 @@ validateQuantityInput(s.toString());
                     if(sl1>0){
                         Intent intent = new Intent(ChiTietSPActivity.this, DienThongTinActivity.class);
                         String tenMon = txt_ten.getText().toString();
-                        int tongtien = Integer.parseInt(txt_gia.getText().toString()) * Integer.parseInt(edt_soluong.getText().toString());
+                        int tongtien = Integer.parseInt(String.valueOf(donGia)) * Integer.parseInt(edt_soluong.getText().toString());
                         String thongTin = txt_thongtin.getText().toString();
                         String doanPhu = spn_doanphu.getSelectedItem().toString();
 

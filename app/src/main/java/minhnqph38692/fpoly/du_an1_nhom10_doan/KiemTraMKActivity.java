@@ -31,9 +31,9 @@ public class KiemTraMKActivity extends AppCompatActivity {
                 String email = xntk_email.getText().toString();
 
                 User_DAO user_dao = new User_DAO(KiemTraMKActivity.this);
-                User_DTO user_dto = user_dao.getAccountEmail(email);
+                boolean ktemail = user_dao.getAccountEmail(email);
 
-                if (user_dto != null && user_dto.getEmail().equals(email)){
+                if (ktemail){
                     Intent intent = new Intent(KiemTraMKActivity.this, QuenMKActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("email",email);
