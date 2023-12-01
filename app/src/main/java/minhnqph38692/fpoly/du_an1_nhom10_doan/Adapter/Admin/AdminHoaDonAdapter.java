@@ -45,7 +45,7 @@ public class AdminHoaDonAdapter extends RecyclerView.Adapter<AdminHoaDonAdapter.
         holder.txt_diachi.setText(list.get(position).getDiachinhan());
         holder.txt_thucdon.setText(list.get(position).getThucdon());
         holder.txt_ngaydat.setText(list.get(position).getNgaydathang());
-        holder.txt_tongtien.setText(decimalFormat.format(list.get(position).getTongtien()+""));
+        holder.txt_tongtien.setText(decimalFormat.format(list.get(position).getTongtien())+"VND");
         holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
 
     }

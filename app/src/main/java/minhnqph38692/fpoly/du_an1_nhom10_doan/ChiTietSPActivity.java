@@ -110,7 +110,7 @@ validateQuantityInput(s.toString());
 
 
             txt_ten.setText(tenMon);
-            txt_gia.setText(String.valueOf(donGia));
+            txt_gia.setText(decimalFormat.format(donGia)+"VND");
             txt_thongtin.setText(thongTin);
             Picasso.get().load(anh).into(img_anhchitiet);
 
@@ -181,7 +181,7 @@ validateQuantityInput(s.toString());
                 try {
                     GioHangDAo gioHangDAo = new GioHangDAo(ChiTietSPActivity.this);
                     String tenMon = txt_ten.getText().toString();
-                    int gia = Integer.parseInt(txt_gia.getText().toString());
+                    int gia = Integer.parseInt(String.valueOf(donGia));
                     int sl = Integer.parseInt(edt_soluong.getText().toString());
                     String doanPhu = spn_doanphu.getSelectedItem().toString();
 if(sl<=0){
