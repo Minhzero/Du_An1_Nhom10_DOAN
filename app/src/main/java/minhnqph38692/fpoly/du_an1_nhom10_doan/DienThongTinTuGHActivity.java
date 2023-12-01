@@ -48,7 +48,7 @@ public class DienThongTinTuGHActivity extends AppCompatActivity {
 
         TextInputEditText txtTenMon = findViewById(R.id.txt_thucdon3);
         TextInputEditText txtDonGia = findViewById(R.id.txt_tongtien3);
-        TextInputEditText txtEmail = findViewById(R.id.txt_email3);
+//        TextInputEditText txtEmail = findViewById(R.id.txt_email3);
 //        TextInputEditText txtHoTen = findViewById(R.id.txt_hoten3);
 //        TextInputEditText txtSDT = findViewById(R.id.txt_SDT3);
         TextInputEditText edt_diachi=findViewById(R.id.edt_diachi3);
@@ -56,7 +56,7 @@ public class DienThongTinTuGHActivity extends AppCompatActivity {
 
         txtTenMon.setText(tenMon);
         txtDonGia.setText(donGia);
-        txtEmail.setText(email);
+//        txtEmail.setText(email);
 //        txtHoTen.setText(hoTen);
 //        txtSDT.setText(sdt);
         mua.setOnClickListener(new View.OnClickListener() {
