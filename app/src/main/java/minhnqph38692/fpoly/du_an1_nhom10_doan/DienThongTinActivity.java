@@ -60,7 +60,7 @@ public class DienThongTinActivity extends AppCompatActivity {
         EditText edt_diachi=findViewById(R.id.edt_diachi1);
 
 
-        txtTenMon.setText(tenMon+"va"+doanPhu);
+        txtTenMon.setText(tenMon+"va"+doanPhu+"  SL: "+sl);
         txtDonGia.setText(String.valueOf(donGia));
      //   txtDoanPhu.setText(doanPhu);
 //        txtEmail.setText(email);
