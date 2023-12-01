@@ -31,6 +31,7 @@ public class DienThongTinActivity extends AppCompatActivity {
     String tenMon1;
     int donGia1;
     String thongTin;
+    String sl;
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
 
     @Override
@@ -46,6 +47,8 @@ public class DienThongTinActivity extends AppCompatActivity {
          email = intent.getStringExtra("Email");
          hoTen = intent.getStringExtra("HoTen");
         sdt = intent.getStringExtra("SDT");
+        sl = intent.getStringExtra("sl");
+
 
         TextView txtTenMon = findViewById(R.id.txt_thucdon1);
         TextView txtDonGia = findViewById(R.id.txt_tongtien1);
@@ -66,35 +69,40 @@ public class DienThongTinActivity extends AppCompatActivity {
         mua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tenMon = intent.getStringExtra("TenMon");
-                donGia = intent.getIntExtra("TongTien", 0);
-                doanPhu = intent.getStringExtra("DoanPhu");
-                email = intent.getStringExtra("Email");
-                hoTen = intent.getStringExtra("HoTen");
-                sdt = intent.getStringExtra("SDT");
-                String diachi = edt_diachi.getText().toString();
-                Date ate = new Date();
-                CharSequence h = DateFormat.format("d/MM /yyyy",ate.getTime());
-
-
-                HoaDon_DAO hoaDonDao = new HoaDon_DAO(DienThongTinActivity.this);
-                HoaDon_DTO hoaDonDto = new HoaDon_DTO();
-                hoaDonDto.setHoten(hoTen);
-                hoaDonDto.setEmail(email);
-                hoaDonDto.setSDT(sdt);
-                hoaDonDto.setDiachinhan(diachi);
-                hoaDonDto.setThucdon(tenMon+"va"+doanPhu);
-                hoaDonDto.setTongtien(donGia);
-                hoaDonDto.setNgaydathang(String.valueOf(h));
-                hoaDonDto.setThanhtoan("tienmat1");
-                hoaDonDto.setTrangthai(1);
-
-                long kq = hoaDonDao.InsertHD(hoaDonDto);
-                if(kq>0){
-                    Toast.makeText(DienThongTinActivity.this, "thanh cong", Toast.LENGTH_SHORT).show();
+                if(edt_diachi.getText().toString().isEmpty()){
+                    Toast.makeText(DienThongTinActivity.this, "Địa chỉ không được để trống", Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(DienThongTinActivity.this, "that bai", Toast.LENGTH_SHORT).show();
+                    tenMon = intent.getStringExtra("TenMon");
+                    donGia = intent.getIntExtra("TongTien", 0);
+                    doanPhu = intent.getStringExtra("DoanPhu");
+                    email = intent.getStringExtra("Email");
+                    hoTen = intent.getStringExtra("HoTen");
+                    sdt = intent.getStringExtra("SDT");
+                    sl = intent.getStringExtra("sl");
+                    String diachi = edt_diachi.getText().toString();
+                    Date ate = new Date();
+                    CharSequence h = DateFormat.format("d/MM /yyyy",ate.getTime());
 
+
+                    HoaDon_DAO hoaDonDao = new HoaDon_DAO(DienThongTinActivity.this);
+                    HoaDon_DTO hoaDonDto = new HoaDon_DTO();
+                    hoaDonDto.setHoten(hoTen);
+                    hoaDonDto.setEmail(email);
+                    hoaDonDto.setSDT(sdt);
+                    hoaDonDto.setDiachinhan(diachi);
+                    hoaDonDto.setThucdon(tenMon+"va"+doanPhu+" SL:"+sl);
+                    hoaDonDto.setTongtien(donGia);
+                    hoaDonDto.setNgaydathang(String.valueOf(h));
+                    hoaDonDto.setThanhtoan("tienmat1");
+                    hoaDonDto.setTrangthai(1);
+
+                    long kq = hoaDonDao.InsertHD(hoaDonDto);
+                    if(kq>0){
+                        Toast.makeText(DienThongTinActivity.this, "thanh cong", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(DienThongTinActivity.this, "that bai", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             }
         });
