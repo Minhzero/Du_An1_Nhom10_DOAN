@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder> {
     List<HoaDon_DTO> list;
     Context context;
+    String thanhtoan;
 
     public HoaDonAdapter(List<HoaDon_DTO> list, Context context) {
         this.list = list;
@@ -51,6 +53,14 @@ holder.txt_ngaydat.setText(list.get(position).getNgaydathang());
 holder.txt_tongtien.setText(decimalFormat.format(list.get(position).getTongtien())+" VND");
 holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
 holder.txt_trangthai.setText(list.get(position).getTrangthai());
+if (list.get(position).getTrangthai().equals("Đã mang món ăn lên")){
+    holder.ttdoan.setVisibility(View.GONE);
+}
+if(list.get(position).getThanhtoan().equals("Đã thanh toán bằng tiền mặt")){
+    holder.tt.setVisibility(View.GONE);
+} else if (list.get(position).getThanhtoan().equals("Đã thanh toán bằng chuyển khoản")) {
+    holder.tt.setVisibility(View.GONE);
+}
 //        holder.cb_xacnhan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //            @Override
 //            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -76,7 +86,7 @@ holder.txt_trangthai.setText(list.get(position).getTrangthai());
                     list.clear();
                     list.addAll(hoaDonDao.getAll());
                     notifyDataSetChanged();
-                    holder.ttdoan.setVisibility(View.INVISIBLE);
+
                 }else {
                     Toast.makeText(context, "Cập nhập trạng thái thất bại", Toast.LENGTH_SHORT).show();
 
@@ -86,9 +96,52 @@ holder.txt_trangthai.setText(list.get(position).getTrangthai());
         holder.tt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                HoaDon_DTO hoaDonDto = list.get(position);
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                LayoutInflater inflater = ((Activity)context).getLayoutInflater();
+                View h = inflater.inflate(R.layout.layout_update_kieuthanhtoan,null);
+                builder.setView(h);
+                builder.setCancelable(false);
+                AlertDialog dialog = builder.create();
+                RadioGroup rdg_thanhtoan= h.findViewById(R.id.rdg_kieuthanhtoan1);
+                Button btn_suatt = h.findViewById(R.id.btn_suatt);
+                Button btn_huytt = h.findViewById(R.id.btn_huysuatt);
+                rdg_thanhtoan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        if (i==R.id.rdb_tienmat){
+                            thanhtoan="Đã thanh toán bằng tiền mặt";
 
+                        }else {
+                            thanhtoan="Đã thanh toán bằng chuyển khoản";
+                        }
+                    }
+                });
+                btn_suatt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        HoaDon_DAO hoaDon_dao = new HoaDon_DAO(context);
+                        hoaDonDto.setThanhtoan(thanhtoan);
+                        int kq = hoaDon_dao.UpdateHD(hoaDonDto);
+                        if(kq>0){
+                            Toast.makeText(context, "Cập nhập trạng thái thành công", Toast.LENGTH_SHORT).show();
+                            list.clear();
+                            list.addAll(hoaDon_dao.getAll());
+                            notifyDataSetChanged();
+
+                            dialog.dismiss();
+                        }else {
+                            Toast.makeText(context, "Cập nhập trạng thái thất bại", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+
+                        }
+                    }
+                });
+dialog.show();
             }
+
         });
+
 
 
     }
@@ -118,16 +171,12 @@ holder.txt_trangthai.setText(list.get(position).getTrangthai());
 
             tt = itemView.findViewById(R.id.tt);
             ttdoan = itemView.findViewById(R.id.ttdoan);
-            cb_xacnhan=itemView.findViewById(R.id.cb_xacnhan);
+//            cb_xacnhan=itemView.findViewById(R.id.cb_xacnhan);
         }
     }
     public void Thanhtoan(HoaDon_DTO hoaDonDto){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-        View v = inflater.inflate(R.layout.layout_update_sp_phu,null);
-        builder.setView(v);
-        builder.setCancelable(false);
-        AlertDialog dialog = builder.create();
+
+
 
     }
 }

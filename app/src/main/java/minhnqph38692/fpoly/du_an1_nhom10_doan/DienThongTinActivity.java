@@ -93,14 +93,14 @@ public class DienThongTinActivity extends AppCompatActivity {
                     hoaDonDto.setThucdon(tenMon+"va"+doanPhu+" SL:"+sl);
                     hoaDonDto.setTongtien(donGia);
                     hoaDonDto.setNgaydathang(String.valueOf(h));
-                    hoaDonDto.setThanhtoan("tienmat1");
+                    hoaDonDto.setThanhtoan("Chưa thanh toán");
                     hoaDonDto.setTrangthai("Đang chế biến món ăn");
 
                     long kq = hoaDonDao.InsertHD(hoaDonDto);
                     if(kq>0){
-                        Toast.makeText(DienThongTinActivity.this, "thanh cong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DienThongTinActivity.this, "Đặt món thành công", Toast.LENGTH_SHORT).show();
                     }else {
-                        Toast.makeText(DienThongTinActivity.this, "that bai", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DienThongTinActivity.this, "Đặt món thất bại", Toast.LENGTH_SHORT).show();
 
                     }
                 }

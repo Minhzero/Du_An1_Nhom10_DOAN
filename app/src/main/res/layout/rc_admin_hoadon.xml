@@ -169,6 +169,24 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:text="Trạng thái"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="trang thai"
+                    android:layout_weight="1"
+                    android:id="@+id/txt_trangthai2"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Thanh Toan"
@@ -183,11 +201,6 @@
             </LinearLayout>
 
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="da nhan hang"
-                android:id="@+id/cb_xacnhan"/>
         </LinearLayout>
 
 

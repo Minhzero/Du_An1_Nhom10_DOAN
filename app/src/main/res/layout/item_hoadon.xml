@@ -201,12 +201,12 @@
             </LinearLayout>
 
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="visible"
-                android:text="da nhan hang"
-                android:id="@+id/cb_xacnhan"/>
+<!--            <CheckBox-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="visible"-->
+<!--                android:text="da nhan hang"-->
+<!--                android:id="@+id/cb_xacnhan"/>-->
         </LinearLayout>
 
         <LinearLayout
@@ -219,6 +219,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thanh toán"
+                android:visibility="visible"
                 android:layout_margin="10dp"/>
             <Button
                 android:id="@+id/ttdoan"

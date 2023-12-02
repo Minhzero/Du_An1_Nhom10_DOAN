@@ -39,7 +39,7 @@ String thanhtoan;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dien_thong_tin_tugh);
         mua = findViewById(R.id.muagh);
-        RadioGroup rdg_thanhtoan= findViewById(R.id.rdg_kieuthanhtoan);
+//        RadioGroup rdg_thanhtoan= findViewById(R.id.rdg_kieuthanhtoan);
         back = findViewById(R.id.backgh);
         Bundle bundle = getIntent().getExtras();
          tenMon = bundle.getString("TenMon");
@@ -47,17 +47,17 @@ String thanhtoan;
          email = bundle.getString("Email");
          hoTen = bundle.getString("HoTen");
         sdt = bundle.getString("SDT");
-        rdg_thanhtoan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i==R.id.rdb_tienmat){
-                    thanhtoan="tien mat";
-
-                }else {
-                    thanhtoan="chuyen khoan";
-                }
-            }
-        });
+//        rdg_thanhtoan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+//                if (i==R.id.rdb_tienmat){
+//                    thanhtoan="tien mat";
+//
+//                }else {
+//                    thanhtoan="chuyen khoan";
+//                }
+//            }
+//        });
         TextInputEditText txtTenMon = findViewById(R.id.txt_thucdon3);
         TextInputEditText txtDonGia = findViewById(R.id.txt_tongtien3);
 //        TextInputEditText txtEmail = findViewById(R.id.txt_email3);
@@ -93,12 +93,12 @@ String thanhtoan;
                 hoaDonDto.setThucdon(tenMon);
                 hoaDonDto.setTongtien(Integer.parseInt(donGia));
                 hoaDonDto.setNgaydathang(String.valueOf(h));
-                hoaDonDto.setThanhtoan(thanhtoan);
+                hoaDonDto.setThanhtoan("Chưa thanh toán");
                 hoaDonDto.setTrangthai("Đang chế biến món ăn");
 
                 long kq = hoaDonDao.InsertHD(hoaDonDto);
                 if(kq>0){
-                    Toast.makeText(DienThongTinTuGHActivity.this, "thanh cong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DienThongTinTuGHActivity.this, "Đặt món thành công", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(DienThongTinTuGHActivity.this,HoaDonUserActivity.class);
                     userDao = new User_DAO(DienThongTinTuGHActivity.this);
                     User_DTO loggedInUser = userDao.getCurrentLoggedInUser();
@@ -109,7 +109,7 @@ String thanhtoan;
 
 
                 }else {
-                    Toast.makeText(DienThongTinTuGHActivity.this, "that bai", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DienThongTinTuGHActivity.this, "Đặt món thất bại", Toast.LENGTH_SHORT).show();
 
                 }
             }

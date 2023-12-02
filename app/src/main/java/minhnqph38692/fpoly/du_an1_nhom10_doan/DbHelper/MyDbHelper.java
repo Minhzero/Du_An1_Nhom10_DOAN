@@ -59,6 +59,11 @@ sqLiteDatabase.execSQL(sql_hoadon);
         String maugh = "INSERT INTO dt_giohang(tensp,tendoanphu,giasp,soluong,anhsp) VALUES ('com rang','gio',12000,2,'https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')," +
                 "('bun cha','cha',13000,3,'https://bizweb.dktcdn.net/100/442/328/products/bun-cha-ha-noi.jpg?v=1644892472637')";
         sqLiteDatabase.execSQL(maugh);
+        String sql_ban = "CREATE TABLE dt_banan(maban integer primary key not null ,tenban text not null)";
+        sqLiteDatabase.execSQL(sql_ban);
+        String ban="INSERT INTO dt_banan(tenban) VALUES ('Bàn số 1'),('Bàn số 2')";
+        sqLiteDatabase.execSQL(ban);
+
 
 
     }
@@ -71,6 +76,7 @@ sqLiteDatabase.execSQL(sql_hoadon);
         sqLiteDatabase.execSQL("DROP TABLE if exists dt_doanphu");
         sqLiteDatabase.execSQL("DROP TABLE if exists dt_hoadon");
         sqLiteDatabase.execSQL("DROP TABLE if exists dt_giohang");
+        sqLiteDatabase.execSQL("DROP TABLE if exists dt_banan");
 
         onCreate(sqLiteDatabase);
 

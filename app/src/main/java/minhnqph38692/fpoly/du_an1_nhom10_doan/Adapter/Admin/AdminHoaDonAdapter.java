@@ -47,6 +47,8 @@ public class AdminHoaDonAdapter extends RecyclerView.Adapter<AdminHoaDonAdapter.
         holder.txt_ngaydat.setText(list.get(position).getNgaydathang());
         holder.txt_tongtien.setText(decimalFormat.format(list.get(position).getTongtien())+"VND");
         holder.txt_thanhtoan.setText(list.get(position).getThanhtoan());
+        holder.txt_trangthai2.setText(list.get(position).getTrangthai());
+
 
     }
 
@@ -56,7 +58,7 @@ public class AdminHoaDonAdapter extends RecyclerView.Adapter<AdminHoaDonAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView txt_madon,txt_email,txt_hoten,txt_sdt,txt_diachi,txt_thucdon,txt_ngaydat,txt_tongtien,txt_thanhtoan;
+        TextView txt_madon,txt_email,txt_hoten,txt_sdt,txt_diachi,txt_thucdon,txt_ngaydat,txt_tongtien,txt_thanhtoan,txt_trangthai2;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -70,6 +72,7 @@ public class AdminHoaDonAdapter extends RecyclerView.Adapter<AdminHoaDonAdapter.
             txt_thanhtoan=itemView.findViewById(R.id.txt_thanhtoan2);
             txt_thucdon=itemView.findViewById(R.id.txt_thucdon2);
             txt_ngaydat=itemView.findViewById(R.id.txt_ngaydat2);
+            txt_trangthai2 = itemView.findViewById(R.id.txt_trangthai2);
         }
     }
 }
