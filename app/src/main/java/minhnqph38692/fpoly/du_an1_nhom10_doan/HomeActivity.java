@@ -20,6 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.Fragment_Admin_BanAn;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.Fragment_Admin_DoanhThu;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.Fragment_Admin_DonHang;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.Fragment_Admin_QL_LoaiSP;
@@ -51,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
     Fragment_User_HoaDon fragment_user_hoaDon;
     Fragment_User_LoaiSP fragment_user_loaiSP;
     Fragment_DoiMatKhau fragment_doiMatKhau;
+    Fragment_Admin_BanAn fragment_admin_banAn;
 
     String maND;
 
@@ -75,11 +77,13 @@ public class HomeActivity extends AppCompatActivity {
         fragment_admin_ql_nd = new Fragment_Admin_QL_ND();
         fragment_admin_sp_phu = new Fragment_Admin_SP_phu();
         fragment_admin_themSP = new Fragment_Admin_ThemSP();
+        fragment_admin_banAn = new Fragment_Admin_BanAn();
 
         fragment_user_hoaDon = new Fragment_User_HoaDon();
         fragment_user_loaiSP = new Fragment_User_LoaiSP();
         fragment_user_danhSachSP = new Fragment_User_DanhSachSP();
         fragment_doiMatKhau = new Fragment_DoiMatKhau();
+
 
         fm = getSupportFragmentManager();
 //        fm.beginTransaction().add(R.id.home_fragment,fragment_admin_themSP).commit();
@@ -141,6 +145,8 @@ public class HomeActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else if(item.getItemId() == R.id.home_doimatkhau){
                     fm.beginTransaction().replace(R.id.home_fragment,fragment_doiMatKhau).commit();
+                }else if(item.getItemId() == R.id.home_admin_Banan){
+                    fm.beginTransaction().replace(R.id.home_fragment,fragment_admin_banAn).commit();
                 }else if(item.getItemId() == R.id.home_Dangxuat){
                     Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                     startActivity(intent);
