@@ -35,7 +35,7 @@ public class Fragment_User_DanhSachSP extends Fragment {
     ArrayList<DoAn_DTO> list1;
     private RecyclerView listViewDanhSach;
 
-    private int[] imageResources = {R.drawable.anh, R.drawable.login, R.drawable.login1};
+    private int[] imageResources = {R.drawable.comrang, R.drawable.pho, R.drawable.buncha,R.drawable.phoxao};
     private int currentImageIndex = 0;
 
     private Handler handler = new Handler();
@@ -45,7 +45,7 @@ public class Fragment_User_DanhSachSP extends Fragment {
             currentImageIndex = (currentImageIndex + 1) % imageResources.length;
             headerImageView.setImageResource(imageResources[currentImageIndex]);
 
-            handler.postDelayed(this, 2000);
+            handler.postDelayed(this, 3000);
         }
     };
 

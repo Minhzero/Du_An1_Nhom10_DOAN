@@ -213,21 +213,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_margin="20dp">
+            android:layout_margin="10dp">
             <Button
                 android:id="@+id/tt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Thanh toán"
                 android:visibility="visible"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:backgroundTint="#ff00"/>
             <Button
                 android:id="@+id/ttdoan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Trạng thái đồ ăn"
                 android:visibility="visible"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:backgroundTint="#0354F6"/>
 
         </LinearLayout>
 

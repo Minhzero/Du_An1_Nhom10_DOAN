@@ -3,23 +3,32 @@ package minhnqph38692.fpoly.du_an1_nhom10_doan;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.GioHangDAo;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.HoaDon_DAO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.GioHangDTO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.HoaDon_DTO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DbHelper.MyDbHelper;
 
 public class DienThongTinActivity extends AppCompatActivity {
+    Spinner spn_banan;
     Button mua,trolai;
     String tenMon;
     int donGia;
@@ -40,6 +49,7 @@ public class DienThongTinActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dien_thong_tin);
         mua = findViewById(R.id.mua);
         trolai = findViewById(R.id.trolai);
+        spn_banan = findViewById(R.id.spn_banan);
         Intent intent = getIntent();
          tenMon = intent.getStringExtra("TenMon");
          donGia = intent.getIntExtra("TongTien", 0);
@@ -57,7 +67,7 @@ public class DienThongTinActivity extends AppCompatActivity {
 //        TextView txtEmail = findViewById(R.id.txt_email1);
 //        TextView txtHoTen = findViewById(R.id.txt_hoten1);
 //        TextView txtSDT = findViewById(R.id.txt_SDT1);
-        EditText edt_diachi=findViewById(R.id.edt_diachi1);
+//        EditText edt_diachi=findViewById(R.id.edt_diachi1);
 
 
         txtTenMon.setText(tenMon+"va"+doanPhu+"  SL: "+sl);
@@ -66,12 +76,29 @@ public class DienThongTinActivity extends AppCompatActivity {
 //        txtEmail.setText(email);
 //        txtHoTen.setText(hoTen);
 //        txtSDT.setText(sdt);
+
+        ArrayList<String> bananlist = getBananData();
+
+        MyDbHelper dbHelper = new MyDbHelper(this);
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM dt_banan", null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                String tenban = cursor.getString(1);
+                bananlist.add(tenban);
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, bananlist);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spn_banan.setAdapter(adapter);
         mua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edt_diachi.getText().toString().isEmpty()){
-                    Toast.makeText(DienThongTinActivity.this, "Địa chỉ không được để trống", Toast.LENGTH_SHORT).show();
-                }else {
+//                if(edt_diachi.getText().toString().isEmpty()){
+//                    Toast.makeText(DienThongTinActivity.this, "Địa chỉ không được để trống", Toast.LENGTH_SHORT).show();
+//                }else {
                     tenMon = intent.getStringExtra("TenMon");
                     donGia = intent.getIntExtra("TongTien", 0);
                     doanPhu = intent.getStringExtra("DoanPhu");
@@ -79,7 +106,7 @@ public class DienThongTinActivity extends AppCompatActivity {
                     hoTen = intent.getStringExtra("HoTen");
                     sdt = intent.getStringExtra("SDT");
                     sl = intent.getStringExtra("sl");
-                    String diachi = edt_diachi.getText().toString();
+                    String diachi = spn_banan.getSelectedItem().toString();
                     Date ate = new Date();
                     CharSequence h = DateFormat.format("d/MM /yyyy",ate.getTime());
 
@@ -99,11 +126,18 @@ public class DienThongTinActivity extends AppCompatActivity {
                     long kq = hoaDonDao.InsertHD(hoaDonDto);
                     if(kq>0){
                         Toast.makeText(DienThongTinActivity.this, "Đặt món thành công", Toast.LENGTH_SHORT).show();
+                        Intent intent1= new Intent(DienThongTinActivity.this,HoaDonUserActivity.class);
+                        User_DAO userDao = new User_DAO(DienThongTinActivity.this);
+                        User_DTO loggedInUser = userDao.getCurrentLoggedInUser();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("user",loggedInUser.getMaND());
+                        intent1.putExtras(bundle);
+                        startActivity(intent1);
                     }else {
                         Toast.makeText(DienThongTinActivity.this, "Đặt món thất bại", Toast.LENGTH_SHORT).show();
 
                     }
-                }
+//                }
             }
         });
 
@@ -129,5 +163,10 @@ public class DienThongTinActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private ArrayList<String> getBananData() {
+        ArrayList<String> banan = new ArrayList<>();
+
+        return banan;
     }
 }

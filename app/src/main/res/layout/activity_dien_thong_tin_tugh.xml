@@ -173,22 +173,29 @@
 <!--            android:id="@+id/edt_diachi3"/>-->
 
 <!--    </LinearLayout>-->
-    <com.google.android.material.textfield.TextInputLayout
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        app:boxCornerRadiusTopEnd="20dp"-->
+<!--        app:boxCornerRadiusTopStart="20dp"-->
+<!--        app:boxCornerRadiusBottomStart="20dp"-->
+<!--        app:boxCornerRadiusBottomEnd="20dp">-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Địa chỉ người dùng"-->
+<!--            android:id="@+id/edt_diachi3"/>-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+    <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        app:boxCornerRadiusTopEnd="20dp"
-        app:boxCornerRadiusTopStart="20dp"
-        app:boxCornerRadiusBottomStart="20dp"
-        app:boxCornerRadiusBottomEnd="20dp">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Địa chỉ người dùng"
-            android:id="@+id/edt_diachi3"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="50dp"
+        android:id="@+id/spn_banan1"
+        android:background="@drawable/khung_tim_kiem"
+        android:layout_margin="10dp"/>
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
@@ -363,13 +370,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mua"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:backgroundTint="#0048FF"/>
         <Button
             android:id="@+id/backgh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Trở lại"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:backgroundTint="#B0B2B6"/>
 
     </LinearLayout>
 

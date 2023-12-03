@@ -20,7 +20,8 @@
         android:layout_width="387dp"
         android:layout_gravity="center"
         android:layout_height="200dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="fitXY"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listView_ds"
