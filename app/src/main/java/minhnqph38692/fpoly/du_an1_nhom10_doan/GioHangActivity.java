@@ -66,18 +66,22 @@ public class GioHangActivity extends AppCompatActivity {
         gh_dathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User_DAO userDAO = new User_DAO(GioHangActivity.this);
-                User_DTO loggedInUser = userDAO.getCurrentLoggedInUser();
-                gioHangDAo.xoaToanBoSanPhamTrongGioHang();
-                Intent intent = new Intent(GioHangActivity.this, DienThongTinTuGHActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("TenMon", String.valueOf(invoice));
-                bundle.putString("Email", loggedInUser.getEmail());
-                bundle.putString("HoTen", loggedInUser.getHoTen());
-                bundle.putString("SDT", loggedInUser.getSDT());
-                bundle.putString("TongTien", String.valueOf(tongtiengh));
-                intent.putExtras(bundle);
-                startActivity(intent);
+               if (list.size()==0){
+                   Toast.makeText(GioHangActivity.this, "Giỏ hàng trống", Toast.LENGTH_SHORT).show();
+               }else {
+                   User_DAO userDAO = new User_DAO(GioHangActivity.this);
+                   User_DTO loggedInUser = userDAO.getCurrentLoggedInUser();
+                   gioHangDAo.xoaToanBoSanPhamTrongGioHang();
+                   Intent intent = new Intent(GioHangActivity.this, DienThongTinTuGHActivity.class);
+                   Bundle bundle = new Bundle();
+                   bundle.putString("TenMon", String.valueOf(invoice));
+                   bundle.putString("Email", loggedInUser.getEmail());
+                   bundle.putString("HoTen", loggedInUser.getHoTen());
+                   bundle.putString("SDT", loggedInUser.getSDT());
+                   bundle.putString("TongTien", String.valueOf(tongtiengh));
+                   intent.putExtras(bundle);
+                   startActivity(intent);
+               }
 
             }
         });
