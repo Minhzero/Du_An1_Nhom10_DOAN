@@ -71,7 +71,6 @@ public class GioHangActivity extends AppCompatActivity {
                }else {
                    User_DAO userDAO = new User_DAO(GioHangActivity.this);
                    User_DTO loggedInUser = userDAO.getCurrentLoggedInUser();
-                   gioHangDAo.xoaToanBoSanPhamTrongGioHang();
                    Intent intent = new Intent(GioHangActivity.this, DienThongTinTuGHActivity.class);
                    Bundle bundle = new Bundle();
                    bundle.putString("TenMon", String.valueOf(invoice));

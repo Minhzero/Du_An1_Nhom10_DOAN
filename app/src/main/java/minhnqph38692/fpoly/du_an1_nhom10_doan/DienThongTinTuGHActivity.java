@@ -23,6 +23,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.GioHangDAo;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.HoaDon_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.HoaDon_DTO;
@@ -40,13 +41,12 @@ public class DienThongTinTuGHActivity extends AppCompatActivity {
     String sdt;
     User_DAO userDao;
     DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
-String thanhtoan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dien_thong_tin_tugh);
         mua = findViewById(R.id.muagh);
-//        RadioGroup rdg_thanhtoan= findViewById(R.id.rdg_kieuthanhtoan);
+        GioHangDAo gioHangDAo = new GioHangDAo(DienThongTinTuGHActivity.this);
         spn_banan1=findViewById(R.id.spn_banan1);
         back = findViewById(R.id.backgh);
         Bundle bundle = getIntent().getExtras();
@@ -55,30 +55,13 @@ String thanhtoan;
          email = bundle.getString("Email");
          hoTen = bundle.getString("HoTen");
         sdt = bundle.getString("SDT");
-//        rdg_thanhtoan.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-//                if (i==R.id.rdb_tienmat){
-//                    thanhtoan="tien mat";
-//
-//                }else {
-//                    thanhtoan="chuyen khoan";
-//                }
-//            }
-//        });
         TextInputEditText txtTenMon = findViewById(R.id.txt_thucdon3);
         TextInputEditText txtDonGia = findViewById(R.id.txt_tongtien3);
-//        TextInputEditText txtEmail = findViewById(R.id.txt_email3);
-//        TextInputEditText txtHoTen = findViewById(R.id.txt_hoten3);
-//        TextInputEditText txtSDT = findViewById(R.id.txt_SDT3);
-//        TextInputEditText edt_diachi=findViewById(R.id.edt_diachi3);
 
 
         txtTenMon.setText(tenMon);
         txtDonGia.setText(donGia);
-//        txtEmail.setText(email);
-//        txtHoTen.setText(hoTen);
-//        txtSDT.setText(sdt);
+
         ArrayList<String> bananlist = getBananData();
 
         MyDbHelper dbHelper = new MyDbHelper(this);
@@ -123,6 +106,7 @@ String thanhtoan;
                 long kq = hoaDonDao.InsertHD(hoaDonDto);
                 if(kq>0){
                     Toast.makeText(DienThongTinTuGHActivity.this, "Đặt món thành công", Toast.LENGTH_SHORT).show();
+                    gioHangDAo.xoaToanBoSanPhamTrongGioHang();
                     Intent intent = new Intent(DienThongTinTuGHActivity.this,HoaDonUserActivity.class);
                     userDao = new User_DAO(DienThongTinTuGHActivity.this);
                     User_DTO loggedInUser = userDao.getCurrentLoggedInUser();
