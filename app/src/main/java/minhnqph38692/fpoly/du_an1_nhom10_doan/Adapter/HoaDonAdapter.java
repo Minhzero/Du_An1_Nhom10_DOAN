@@ -137,6 +137,13 @@ if(list.get(position).getThanhtoan().equals("Đã thanh toán bằng tiền mặ
                         }
                     }
                 });
+                btn_huytt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context, "Hủy thanh toán", Toast.LENGTH_SHORT).show();
+                        dialog.show();
+                    }
+                });
 dialog.show();
             }
 

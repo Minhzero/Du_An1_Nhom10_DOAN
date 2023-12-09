@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "duan_datdoan";
-    static final int DB_VERSION=16;
+    static final int DB_VERSION=18;
 
     public MyDbHelper(Context context){
         super(context,DB_NAME,null,DB_VERSION);
@@ -28,7 +28,9 @@ public class MyDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(sql_nguoidung);
         String mauUSer ="INSERT INTO dt_nguoidung " +
                 "VALUES (1,'admin','Quản lý','admin','helo@gmail.com','2004','012345678','admin')," +
-                "(2,'nguoidung01','Người dùng','nguoidung01','nguoidung@gmail.com','2005','123456789','user')";
+                "(2,'nguoidung01','Người dùng','nguoidung01','nguoidung@gmail.com','2005','123456789','user')," +
+                "(3,'daubep','Đầu bếp','dauep','daubep@gmail.com','2002','123456789','daubep')"
+                ;
         sqLiteDatabase.execSQL(mauUSer);
         String sql_Loai = "CREATE TABLE dt_loai (maloai integer primary key not null, tenloai text not null)";
         sqLiteDatabase.execSQL(sql_Loai);
@@ -50,7 +52,7 @@ public class MyDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(doanphu);
 String sql_hoadon="CREATE TABLE dt_hoadon(mahoadon integer primary key,Email text not null,hoten text,SDT text not null,diachinhan text not null, thucdon text ,ngaydathang text,tongtien integer ,thanhtoan text,trangthai text)";
 sqLiteDatabase.execSQL(sql_hoadon);
-        String mauhoadon = "INSERT INTO dt_hoadon values('1','nguoidung@gmail.com','Người dùng','123456789','ha noi','com rang','22/2/2002',12000,'tien mat','đã thanh toán')";
+        String mauhoadon = "INSERT INTO dt_hoadon values('1','nguoidung@gmail.com','Người dùng','123456789','ha noi','com rang','22/2/2002',12000,'tien mat','Đang chế biến món ăn')";
         sqLiteDatabase.execSQL(mauhoadon);
 
         String giohang = "CREATE TABLE dt_giohang(masp integer primary key not null ,tensp text not null,tendoanphu text," +

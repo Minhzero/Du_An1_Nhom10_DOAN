@@ -20,6 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.User_DAO;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DTO.User_DTO;
+import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.FragmentDonHangDauBep;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.Fragment_Admin_BanAn;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.Fragment_Admin_DoanhThu;
 import minhnqph38692.fpoly.du_an1_nhom10_doan.Fragment_Admin.Fragment_Admin_DonHang;
@@ -53,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
     Fragment_User_LoaiSP fragment_user_loaiSP;
     Fragment_DoiMatKhau fragment_doiMatKhau;
     Fragment_Admin_BanAn fragment_admin_banAn;
+    FragmentDonHangDauBep fragmentDonHangDauBep;
 
     String maND;
 
@@ -83,6 +85,7 @@ public class HomeActivity extends AppCompatActivity {
         fragment_user_loaiSP = new Fragment_User_LoaiSP();
         fragment_user_danhSachSP = new Fragment_User_DanhSachSP();
         fragment_doiMatKhau = new Fragment_DoiMatKhau();
+        fragmentDonHangDauBep = new FragmentDonHangDauBep();
 
 
         fm = getSupportFragmentManager();
@@ -104,10 +107,13 @@ public class HomeActivity extends AppCompatActivity {
             fm.beginTransaction().add(R.id.home_fragment,fragment_admin_themSP).commit();
 
 
+        }else if(maND.equalsIgnoreCase("daubep")) {
+            main_nav_view.getMenu().findItem(R.id.daubep).setVisible(true);
+            fm.beginTransaction().add(R.id.home_fragment,fragmentDonHangDauBep).commit();
+
         }else {
             main_nav_view.getMenu().findItem(R.id.user).setVisible(true);
             fm.beginTransaction().add(R.id.home_fragment,fragment_user_danhSachSP).commit();
-
         }
         main_nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -150,6 +156,9 @@ public class HomeActivity extends AppCompatActivity {
                 }else if(item.getItemId() == R.id.home_Dangxuat){
                     Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                     startActivity(intent);
+                } else if (item.getItemId() == R.id.home_daubep_hoadon) {
+                    fm.beginTransaction().replace(R.id.home_fragment,fragmentDonHangDauBep).commit();
+
                 }
 
                 getSupportActionBar().setTitle(item.getTitle());
