@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MyDbHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "duan_datdoan";
-    static final int DB_VERSION=18;
+    static final int DB_VERSION=19;
 
     public MyDbHelper(Context context){
         super(context,DB_NAME,null,DB_VERSION);
@@ -34,32 +34,32 @@ public class MyDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(mauUSer);
         String sql_Loai = "CREATE TABLE dt_loai (maloai integer primary key not null, tenloai text not null)";
         sqLiteDatabase.execSQL(sql_Loai);
-        String mauLoai = "INSERT INTO dt_loai values('1','com'),('2','bun')";
+        String mauLoai = "INSERT INTO dt_loai values('1','cơm'),('2','bún')";
         sqLiteDatabase.execSQL(mauLoai);
 
         String sql_doan = "CREATE TABLE dt_doan(madoan integer primary key not null ,tendoan text not null,giadoan integer not null, maloai integer references dt_loai(maloai)  not null,thongtin text not null,anh text )";
         sqLiteDatabase.execSQL(sql_doan);
-        String doan_1= "INSERT INTO dt_doan values('1','com rang',1000,1,'com rat ngon','https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')";
+        String doan_1= "INSERT INTO dt_doan values('1','cơm rang',1000,1,'cơm rất ngon','https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')";
         sqLiteDatabase.execSQL(doan_1);
-        String doan_2= "INSERT INTO dt_doan values('2','bun cha ',1000,2,'bun rat ngon','https://bizweb.dktcdn.net/100/442/328/products/bun-cha-ha-noi.jpg?v=1644892472637')";
+        String doan_2= "INSERT INTO dt_doan values('2','bún chả ',1000,2,'bún rất ngon','https://bizweb.dktcdn.net/100/442/328/products/bun-cha-ha-noi.jpg?v=1644892472637')";
         sqLiteDatabase.execSQL(doan_2);
         String sql_doanphu="CREATE TABLE dt_doanphu (\n" +
                 "    MaDoAnPhu  INTEGER PRIMARY KEY,\n" +
                 "    TenDoAnPhu TEXT    NOT NULL\n" +
                 ");\n";
         sqLiteDatabase.execSQL(sql_doanphu);
-        String doanphu="INSERT INTO dt_doanphu(TenDoAnPhu) VALUES ('GIo'),('Cha')";
+        String doanphu="INSERT INTO dt_doanphu(TenDoAnPhu) VALUES ('Giò'),('Chả')";
         sqLiteDatabase.execSQL(doanphu);
 String sql_hoadon="CREATE TABLE dt_hoadon(mahoadon integer primary key,Email text not null,hoten text,SDT text not null,diachinhan text not null, thucdon text ,ngaydathang text,tongtien integer ,thanhtoan text,trangthai text)";
 sqLiteDatabase.execSQL(sql_hoadon);
-        String mauhoadon = "INSERT INTO dt_hoadon values('1','nguoidung@gmail.com','Người dùng','123456789','ha noi','com rang','22/2/2002',12000,'tien mat','Đang chế biến món ăn')";
+        String mauhoadon = "INSERT INTO dt_hoadon values('1','nguoidung@gmail.com','Người dùng','123456789','bàn số 1','cơm rang','22/2/2002',12000,'Đã thanh toán bằng tiền mặt','Đang chế biến món ăn')";
         sqLiteDatabase.execSQL(mauhoadon);
 
         String giohang = "CREATE TABLE dt_giohang(masp integer primary key not null ,tensp text not null,tendoanphu text," +
                 "giasp integer not null,soluong integer,anhsp text )";
         sqLiteDatabase.execSQL(giohang);
-        String maugh = "INSERT INTO dt_giohang(tensp,tendoanphu,giasp,soluong,anhsp) VALUES ('com rang','gio',12000,2,'https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')," +
-                "('bun cha','cha',13000,3,'https://bizweb.dktcdn.net/100/442/328/products/bun-cha-ha-noi.jpg?v=1644892472637')";
+        String maugh = "INSERT INTO dt_giohang(tensp,tendoanphu,giasp,soluong,anhsp) VALUES ('cơm rang','Giò',12000,2,'https://lh3.googleusercontent.com/CB-FFqhq6t5UbEnTKo0Rw6fX1gtO89k4ZPDZLHDNW09Gv9JH89xeaqohwsq6xzfuEHAooiFLhMbDgl_zkKrRP8fBLZk=w622')," +
+                "('bún chả','Chả',13000,3,'https://bizweb.dktcdn.net/100/442/328/products/bun-cha-ha-noi.jpg?v=1644892472637')";
         sqLiteDatabase.execSQL(maugh);
         String sql_ban = "CREATE TABLE dt_banan(maban integer primary key not null ,tenban text not null)";
         sqLiteDatabase.execSQL(sql_ban);

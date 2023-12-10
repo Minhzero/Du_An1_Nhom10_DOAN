@@ -27,7 +27,7 @@ import minhnqph38692.fpoly.du_an1_nhom10_doan.R;
 public class HoaDonAdapter extends RecyclerView.Adapter<HoaDonAdapter.ViewHolder> {
     List<HoaDon_DTO> list;
     Context context;
-    String thanhtoan;
+    String thanhtoan="";
 
     public HoaDonAdapter(List<HoaDon_DTO> list, Context context) {
         this.list = list;
@@ -77,18 +77,23 @@ if(list.get(position).getThanhtoan().equals("Đã thanh toán bằng tiền mặ
         holder.ttdoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HoaDon_DTO hoaDonDto = list.get(position);
-                HoaDon_DAO hoaDonDao = new HoaDon_DAO(context);
-                hoaDonDto.setTrangthai("Đã mang món ăn lên");
-                int kq = hoaDonDao.UpdateHD(hoaDonDto);
-                if(kq>0){
-                    Toast.makeText(context, "Cập nhập trạng thái thành công", Toast.LENGTH_SHORT).show();
-                    list.clear();
-                    list.addAll(hoaDonDao.getAll());
-                    notifyDataSetChanged();
+                if(list.get(position).getTrangthai().equals(" Món ăn đã chế biến xong")){
+                    HoaDon_DTO hoaDonDto = list.get(position);
+                    HoaDon_DAO hoaDonDao = new HoaDon_DAO(context);
+                    hoaDonDto.setTrangthai("Đã mang món ăn lên");
+                    int kq = hoaDonDao.UpdateHD(hoaDonDto);
+                    if(kq>0){
+                        Toast.makeText(context, "Cập nhập trạng thái thành công", Toast.LENGTH_SHORT).show();
+                        list.clear();
+                        list.addAll(hoaDonDao.getAll());
+                        notifyDataSetChanged();
 
+                    }else {
+                        Toast.makeText(context, "Cập nhập trạng thái thất bại", Toast.LENGTH_SHORT).show();
+
+                    }
                 }else {
-                    Toast.makeText(context, "Cập nhập trạng thái thất bại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Món ăn chưa chế biến xong", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -121,19 +126,23 @@ if(list.get(position).getThanhtoan().equals("Đã thanh toán bằng tiền mặ
                     @Override
                     public void onClick(View v) {
                         HoaDon_DAO hoaDon_dao = new HoaDon_DAO(context);
-                        hoaDonDto.setThanhtoan(thanhtoan);
-                        int kq = hoaDon_dao.UpdateHD(hoaDonDto);
-                        if(kq>0){
-                            Toast.makeText(context, "Cập nhập trạng thái thành công", Toast.LENGTH_SHORT).show();
-                            list.clear();
-                            list.addAll(hoaDon_dao.getAll());
-                            notifyDataSetChanged();
-
-                            dialog.dismiss();
+                        if(thanhtoan.equals("")){
+                            Toast.makeText(context, "Chưa chọn phương thức thanh toán", Toast.LENGTH_SHORT).show();
                         }else {
-                            Toast.makeText(context, "Cập nhập trạng thái thất bại", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
+                            hoaDonDto.setThanhtoan(thanhtoan);
+                            int kq = hoaDon_dao.UpdateHD(hoaDonDto);
+                            if(kq>0){
+                                Toast.makeText(context, "Cập nhập trạng thái thành công", Toast.LENGTH_SHORT).show();
+                                list.clear();
+                                list.addAll(hoaDon_dao.getAll());
+                                notifyDataSetChanged();
 
+                                dialog.dismiss();
+                            }else {
+                                Toast.makeText(context, "Cập nhập trạng thái thất bại", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+
+                            }
                         }
                     }
                 });
