@@ -26,7 +26,7 @@
                 <TextView
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Ma Don Hang :"
+                    android:text="Mã đơn hàng :"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
                 <TextView
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Ho Ten"
+                    android:text="Nhân viên phục vụ"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
                 <TextView
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Thuc Don"
+                    android:text="Thực đơn"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
                 <TextView
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Ngay Dat Hang :"
+                    android:text="Ngày đặt hàng :"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -153,7 +153,7 @@
                 <TextView
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Tong Tien"
+                    android:text="Tổng tiền"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -189,7 +189,7 @@
                 <TextView
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
-                    android:text="Thanh Toan"
+                    android:text="Thanh toán"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
