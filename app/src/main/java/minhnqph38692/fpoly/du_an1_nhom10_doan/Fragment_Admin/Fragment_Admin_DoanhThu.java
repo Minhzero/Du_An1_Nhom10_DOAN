@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 import minhnqph38692.fpoly.du_an1_nhom10_doan.DAO.ThongKeTop_DAO;
@@ -27,6 +28,8 @@ public class Fragment_Admin_DoanhThu extends Fragment {
     TextView dt_tien;
 
     int mDay,mMonth,mYear;
+    DecimalFormat decimalFormat = new DecimalFormat("###,###,###.###");
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -80,7 +83,7 @@ public class Fragment_Admin_DoanhThu extends Fragment {
             public void onClick(View v) {
                 ThongKeTop_DAO thongKe_dao = new ThongKeTop_DAO(getContext());
                 int doanhthu = thongKe_dao.getDoanhThu(dt_tungay.getText().toString(),dt_denngay.getText().toString());
-                dt_tien.setText(""+doanhthu+"$");
+                dt_tien.setText(""+decimalFormat.format(doanhthu)+" VND");
 
 
             }

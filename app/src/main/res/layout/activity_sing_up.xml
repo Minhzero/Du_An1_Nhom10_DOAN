@@ -15,7 +15,8 @@
         android:textStyle="bold"
         android:textSize="40dp"
         android:textColor="#14A8ED"
-        android:layout_margin="30dp"/>
+        android:layout_margin="30dp"
+        />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

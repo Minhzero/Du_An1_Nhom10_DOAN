@@ -54,6 +54,9 @@ public class DauBepHoaDonAdapter extends RecyclerView.Adapter<DauBepHoaDonAdapte
         if (list.get(position).getTrangthai().equals(" Món ăn đã chế biến xong")){
             holder.ttdoan3.setVisibility(View.GONE);
         }
+        if(list.get(position).getTrangthai().equals("Đã mang món ăn lên")){
+            holder.ttdoan3.setVisibility(View.GONE);
+        }
 
         holder.ttdoan3.setOnClickListener(new View.OnClickListener() {
             @Override
